@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { moviesApiNext } from '../../api/moviesNext';
 import type { Movie } from '../../api/types';
 import {
@@ -68,7 +69,10 @@ export default function MoviesPage() {
 
   // 获取海报URL
   const getPosterUrl = (posterPath: string | null) => {
-    if (!posterPath) return '/placeholder-movie.jpg';
+    if (!posterPath) {
+      // 返回一个内联的 SVG 占位图
+      return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9Ijc1MCIgdmlld0JveD0iMCAwIDUwMCA3NTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNzUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjEyNSIgeT0iMjUwIiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI1MCIgcng9IjEyLjUiIGZpbGw9IiNEMUQ1REIiLz4KPHBhdGggZD0iTTE4NyAzMjVMMjEyLjUgMzUwTDI1MCAzMTJMIiBzdHJva2U9IiM5Q0E0QUYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjx0ZXh0IHg9IjI1MCIgeT0iNDUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBNEFGIiBmb250LWZhbWlseT0iYXJpYWwiIGZvbnQtc2l6ZT0iMTYiPuaaguaXoOa1t+aKpTwvdGV4dD4KPC9zdmc+';
+    }
     return `https://image.tmdb.org/t/p/w500${posterPath}`;
   };
 
@@ -118,11 +122,12 @@ export default function MoviesPage() {
             >
               {/* 电影海报 */}
               <div className="relative aspect-[3/4] overflow-hidden">
-                <img
+                <Image
                   src={getPosterUrl(movie.poster_path)}
                   alt={movie.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
                 />
 
                 {/* 悬停遮罩层 */}
