@@ -9,13 +9,15 @@ import {
   HeartIcon,
   EyeIcon,
   FireIcon,
-  ClockIcon
+  ClockIcon,
+  PlayIcon,
+  InformationCircleIcon
 } from '@heroicons/react/24/outline';
 import {
   HeartIcon as HeartSolidIcon,
   StarIcon as StarSolidIcon
 } from '@heroicons/react/24/solid';
-import './line-clamp.css';
+
 
 interface MovieCardProps {
   movie: Movie;
@@ -47,12 +49,12 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
     return 'normal';
   };
 
-  // 获取评分样式
-  const getRatingStyle = (rating: number) => {
-    if (rating >= 8) return 'from-emerald-500 to-green-600';
-    if (rating >= 7) return 'from-amber-400 to-orange-500';
-    if (rating >= 6) return 'from-orange-400 to-red-500';
-    return 'from-red-500 to-pink-600';
+  // 获取评分颜色类
+  const getRatingBadgeClass = (rating: number) => {
+    if (rating >= 8) return 'badge-success';
+    if (rating >= 7) return 'badge-warning';
+    if (rating >= 6) return 'badge-orange';
+    return 'badge-error';
   };
 
   const popularity = movie.popularity || 0;
@@ -60,11 +62,11 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
 
   return (
     <div className="group relative">
-      {/* 主卡片容器 */}
-      <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2">
+      {/* DaisyUI Card 容器 */}
+      <div className="card card-compact bg-gradient-to-br from-base-100 to-base-200 shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 border border-base-300 hover:border-primary/50">
         
         {/* 海报容器 */}
-        <div className="relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
+        <figure className="relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
           <Image
             src={getPosterUrl(movie.poster_path)}
             alt={movie.title}
@@ -82,88 +84,116 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
           {/* 渐变遮罩 */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
-          {/* 流行度指示器 */}
+          {/* DaisyUI 流行度徽章 */}
           {popularityLevel === 'hot' && (
-            <div className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-red-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+            <div className="badge badge-error badge-lg gap-1 absolute top-3 left-3 text-white font-bold">
               <FireIcon className="w-3 h-3" />
               HOT
             </div>
           )}
           
           {popularityLevel === 'trending' && (
-            <div className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+            <div className="badge badge-secondary badge-lg gap-1 absolute top-3 left-3 text-white font-bold">
               <FireIcon className="w-3 h-3" />
               TRENDING
             </div>
           )}
 
-          {/* 评分徽章 */}
-          <div className={`absolute top-3 right-3 bg-gradient-to-r ${getRatingStyle(movie.vote_average)} text-white px-2 py-1 rounded-full flex items-center gap-1 shadow-lg`}>
+          {/* DaisyUI 评分徽章 */}
+          <div className={`badge ${getRatingBadgeClass(movie.vote_average)} badge-lg gap-1 absolute top-3 right-3 text-white font-bold shadow-lg`}>
             <StarSolidIcon className="w-3 h-3" />
-            <span className="text-xs font-bold">{movie.vote_average.toFixed(1)}</span>
+            {movie.vote_average.toFixed(1)}
           </div>
 
-          {/* 喜欢按钮 */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onToggleLike(movie.id);
-            }}
-            className="absolute bottom-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 transition-all duration-200 hover:scale-110"
-          >
-            {isLiked ? (
-              <HeartSolidIcon className="w-5 h-5 text-red-500" />
-            ) : (
-              <HeartIcon className="w-5 h-5 text-white" />
-            )}
-          </button>
+          {/* DaisyUI 喜欢按钮 */}
+          <div className="absolute bottom-3 right-3">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onToggleLike(movie.id);
+              }}
+              className={`btn btn-circle btn-sm ${
+                isLiked ? 'btn-error' : 'btn-ghost'
+              } backdrop-blur-sm bg-black/60 hover:bg-black/80 border-none hover:scale-110 transition-all duration-200`}
+            >
+              {isLiked ? (
+                <HeartSolidIcon className="w-4 h-4 text-white" />
+              ) : (
+                <HeartIcon className="w-4 h-4 text-white" />
+              )}
+            </button>
+          </div>
 
-          {/* 悬停时的播放按钮 */}
+          {/* DaisyUI 悬停播放按钮 */}
           <Link
             href={`/app/home/movies/${movie.id}`}
             className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
           >
-            <div className="bg-white/20 backdrop-blur-md rounded-full p-4 hover:bg-white/30 transition-colors duration-200">
-              <div className="w-8 h-8 border-l-8 border-l-white border-y-4 border-y-transparent border-r-0 ml-1" />
-            </div>
+            <button className="btn btn-circle btn-lg btn-primary bg-primary/20 backdrop-blur-md border-primary/30 hover:bg-primary/30">
+              <PlayIcon className="w-8 h-8 text-white ml-1" />
+            </button>
           </Link>
-        </div>
+        </figure>
 
-        {/* 内容区域 */}
-        <div className="p-4 space-y-3">
+        {/* DaisyUI Card Body */}
+        <div className="card-body p-4 space-y-3">
           {/* 标题 */}
           <Link href={`/app/home/movies/${movie.id}`}>
-            <h3 className="font-bold text-base leading-tight text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2 cursor-pointer">
+            <h2 className="card-title text-base leading-tight hover:text-primary transition-colors duration-200 line-clamp-2 cursor-pointer">
               {movie.title}
-            </h3>
+            </h2>
           </Link>
 
-          {/* 年份和投票数 */}
-          <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-1">
-              <ClockIcon className="w-4 h-4" />
-              <span>{getYear(movie.release_date)}</span>
+          {/* DaisyUI Stats */}
+          <div className="stats stats-horizontal shadow-sm bg-base-100/50">
+            <div className="stat py-2 px-3">
+              <div className="stat-figure text-primary">
+                <ClockIcon className="w-4 h-4" />
+              </div>
+              <div className="stat-value text-sm">{getYear(movie.release_date)}</div>
+              <div className="stat-desc text-xs">年份</div>
             </div>
-            <div className="flex items-center gap-1">
-              <EyeIcon className="w-4 h-4" />
-              <span>{(movie.vote_count / 1000).toFixed(1)}k</span>
+            
+            <div className="stat py-2 px-3">
+              <div className="stat-figure text-secondary">
+                <EyeIcon className="w-4 h-4" />
+              </div>
+              <div className="stat-value text-sm">{(movie.vote_count / 1000).toFixed(1)}k</div>
+              <div className="stat-desc text-xs">观看</div>
             </div>
           </div>
 
           {/* 简介 */}
-          <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+          <p className="text-sm text-base-content/70 line-clamp-3 leading-relaxed">
             {movie.overview || '这部电影暂时还没有详细的介绍信息...'}
           </p>
 
-          {/* 底部操作栏 */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-700">
+          {/* DaisyUI Card Actions */}
+          <div className="card-actions justify-between items-center pt-2">
             <Link
               href={`/app/home/movies/${movie.id}`}
-              className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 text-center"
+              className="btn btn-primary btn-sm flex-1 gap-2"
             >
+              <InformationCircleIcon className="w-4 h-4" />
               查看详情
             </Link>
+            
+            {/* DaisyUI Dropdown 菜单 */}
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-sm btn-circle">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                </svg>
+              </div>
+              <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32 text-sm">
+                <li><a>分享</a></li>
+                <li><a>收藏</a></li>
+                <li><a>举报</a></li>
+              </ul>
+            </div>
           </div>
+
+
         </div>
       </div>
     </div>
