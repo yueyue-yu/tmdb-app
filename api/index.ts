@@ -8,7 +8,9 @@ export { tvApi } from './tv';
 export { peopleApi } from './people';
 export { genresApi } from './genres';
 export { ApiTester, testApi, quickHealthCheck } from './test';
-export { ApiErrorHandler, RetryHandler } from './utils';
+
+export { nextApiClient } from './nextClient';
+export { moviesApiNext } from './moviesNext';
 
 export type {
   ApiResponse,

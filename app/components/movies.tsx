@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { moviesApi } from '@/api';
-import type { Movie } from '@/api';
+import { moviesApiNext } from '../../api/moviesNext';
+import type { Movie } from '../../api/types';
 import {
   StarIcon,
   HeartIcon,
@@ -25,7 +25,7 @@ export default function MoviesPage() {
   // 获取电影数据
   const fetchMovies = async (pageNum: number = 1) => {
     try {
-      const response = await moviesApi.getPopular(pageNum);
+      const response = await moviesApiNext.getPopular(pageNum);
       if (pageNum === 1) {
         setMovies(response.results);
       } else {
