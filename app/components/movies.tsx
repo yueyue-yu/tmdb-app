@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Layout from '../components/Layout';
-import { moviesApi } from '../api/movies';
-import type { Movie } from '../api/types';
+import Layout from './Layout';
+import { moviesApi } from '../../api/movies';
+import type { Movie } from '../../api/types';
 import {
   StarIcon,
   HeartIcon,
