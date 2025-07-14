@@ -21,6 +21,7 @@ export default function ImageTestPage() {
                 src={src}
                 alt={`测试图片 ${index + 1}`}
                 fill
+                priority={index === 0} // 只给第一张图片设置优先级
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
