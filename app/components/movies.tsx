@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Layout from './Layout';
-import { moviesApi } from '../../api/movies';
-import type { Movie } from '../../api/types';
+import { moviesApi } from '@/api';
+import type { Movie } from '@/api';
 import {
   StarIcon,
   HeartIcon,
@@ -88,7 +87,6 @@ export default function MoviesPage() {
 
   if (loading && movies.length === 0) {
     return (
-      <Layout>
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {Array.from({ length: 20 }).map((_, index) => (
@@ -100,12 +98,10 @@ export default function MoviesPage() {
             ))}
           </div>
         </div>
-      </Layout>
     );
   }
 
   return (
-    <Layout>
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* 页面标题 */}
         <div className="mb-8">
@@ -132,7 +128,7 @@ export default function MoviesPage() {
                 {/* 悬停遮罩层 */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                   <Link
-                    href={`/movies/${movie.id}`}
+                    href={`/app/home/movies/${movie.id}`}
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     <PlayIcon className="h-12 w-12 text-white" />
@@ -185,7 +181,7 @@ export default function MoviesPage() {
                 {/* 操作按钮 */}
                 <div className="flex justify-between items-center">
                   <Link
-                    href={`/movies/${movie.id}`}
+                    href={`/app/home/movies/${movie.id}`}
                     className="btn btn-primary btn-xs"
                   >
                     查看详情
@@ -226,6 +222,5 @@ export default function MoviesPage() {
           </div>
         )}
       </div>
-    </Layout>
   );
 }
