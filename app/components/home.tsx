@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from './Layout';
 import {
   FilmIcon,
   TvIcon,
@@ -55,7 +55,6 @@ export default function Home() {
   return (
       <Layout>
         <div className="max-w-6xl mx-auto">
-          {/* Hero Section */}
           <div className="hero bg-gradient-to-r from-primary to-secondary text-primary-content rounded-2xl mb-12">
             <div className="hero-content text-center py-20">
               <div className="max-w-md">
