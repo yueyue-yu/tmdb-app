@@ -4,7 +4,7 @@
  */
 
 // 主要组件
-export { default as MovieCardServer } from './MovieCard';
+export { default as MovieCard} from './MovieCard';
 
 export { default as MoviePoster } from './MoviePoster';
 export { default as MovieInfo } from './MovieInfo';
