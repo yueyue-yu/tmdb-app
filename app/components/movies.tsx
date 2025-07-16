@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { moviesApiNext } from '@/app/lib/api';
 import type { Movie } from '@/app/lib/api';
-import MovieCardServer from './MovieCardServer';
+import MovieCard from './movie/MovieCard';
 import {
   FireIcon,
   TrophyIcon,
@@ -224,7 +224,7 @@ export default function MoviesPage() {
         isChangingCategory ? 'opacity-50 scale-95' : 'opacity-100 scale-100'
       }`}>
         {movies.map((movie, index) => (
-          <MovieCardServer
+          <MovieCard
             key={`${currentCategory}-${movie.id}`}
             movie={movie}
             index={index}
