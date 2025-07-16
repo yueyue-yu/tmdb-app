@@ -17,11 +17,6 @@ export default async function MovieDataContainer({
   category, 
   page 
 }: MovieDataContainerProps) {
-  // 添加延迟来演示分页加载效果（仅开发环境）
-  if (process.env.NODE_ENV === 'development') {
-    await new Promise(resolve => setTimeout(resolve, 800));
-  }
-  
   try {
     const response = await fetchMovies(category, page);
     const { results: movies, total_pages, page: currentPage } = response;

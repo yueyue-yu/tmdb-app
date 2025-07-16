@@ -6,6 +6,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
 interface PaginationProps {
@@ -22,6 +23,8 @@ export default function Pagination({
   totalMovies 
 }: PaginationProps) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [navigatingToPage, setNavigatingToPage] = useState<number | null>(null);
   const hasPrevious = currentPage > 1;
 
   // 导航到指定页面
@@ -30,9 +33,27 @@ export default function Pagination({
       ? `/home/movies/${category}` 
       : `/home/movies/${category}?page=${page}`;
     
-    // 使用 router.push 触发完整路由切换
-    router.push(url);
+    setNavigatingToPage(page);
+    
+    startTransition(() => {
+      // 使用 window.location.href 强制硬导航，触发 loading.tsx
+      window.location.href = url;
+    });
   };
+
+  // 如果正在导航，显示加载状态
+  if (navigatingToPage !== null) {
+    return (
+      <div className="flex flex-col items-center gap-6 mt-12">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-primary"></div>
+          <p className="text-base-content/60 mt-2">
+            正在加载第 {navigatingToPage} 页...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // 如果没有上一页也没有下一页，显示结束提示
   if (!hasPrevious && !hasMore && totalMovies > 0) {
