@@ -21,7 +21,6 @@ interface MovieCardClientProps {
   movie: Movie;
   index: number;
   isLiked: boolean;
-  onToggleLikeAction: (movieId: number) => void;
   posterUrl: string;
   year: number;
   popularityLevel: 'hot' | 'trending' | 'normal';
@@ -32,7 +31,6 @@ export default function MovieCardClient({
   movie, 
   index, 
   isLiked, 
-  onToggleLikeAction,
   posterUrl,
   year,
   popularityLevel,
@@ -91,7 +89,6 @@ export default function MovieCardClient({
             <button
               onClick={(e) => {
                 e.preventDefault();
-                onToggleLikeAction(movie.id);
               }}
               className={`btn btn-circle btn-sm ${
                 isLiked ? 'btn-error' : 'btn-ghost'

@@ -30,7 +30,6 @@ export default function MoviesPage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [likedMovies, setLikedMovies] = useState<Set<number>>(new Set());
   const [currentCategory, setCurrentCategory] = useState<MovieCategory>('popular');
   const [isChangingCategory, setIsChangingCategory] = useState(false);
 
@@ -134,18 +133,7 @@ export default function MoviesPage() {
     }
   };
 
-  // 切换喜欢状态
-  const toggleLike = (movieId: number) => {
-    setLikedMovies(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(movieId)) {
-        newSet.delete(movieId);
-      } else {
-        newSet.add(movieId);
-      }
-      return newSet;
-    });
-  };
+
 
   // 刷新当前分类
   const refreshCurrentCategory = () => {
@@ -240,8 +228,6 @@ export default function MoviesPage() {
             key={`${currentCategory}-${movie.id}`}
             movie={movie}
             index={index}
-            isLiked={likedMovies.has(movie.id)}
-            onToggleLike={toggleLike}
           />
         ))}
       </div>

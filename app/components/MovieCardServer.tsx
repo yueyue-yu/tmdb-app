@@ -7,8 +7,6 @@ import MovieCardClient from './MovieCardClient';
 interface MovieCardServerProps {
   movie: Movie;
   index: number;
-  isLiked: boolean;
-  onToggleLike: (movieId: number) => void;
 }
 
 // 纯函数 - 服务端可用
@@ -36,13 +34,14 @@ const getRatingBadgeClass = (rating: number): string => {
   return 'badge-error';
 };
 
-export default function MovieCardServer({ movie, index, isLiked, onToggleLike }: MovieCardServerProps) {
+export default function MovieCardServer({ movie, index}: MovieCardServerProps) {
   // 服务端预计算所有值
   const posterUrl = getPosterUrl(movie.poster_path);
   const year = getYear(movie.release_date);
   const popularity = movie.popularity || 0;
   const popularityLevel = getPopularityLevel(popularity);
   const ratingBadgeClass = getRatingBadgeClass(movie.vote_average);
+  const isLiked = false
 
   // 将计算结果和props传递给客户端组件
   return (
@@ -50,7 +49,6 @@ export default function MovieCardServer({ movie, index, isLiked, onToggleLike }:
       movie={movie}
       index={index}
       isLiked={isLiked}
-      onToggleLikeAction={onToggleLike}
       posterUrl={posterUrl}
       year={year}
       popularityLevel={popularityLevel}
