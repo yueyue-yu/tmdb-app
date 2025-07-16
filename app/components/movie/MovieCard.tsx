@@ -1,0 +1,43 @@
+import type { MovieCardProps } from '@/app/type/movieCard';
+import { 
+  getPosterUrl, 
+  getYear, 
+  getPopularityLevel, 
+  getRatingBadgeClass 
+} from '@/app/lib/movieUtils';
+
+import MoviePoster from "@/app/components/movie-card/MoviePoster";
+import MovieInfo from "@/app/components/movie-card/MovieInfo";
+
+/**
+ * 电影卡片服务端组件
+ * 负责数据处理和预计算，将结果传递给纯展示组件
+ */
+export default function MovieCard({ movie, index }: MovieCardProps) {
+  // 服务端预计算所有值
+  const posterUrl = getPosterUrl(movie.poster_path);
+  const year = getYear(movie.release_date);
+  const popularity = movie.popularity || 0;
+  const popularityLevel = getPopularityLevel(popularity);
+  const ratingBadgeClass = getRatingBadgeClass(movie.vote_average);
+  const priority = index < 8; // 前8个图片优先加载
+
+  return (
+      <div className="group relative">
+        <div className="card card-compact bg-gradient-to-br from-base-100 to-base-200 shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 border border-base-300 hover:border-primary/50">
+
+          {/* 海报区域 - 客户端组件 */}
+          <MoviePoster
+              movie={movie}
+              posterUrl={posterUrl}
+              popularityLevel={popularityLevel}
+              ratingBadgeClass={ratingBadgeClass}
+              priority={priority}
+          />
+
+          {/* 信息区域 - 服务端组件 */}
+          <MovieInfo movie={movie} year={year} />
+        </div>
+      </div>
+  );
+}
