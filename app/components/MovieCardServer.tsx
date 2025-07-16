@@ -1,5 +1,5 @@
 
-import type { Movie } from '../../api/types';
+import type { Movie } from '@/app/lib/api/types';
 
 // 客户端交互组件
 import MovieCardClient from './MovieCardClient';

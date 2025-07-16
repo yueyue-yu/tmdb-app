@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Movie } from '../../api/types';
+import type { Movie } from '@/app/lib/api/types';
 import {
   HeartIcon,
   EyeIcon,

@@ -1,15 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { moviesApiNext } from '../../api/moviesNext';
-import type { Movie } from '../../api/types';
+import { moviesApiNext } from '@/app/lib/api';
+import type { Movie } from '@/app/lib/api';
 import MovieCardServer from './MovieCardServer';
 import {
   FireIcon,
   TrophyIcon,
   CalendarIcon,
   ClockIcon,
-  FunnelIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline';
 
