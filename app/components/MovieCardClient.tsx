@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Movie } from '../../api/types';
 import {
-  StarIcon,
   HeartIcon,
   EyeIcon,
   FireIcon,
@@ -22,7 +21,7 @@ interface MovieCardClientProps {
   movie: Movie;
   index: number;
   isLiked: boolean;
-  onToggleLike: (movieId: number) => void;
+  onToggleLikeAction: (movieId: number) => void;
   posterUrl: string;
   year: number;
   popularityLevel: 'hot' | 'trending' | 'normal';
@@ -33,7 +32,7 @@ export default function MovieCardClient({
   movie, 
   index, 
   isLiked, 
-  onToggleLike,
+  onToggleLikeAction,
   posterUrl,
   year,
   popularityLevel,
@@ -92,7 +91,7 @@ export default function MovieCardClient({
             <button
               onClick={(e) => {
                 e.preventDefault();
-                onToggleLike(movie.id);
+                onToggleLikeAction(movie.id);
               }}
               className={`btn btn-circle btn-sm ${
                 isLiked ? 'btn-error' : 'btn-ghost'

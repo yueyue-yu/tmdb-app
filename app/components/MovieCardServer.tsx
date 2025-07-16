@@ -1,4 +1,4 @@
-// 纯服务端组件 - 不需要 'use client'
+
 import type { Movie } from '../../api/types';
 
 // 客户端交互组件
@@ -50,7 +50,7 @@ export default function MovieCardServer({ movie, index, isLiked, onToggleLike }:
       movie={movie}
       index={index}
       isLiked={isLiked}
-      onToggleLike={onToggleLike}
+      onToggleLikeAction={onToggleLike}
       posterUrl={posterUrl}
       year={year}
       popularityLevel={popularityLevel}
