@@ -17,6 +17,7 @@ import {
   HeartIcon as HeartSolidIcon,
   StarIcon as StarSolidIcon
 } from '@heroicons/react/24/solid';
+import './line-clamp.css';
 
 interface MovieCardProps {
   movie: Movie;
@@ -25,41 +26,39 @@ interface MovieCardProps {
   onToggleLike: (movieId: number) => void;
 }
 
-// 纯函数 - 可以在服务端运行
-const getPosterUrl = (posterPath: string | null): string => {
-  if (!posterPath) {
-    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDQwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzY2NjY2NiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzMzMzMzMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjIwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBvcGFjaXR5PSIwLjgiPuaaguaXoOWbvueJhzwvdGV4dD48L3N2Zz4=';
-  }
-  return `https://image.tmdb.org/t/p/w500${posterPath}`;
-};
-
-const getYear = (dateString: string): number => {
-  return new Date(dateString).getFullYear();
-};
-
-const getPopularityLevel = (popularity: number): 'hot' | 'trending' | 'normal' => {
-  if (popularity > 100) return 'hot';
-  if (popularity > 50) return 'trending';
-  return 'normal';
-};
-
-const getRatingBadgeClass = (rating: number): string => {
-  if (rating >= 8) return 'badge-success';
-  if (rating >= 7) return 'badge-warning';
-  if (rating >= 6) return 'badge-orange';
-  return 'badge-error';
-};
-
 export default function MovieCard({ movie, index, isLiked, onToggleLike }: MovieCardProps) {
-  // 这是唯一需要客户端状态的部分
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // 预计算所有纯函数结果
-  const posterUrl = getPosterUrl(movie.poster_path);
-  const year = getYear(movie.release_date);
+  // 获取海报URL
+  const getPosterUrl = (posterPath: string | null) => {
+    if (!posterPath) {
+      return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDQwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzY2NjY2NiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzMzMzMzMyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9IjIwMCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBvcGFjaXR5PSIwLjgiPuaaguaXoOWbvueJhzwvdGV4dD48L3N2Zz4=';
+    }
+    return `https://image.tmdb.org/t/p/w500${posterPath}`;
+  };
+
+  // 格式化年份
+  const getYear = (dateString: string) => {
+    return new Date(dateString).getFullYear();
+  };
+
+  // 获取流行度等级
+  const getPopularityLevel = (popularity: number) => {
+    if (popularity > 100) return 'hot';
+    if (popularity > 50) return 'trending';
+    return 'normal';
+  };
+
+  // 获取评分颜色类
+  const getRatingBadgeClass = (rating: number) => {
+    if (rating >= 8) return 'badge-success';
+    if (rating >= 7) return 'badge-warning';
+    if (rating >= 6) return 'badge-orange';
+    return 'badge-error';
+  };
+
   const popularity = movie.popularity || 0;
   const popularityLevel = getPopularityLevel(popularity);
-  const ratingBadgeClass = getRatingBadgeClass(movie.vote_average);
 
   return (
     <div className="group relative">
@@ -69,7 +68,7 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
         {/* 海报容器 */}
         <figure className="relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
           <Image
-            src={posterUrl}
+            src={getPosterUrl(movie.poster_path)}
             alt={movie.title}
             fill
             priority={index < 8}
@@ -101,7 +100,7 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
           )}
 
           {/* DaisyUI 评分徽章 */}
-          <div className={`badge ${ratingBadgeClass} badge-lg gap-1 absolute top-3 right-3 text-white font-bold shadow-lg`}>
+          <div className={`badge ${getRatingBadgeClass(movie.vote_average)} badge-lg gap-1 absolute top-3 right-3 text-white font-bold shadow-lg`}>
             <StarSolidIcon className="w-3 h-3" />
             {movie.vote_average.toFixed(1)}
           </div>
@@ -151,7 +150,7 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
               <div className="stat-figure text-primary">
                 <ClockIcon className="w-4 h-4" />
               </div>
-              <div className="stat-value text-sm">{year}</div>
+              <div className="stat-value text-sm">{getYear(movie.release_date)}</div>
               <div className="stat-desc text-xs">年份</div>
             </div>
             
@@ -194,7 +193,18 @@ export default function MovieCard({ movie, index, isLiked, onToggleLike }: Movie
             </div>
           </div>
 
-
+          {/* DaisyUI Progress Bar (评分可视化) */}
+          <div className="w-full">
+            <div className="flex justify-between text-xs mb-1">
+              <span>评分</span>
+              <span className="font-medium">{movie.vote_average}/10</span>
+            </div>
+            <progress 
+              className={`progress ${getRatingBadgeClass(movie.vote_average).replace('badge-', 'progress-')} progress-xs w-full`}
+              value={movie.vote_average} 
+              max="10"
+            />
+          </div>
         </div>
       </div>
     </div>
