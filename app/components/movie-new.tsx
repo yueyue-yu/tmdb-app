@@ -8,7 +8,7 @@
 import { useState, useEffect, useTransition } from 'react';
 import type { Movie } from '@/app/lib/api';
 import { fetchMovies, type MovieCategory } from '@/app/lib/api/movieActions';
-import MovieCard from './movie/MovieCard';
+import MovieCard from './movie-card/MovieCard';
 import {
   FireIcon,
   TrophyIcon,

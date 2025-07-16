@@ -33,12 +33,9 @@ class ApiClient {
       ...options,
     };
 
-    console.log('API请求URL:', fullUrl); // 调试用
-
     const response = await fetch(fullUrl, config);
 
     if (!response.ok) {
-      console.error('API请求失败:', response.status, response.statusText, fullUrl);
       throw new Error(`API请求失败: ${response.status} ${response.statusText}`);
     }
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { moviesApiNext } from '@/app/lib/api';
 import type { Movie } from '@/app/lib/api';
-import MovieCard from './movie/MovieCard';
+import MovieCard from './movie-card/MovieCard';
 import {
   FireIcon,
   TrophyIcon,
