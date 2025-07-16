@@ -6,10 +6,12 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import type { MovieCategory } from '@/app/lib/api/movieActions';
+import { fetchMovies } from '@/app/lib/api/movieActions';
 import { MOVIE_CATEGORIES, getCategoryConfig } from '@/app/constant/movieCategories';
-import MoviesContainer from '@/app/components/movies/MoviesContainer';
-import MoviesSkeleton from '@/app/components/movies/MoviesSkeleton';
 import CategorySelector from '@/app/components/movies/CategorySelector';
+import PageHeader from '@/app/components/movies/PageHeader';
+import MovieGrid from '@/app/components/movies/MovieGrid';
+import LoadMoreButton from '@/app/components/movies/LoadMoreButton';
 
 interface PageProps {
   params: {
@@ -37,7 +39,7 @@ export function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function MovieCategoryPage({ params, searchParams }: PageProps) {
+export default async function MovieCategoryPage({ params, searchParams }: PageProps) {
   const category = params.category as MovieCategory;
   const page = parseInt(searchParams.page || '1', 10);
 
@@ -48,19 +50,40 @@ export default function MovieCategoryPage({ params, searchParams }: PageProps) {
 
   const categoryConfig = getCategoryConfig(category);
 
+  // 直接获取数据，让 loading.tsx 处理加载状态
+  // 添加延迟来测试 loading.tsx（仅开发环境）
+  if (process.env.NODE_ENV === 'development') {
+    await new Promise(resolve => setTimeout(resolve, 1500));
+  }
+  
+  const response = await fetchMovies(category, page);
+  const { results: movies, total_pages, page: currentPage } = response;
+  const hasMore = currentPage < total_pages;
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* 分类导航 - 客户端组件 */}
       <CategorySelector currentCategory={category} />
       
-      {/* 流式加载的电影内容 */}
-      <Suspense fallback={<MoviesSkeleton />}>
-        <MoviesContainer 
-          category={category} 
-          page={page}
-          categoryConfig={categoryConfig}
-        />
-      </Suspense>
+      {/* 页面标题 */}
+      <PageHeader 
+        categoryConfig={categoryConfig} 
+        currentCategory={category}
+      />
+      
+      {/* 电影网格 */}
+      <MovieGrid 
+        movies={movies} 
+        category={category} 
+      />
+      
+      {/* 加载更多按钮 */}
+      <LoadMoreButton
+        category={category}
+        currentPage={currentPage}
+        hasMore={hasMore}
+        totalMovies={movies.length}
+      />
     </div>
   );
 }
