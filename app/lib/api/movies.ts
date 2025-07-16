@@ -14,7 +14,7 @@ export const moviesApi = {
   },
 
   /**
-   * 获取最新上映电影
+   * 获取正在上映电影
    */
   getNowPlaying: (page: number = 1): Promise<ApiResponse<Movie>> => {
     return apiClient.get('/movie/now_playing', { page: page.toString() });

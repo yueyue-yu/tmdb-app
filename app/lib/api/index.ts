@@ -3,7 +3,7 @@
  */
 
 export { apiClient } from './client';
-export { moviesApi } from './movies';
+export { moviesApi } from './moviesCompat'; // 从兼容性文件导出
 export { tvApi } from './tv';
 export { peopleApi } from './people';
 export { genresApi } from './genres';
@@ -11,6 +11,17 @@ export { ApiTester, testApi, quickHealthCheck } from './test';
 
 export { nextApiClient } from './nextClient';
 export { moviesApiNext } from './moviesNext';
+
+// 🆕 新的 Server Actions
+export { 
+  fetchMovies, 
+  fetchMovieDetails, 
+  searchMovies, 
+  fetchMoviesByGenre, 
+  fetchSimilarMovies, 
+  fetchRecommendedMovies,
+  type MovieCategory 
+} from './movieActions';
 
 export type {
   ApiResponse,
