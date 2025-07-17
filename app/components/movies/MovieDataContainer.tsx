@@ -4,12 +4,12 @@
  */
 
 import { fetchMovies } from '@/app/lib/api/movieActions';
-import type { MovieCategory } from '@/app/lib/api/movieActions';
+import {MediaCategoryKeys} from "@/app/type/movie";
 import MovieGrid from './MovieGrid';
 import Pagination from './LoadMoreButton';
 
 interface MovieDataContainerProps {
-  category: MovieCategory;
+  category: MediaCategoryKeys;
   page: number;
 }
 
@@ -18,6 +18,7 @@ export default async function MovieDataContainer({
   page 
 }: MovieDataContainerProps) {
   try {
+
     const response = await fetchMovies(category, page);
     const { results: movies, total_pages, page: currentPage } = response;
     const hasMore = currentPage < total_pages;

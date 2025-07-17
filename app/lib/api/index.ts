@@ -20,17 +20,15 @@ export {
   fetchMoviesByGenre, 
   fetchSimilarMovies, 
   fetchRecommendedMovies,
-  type MovieCategory 
 } from './movieActions';
 
 export { 
-  fetchTvShows, 
-  fetchTvDetails, 
-  searchTvShows, 
-  fetchTvShowsByGenre, 
-  fetchSimilarTvShows, 
+  fetchTvShows,
+  fetchTvDetails,
+  searchTvShows,
+  fetchTvShowsByGenre,
+  fetchSimilarTvShows,
   fetchRecommendedTvShows,
-  type TvCategory 
 } from './tvActions';
 
 export type {

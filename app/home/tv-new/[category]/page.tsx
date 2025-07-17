@@ -5,12 +5,12 @@
 
 import {Suspense} from 'react';
 import {notFound} from 'next/navigation';
-import {MediaTypeEnum, MovieCategoryKeys} from "@/app/type/movie";
-import {getMovieCategoryConfig, MOVIE_CATEGORIES} from '@/app/constant/movieCategories';
+import {getTvCategoryConfig, MOVIE_CATEGORIES, TV_CATEGORIES} from '@/app/constant/movieCategories';
 import CategorySelector from '@/app/components/movies/CategorySelector';
 import PageHeader from '@/app/components/movies/PageHeader';
 import MovieGridSkeleton from '@/app/components/movies/MovieGridSkeleton';
 import MovieDataContainer from '@/app/components/movies/MovieDataContainer';
+import {MediaTypeEnum, TvCategoryKeys} from "@/app/type/movie";
 
 interface PageProps {
   params: Promise<{
@@ -31,7 +31,7 @@ export function generateStaticParams() {
 // 生成页面元数据
 export async function generateMetadata({ params }: PageProps) {
   const { category } = await params;
-  const categoryConfig = getMovieCategoryConfig(category as MovieCategoryKeys);
+  const categoryConfig = getTvCategoryConfig(category as TvCategoryKeys);
 
   return {
     title: `${categoryConfig.label} - TMDB电影`,
@@ -45,17 +45,20 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
   const page = parseInt(pageParam || '1', 10);
 
   // 验证分类是否有效
-  const categoryKey = category as MovieCategoryKeys;
-  if (!MOVIE_CATEGORIES.find(cat => cat.key === categoryKey)) {
+  const categoryKey = category as TvCategoryKeys;
+  if (!TV_CATEGORIES.find(cat => cat.key === categoryKey)) {
     notFound();
   }
 
-  const categoryConfig = getMovieCategoryConfig(categoryKey);
+  const categoryConfig = getTvCategoryConfig(categoryKey);
+
+
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* 分类导航 - 客户端组件 */}
-      <CategorySelector mediaType={MediaTypeEnum.Movie} currentCategoryKey={categoryKey} />
+      <CategorySelector mediaType={MediaTypeEnum.TV} currentCategoryKey={categoryKey} />
       {/* 页面标题 */}
       <PageHeader 
         categoryConfig={categoryConfig} 

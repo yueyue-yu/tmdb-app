@@ -6,12 +6,11 @@
 
 import { apiClient } from './client';
 import type { ApiResponse, Movie, MovieDetails } from './types';
+import {MovieCategoryKeys} from "@/app/type/movie";
 
-// 电影分类类型
-export type MovieCategory = 'popular' | 'top-rated' | 'now-playing' | 'upcoming';
 
 // 电影分类映射到API端点
-const MOVIE_ENDPOINTS: Record<MovieCategory, string> = {
+const MOVIE_ENDPOINTS: Record<MovieCategoryKeys, string> = {
   'popular': '/movie/popular',
   'top-rated': '/movie/top_rated',
   'now-playing': '/movie/now_playing',
@@ -25,7 +24,7 @@ const MOVIE_ENDPOINTS: Record<MovieCategory, string> = {
  * @returns 电影数据
  */
 export async function fetchMovies(
-  category: MovieCategory = 'popular', 
+  category: MovieCategoryKeys = 'popular',
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {

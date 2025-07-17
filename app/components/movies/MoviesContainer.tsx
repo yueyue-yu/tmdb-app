@@ -4,14 +4,14 @@
  */
 
 import { fetchMovies } from '@/app/lib/api/movieActions';
-import type { MovieCategory } from '@/app/lib/api/movieActions';
+import {MovieCategoryKeys} from "@/app/type/movie";
 import type { CategoryConfig } from '@/app/constant/movieCategories';
 import PageHeader from './PageHeader';
 import MovieGrid from './MovieGrid';
 import LoadMoreButton from './LoadMoreButton';
 
 interface MoviesContainerProps {
-  category: MovieCategory;
+  category: MovieCategoryKeys;
   page: number;
   categoryConfig: CategoryConfig;
 }

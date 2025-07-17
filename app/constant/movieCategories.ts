@@ -2,16 +2,19 @@
  * 电影分类配置常量
  */
 
-import { 
-  FireIcon, 
-  TrophyIcon, 
-  CalendarIcon, 
-  ClockIcon 
+import {
+  FireIcon,
+  TrophyIcon,
+  CalendarIcon,
+  ClockIcon, SignalIcon, CalendarDaysIcon
 } from '@heroicons/react/24/outline';
-import type { MovieCategory } from '@/app/lib/api/movieActions';
+
+
+
+import {MediaCategoryKeys, MovieCategoryKeys, TvCategoryKeys} from "@/app/type/movie";
 
 export interface CategoryConfig {
-  key: MovieCategory;
+  key: MediaCategoryKeys;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   description: string;
@@ -59,10 +62,57 @@ export const MOVIE_CATEGORIES: CategoryConfig[] = [
   }
 ];
 
+export const TV_CATEGORIES: CategoryConfig[] = [
+  {
+    key: 'popular',
+    label: '热门电视剧',
+    icon: FireIcon,
+    description: '当前最受欢迎的电视剧',
+    color: 'text-red-500',
+    gradientFrom: 'from-red-500',
+    gradientTo: 'to-orange-500'
+  },
+  {
+    key: 'top-rated',
+    label: '高分电视剧',
+    icon: TrophyIcon,
+    description: '评分最高的电视剧',
+    color: 'text-yellow-500',
+    gradientFrom: 'from-yellow-500',
+    gradientTo: 'to-amber-500'
+  },
+  {
+    key: 'on-the-air',
+    label: '正在播出',
+    icon: SignalIcon,
+    description: '目前正在播出的电视剧',
+    color: 'text-green-500',
+    gradientFrom: 'from-green-500',
+    gradientTo: 'to-emerald-500'
+  },
+  {
+    key: 'airing-today',
+    label: '今日播出',
+    icon: CalendarDaysIcon,
+    description: '今天播出的电视剧',
+    color: 'text-blue-500',
+    gradientFrom: 'from-blue-500',
+    gradientTo: 'to-cyan-500'
+  }
+];
+
 // 根据key获取分类配置的工具函数
-export function getCategoryConfig(categoryKey: MovieCategory): CategoryConfig {
+export function getMovieCategoryConfig(categoryKey: MovieCategoryKeys): CategoryConfig {
   return MOVIE_CATEGORIES.find(cat => cat.key === categoryKey) || MOVIE_CATEGORIES[0];
 }
 
-// 获取默认分类
-export const DEFAULT_CATEGORY: MovieCategory = 'popular';
+export function getTvCategoryConfig(categoryKey: TvCategoryKeys): CategoryConfig {
+  return TV_CATEGORIES.find(cat => cat.key === categoryKey) || TV_CATEGORIES[0];
+}
+
+export const DEFAULT_CATEGORY = 'popular';
+
+
+
+
+
