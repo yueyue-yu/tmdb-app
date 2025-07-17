@@ -4,13 +4,13 @@
 
 export { apiClient } from './client';
 export { moviesApi } from './moviesCompat'; // 从兼容性文件导出
-export { tvApi } from './tv';
+export { tvApiCompat as tvApi } from './tvCompat'; // 从兼容性文件导出
 export { peopleApi } from './people';
 export { genresApi } from './genres';
 export { ApiTester, testApi, quickHealthCheck } from './test';
 
 export { nextApiClient } from './nextClient';
-export { moviesApiNext } from './moviesNext';
+
 
 // 🆕 新的 Server Actions
 export { 
@@ -22,6 +22,16 @@ export {
   fetchRecommendedMovies,
   type MovieCategory 
 } from './movieActions';
+
+export { 
+  fetchTvShows, 
+  fetchTvDetails, 
+  searchTvShows, 
+  fetchTvShowsByGenre, 
+  fetchSimilarTvShows, 
+  fetchRecommendedTvShows,
+  type TvCategory 
+} from './tvActions';
 
 export type {
   ApiResponse,
