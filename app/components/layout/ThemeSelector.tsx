@@ -1,0 +1,61 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { SwatchIcon } from '@heroicons/react/24/outline';
+import { THEMES, DEFAULT_THEME, type Theme } from '../../constant/themes';
+
+export default function ThemeSelector() {
+    const [currentTheme, setCurrentTheme] = useState(DEFAULT_THEME);
+
+    // DaisyUI 主题切换逻辑
+    useEffect(() => {
+        const html = document.documentElement;
+        html.setAttribute('data-theme', currentTheme);
+        // 保存到 localStorage
+        localStorage.setItem('theme', currentTheme);
+    }, [currentTheme]);
+
+    // 页面加载时读取保存的主题
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme && THEMES.find(t => t.name === savedTheme)) {
+            setCurrentTheme(savedTheme);
+        }
+    }, []);
+
+    const handleThemeChange = (themeName: string) => {
+        setCurrentTheme(themeName);
+    };
+
+    const currentThemeInfo = THEMES.find(t => t.name === currentTheme) || THEMES[1];
+
+    return (
+        <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle">
+                <SwatchIcon className="h-6 w-6" />
+            </label>
+            <div tabIndex={0} className="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-base-300">
+                    <h3 className="font-bold text-sm text-base-content">选择主题</h3>
+                    <p className="text-xs text-base-content/60 mt-1">
+                        当前: {currentThemeInfo.emoji} {currentThemeInfo.label}
+                    </p>
+                </div>
+                <div className="grid grid-cols-2 gap-2 p-3">
+                    {THEMES.map((theme: Theme) => (
+                        <button
+                            key={theme.name}
+                            className={`btn btn-sm justify-start gap-2 ${
+                                currentTheme === theme.name ? 'btn-primary' : 'btn-ghost'
+                            }`}
+                            onClick={() => handleThemeChange(theme.name)}
+                        >
+                            <span>{theme.emoji}</span>
+                            <span className="text-xs">{theme.label}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}

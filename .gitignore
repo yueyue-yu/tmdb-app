@@ -75,3 +75,5 @@ temp/
 # Cache files
 .cache/
 .parcel-cache/
+
+.github
