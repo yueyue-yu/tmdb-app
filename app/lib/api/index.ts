@@ -3,13 +3,11 @@
  */
 
 export { apiClient } from './client';
-export { moviesApi } from './moviesCompat'; // 从兼容性文件导出
-export { tvApiCompat as tvApi } from './tvCompat'; // 从兼容性文件导出
 export { peopleApi } from './people';
 export { genresApi } from './genres';
-export { ApiTester, testApi, quickHealthCheck } from './test';
 
-export { nextApiClient } from './nextClient';
+
+
 
 
 // 🆕 新的 Server Actions

@@ -154,5 +154,3 @@ export async function fetchRecommendedMovies(
   }
 }
 
-// 注意: Server Actions 文件不能导出对象，只能导出异步函数
-// 向后兼容的函数将在单独的文件中提供

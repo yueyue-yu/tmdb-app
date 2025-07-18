@@ -4,7 +4,7 @@
  */
 
 import { redirect } from 'next/navigation';
-import { DEFAULT_CATEGORY } from '@/app/constant/movieCategories';
+import { DEFAULT_CATEGORY } from '@/app/constant/tvCategories';
 
 export default function MoviesPage() {
     redirect(`/home/movies/${DEFAULT_CATEGORY}`);

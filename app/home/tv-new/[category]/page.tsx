@@ -3,14 +3,16 @@
  * 使用服务端组件 + Streaming SSR
  */
 
-import {Suspense} from 'react';
-import {notFound} from 'next/navigation';
-import {getTvCategoryConfig, MOVIE_CATEGORIES, TV_CATEGORIES} from '@/app/constant/movieCategories';
+import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
+import { TV_CATEGORIES, getTvCategoryConfig } from '@/app/constant/movieCategories';
 import CategorySelector from '@/app/components/movies/CategorySelector';
 import PageHeader from '@/app/components/movies/PageHeader';
 import MovieGridSkeleton from '@/app/components/movies/MovieGridSkeleton';
 import MovieDataContainer from '@/app/components/movies/MovieDataContainer';
-import {MediaTypeEnum, TvCategoryKeys} from "@/app/type/movie";
+import {getMovieCategoryConfig, MOVIE_CATEGORIES} from "@/app/constant/movieCategories";
+import type {MovieCategory} from "@/app/lib/api";
+import {TvCategory} from "@/app/type/movie";
 
 interface PageProps {
   params: Promise<{
@@ -31,7 +33,7 @@ export function generateStaticParams() {
 // 生成页面元数据
 export async function generateMetadata({ params }: PageProps) {
   const { category } = await params;
-  const categoryConfig = getTvCategoryConfig(category as TvCategoryKeys);
+  const categoryConfig = getMovieCategoryConfig(category as MovieCategory);
 
   return {
     title: `${categoryConfig.label} - TMDB电影`,
@@ -45,20 +47,24 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
   const page = parseInt(pageParam || '1', 10);
 
   // 验证分类是否有效
-  const categoryKey = category as TvCategoryKeys;
+  const categoryKey = category as TvCategory;
   if (!TV_CATEGORIES.find(cat => cat.key === categoryKey)) {
     notFound();
   }
+  getMovieCategoryConfig(categoryKey);
+  if (!TV_CATEGORIES.find(cat => cat.key === category)) {
+    notFound();
+  }
 
-  const categoryConfig = getTvCategoryConfig(categoryKey);
 
-
+  const categoryConfig = getTvCategoryConfig(category);
 
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* 分类导航 - 客户端组件 */}
-      <CategorySelector mediaType={MediaTypeEnum.TV} currentCategoryKey={categoryKey} />
+      <CategorySelector currentCategory={categoryKey} />
+
       {/* 页面标题 */}
       <PageHeader 
         categoryConfig={categoryConfig} 

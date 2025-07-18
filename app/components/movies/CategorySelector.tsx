@@ -27,7 +27,7 @@ export default function CategorySelector({currentCategoryKey,mediaType}: Categor
                 {categoryConfigs.map((category) => {
                     const IconComponent = category.icon;
                     const isActive = currentCategoryKey === category.key;
-                    const href = `/home/movies/${category.key}`;
+                    const href = `/home/${mediaType}/${category.key}`;
 
                     return (
                         <Link

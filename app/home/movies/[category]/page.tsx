@@ -3,10 +3,10 @@
  * 使用服务端组件 + Streaming SSR
  */
 
-import {Suspense} from 'react';
-import {notFound} from 'next/navigation';
-import {MediaTypeEnum, MovieCategoryKeys} from "@/app/type/movie";
-import {getMovieCategoryConfig, MOVIE_CATEGORIES} from '@/app/constant/movieCategories';
+import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
+import type { MovieCategory } from '@/app/lib/api/movieActions';
+import { MOVIE_CATEGORIES, getMovieCategoryConfig } from '@/app/constant/movieCategories';
 import CategorySelector from '@/app/components/movies/CategorySelector';
 import PageHeader from '@/app/components/movies/PageHeader';
 import MovieGridSkeleton from '@/app/components/movies/MovieGridSkeleton';
@@ -31,7 +31,7 @@ export function generateStaticParams() {
 // 生成页面元数据
 export async function generateMetadata({ params }: PageProps) {
   const { category } = await params;
-  const categoryConfig = getMovieCategoryConfig(category as MovieCategoryKeys);
+  const categoryConfig = getMovieCategoryConfig(category as MovieCategory);
 
   return {
     title: `${categoryConfig.label} - TMDB电影`,
@@ -45,7 +45,7 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
   const page = parseInt(pageParam || '1', 10);
 
   // 验证分类是否有效
-  const categoryKey = category as MovieCategoryKeys;
+  const categoryKey = category as MovieCategory;
   if (!MOVIE_CATEGORIES.find(cat => cat.key === categoryKey)) {
     notFound();
   }
@@ -55,7 +55,8 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* 分类导航 - 客户端组件 */}
-      <CategorySelector mediaType={MediaTypeEnum.Movie} currentCategoryKey={categoryKey} />
+      <CategorySelector currentCategory={categoryKey} />
+
       {/* 页面标题 */}
       <PageHeader 
         categoryConfig={categoryConfig} 
