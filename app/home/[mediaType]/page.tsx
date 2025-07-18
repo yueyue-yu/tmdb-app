@@ -5,7 +5,7 @@
 
 import { redirect } from 'next/navigation';
 import { MediaTypeEnum } from '@/app/type/movie';
-import { DEFAULT_CATEGORY } from '@/app/constant/movieCategories';
+import { DEFAULT_CATEGORY } from '@/app/lib/categoryUtils';
 
 interface PageProps {
   params: Promise<{

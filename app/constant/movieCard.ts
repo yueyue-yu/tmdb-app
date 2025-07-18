@@ -29,11 +29,11 @@ export const ANIMATION_DURATIONS = {
   BUTTON: 'duration-200'
 } as const;
 
-// 默认文本
-export const DEFAULT_TEXTS = {
-  NO_OVERVIEW: '这部电影暂时还没有详细的介绍信息...',
-  LOADING: '加载中...',
-  ERROR: '加载失败'
+// 默认文本键（用于国际化）
+export const DEFAULT_TEXT_KEYS = {
+  NO_OVERVIEW: 'MovieCard.noOverview',
+  LOADING: 'MovieCard.loading',
+  ERROR: 'MovieCard.error'
 } as const;
 
 // 受欢迎程度标签

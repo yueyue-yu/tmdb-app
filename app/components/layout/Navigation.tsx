@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MENU_ITEMS, type MenuItem } from '../../constant/navigation';
+import { useTranslations } from 'next-intl';
+import { MENU_ITEMS, type MenuItem } from '../../lib/navigation';
 
 export default function Navigation() {
     const pathname = usePathname();
+    const t = useTranslations('Navigation');
 
     const isActivePath = (path: string) => {
         if (path === '/') return pathname === '/';
@@ -19,12 +21,12 @@ export default function Navigation() {
                     const IconComponent = item.icon;
                     return (
                         <li key={item.path}>
-                            <Link 
-                                href={item.path} 
+                            <Link
+                                href={item.path}
                                 className={`${isActivePath(item.path) ? 'active' : ''} py-3 text-base font-medium`}
                             >
                                 <IconComponent className="w-5 h-5" />
-                                {item.text}
+                                {t(item.key as any)}
                             </Link>
                         </li>
                     );

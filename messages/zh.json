@@ -1,0 +1,160 @@
+{
+  "HomePage": {
+    "title": "欢迎来到 TMDB 应用",
+    "subtitle": "发现电影、电视剧和明星"
+  },
+  "Navigation": {
+    "home": "首页",
+    "movies": "电影",
+    "tv": "电视剧",
+    "people": "演员",
+    "search": "搜索",
+    "favorites": "收藏"
+  },
+  "Common": {
+    "loading": "加载中...",
+    "error": "出现错误",
+    "retry": "重试",
+    "language": "语言",
+    "noOverview": "这部电影暂时还没有详细的介绍信息...",
+    "loadingFailed": "加载失败"
+  },
+  "Hero": {
+    "title": "TMDB 电影数据库",
+    "subtitle": "发现全球最新最热门的电影、电视剧和明星信息。探索无限精彩的影视世界，找到你的下一部最爱作品。",
+    "millionResources": "百万影片资源",
+    "realTimeUpdate": "实时更新",
+    "freeAccess": "免费访问",
+    "startExploring": "开始探索",
+    "searchMovies": "搜索影片"
+  },
+  "Features": {
+    "popularMovies": "热门电影",
+    "popularMoviesDesc": "发现最新、最热门的电影作品",
+    "tvShows": "电视剧",
+    "tvShowsDesc": "探索精彩的电视剧世界",
+    "celebrities": "明星信息",
+    "celebritiesDesc": "了解你喜爱的演员和导演",
+    "smartSearch": "智能搜索",
+    "smartSearchDesc": "快速找到想要的内容",
+    "apiTest": "API 测试",
+    "apiTestDesc": "测试和探索 TMDB API"
+  },
+  "Layout": {
+    "personalCenter": "个人中心",
+    "settings": "设置",
+    "logout": "退出",
+    "new": "New"
+  },
+  "MovieCard": {
+    "noOverview": "这部电影暂时还没有详细的介绍信息...",
+    "loading": "加载中...",
+    "error": "加载失败",
+    "viewDetails": "查看详情",
+    "addToFavorites": "添加到收藏",
+    "removeFromFavorites": "从收藏中移除",
+    "addToWatchlist": "添加到观看列表",
+    "share": "分享",
+    "favorite": "收藏",
+    "report": "举报",
+    "year": "年份",
+    "views": "观看"
+  },
+  "Search": {
+    "placeholder": "搜索...",
+    "shortcut": "⌘K 快速搜索"
+  },
+  "Theme": {
+    "selectTheme": "选择主题",
+    "current": "当前"
+  },
+  "Movies": {
+    "noMovies": "暂无电影",
+    "noMoviesDesc": "当前分类暂时没有可显示的内容",
+    "totalMovies": "部电影",
+    "page": "第",
+    "thisPage": "本页",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "firstPage": "第1页",
+    "loadingPage": "正在加载第",
+    "reachedEnd": "🎬 已经到底了",
+    "totalFound": "共找到",
+    "loadFailed": "加载失败",
+    "loadFailedDesc": "获取电影数据时出现错误，请稍后重试"
+  },
+  "TV": {
+    "noTVShows": "暂无电视剧",
+    "noTVShowsDesc": "当前分类暂时没有可显示的电视剧内容",
+    "totalShows": "部电视剧",
+    "fetchError": "获取电视剧数据失败，请稍后重试"
+  },
+  "Media": {
+    "noData": "暂无数据",
+    "movie": "电影",
+    "tvShow": "电视剧",
+    "unknownTitle": "未知标题",
+    "noImage": "暂无图片",
+    "releaseDate": "上映",
+    "firstAirDate": "首播",
+    "viewDetails": "查看详情"
+  },
+  "Categories": {
+    "popular": "热门",
+    "topRated": "高分",
+    "nowPlaying": "正在上映",
+    "upcoming": "即将上映",
+    "onTheAir": "正在播出",
+    "airingToday": "今日播出",
+    "popularMovies": "热门电影",
+    "topRatedMovies": "高分电影",
+    "nowPlayingMovies": "正在上映",
+    "upcomingMovies": "即将上映",
+    "popularTVShows": "热门电视剧",
+    "topRatedTVShows": "高分电视剧",
+    "onTheAirTVShows": "正在播出",
+    "airingTodayTVShows": "今日播出",
+    "popularMoviesDesc": "当前最受欢迎的电影",
+    "topRatedMoviesDesc": "评分最高的经典佳作",
+    "nowPlayingMoviesDesc": "影院正在热映的新片",
+    "upcomingMoviesDesc": "即将与观众见面的新电影",
+    "popularTVShowsDesc": "当前最受欢迎的电视剧",
+    "topRatedTVShowsDesc": "评分最高的电视剧",
+    "onTheAirTVShowsDesc": "目前正在播出的电视剧",
+    "airingTodayTVShowsDesc": "今天播出的电视剧"
+  },
+  "Themes": {
+    "light": "浅色",
+    "dark": "深色",
+    "cupcake": "纸杯蛋糕",
+    "bumblebee": "大黄蜂",
+    "emerald": "翡翠",
+    "corporate": "商务",
+    "synthwave": "合成波",
+    "retro": "复古",
+    "cyberpunk": "赛博朋克",
+    "valentine": "情人节",
+    "halloween": "万圣节",
+    "garden": "花园",
+    "forest": "森林",
+    "aqua": "海洋",
+    "lofi": "Lo-fi",
+    "pastel": "粉彩",
+    "fantasy": "幻想",
+    "wireframe": "线框",
+    "black": "纯黑",
+    "luxury": "奢华",
+    "dracula": "德古拉",
+    "cmyk": "CMYK",
+    "autumn": "秋季",
+    "business": "商业",
+    "acid": "酸性",
+    "lemonade": "柠檬水",
+    "night": "夜晚",
+    "coffee": "咖啡",
+    "winter": "冬季",
+    "dim": "昏暗",
+    "nord": "Nord",
+    "sunset": "日落"
+  }
+}

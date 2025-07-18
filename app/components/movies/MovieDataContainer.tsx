@@ -5,6 +5,7 @@
 
 import {fetchMedia} from '@/app/lib/api/mediaActions';
 import {MediaCategoryKeys, MediaTypeEnum} from "@/app/type/movie";
+import { getTranslations } from 'next-intl/server';
 import MovieGrid from './MovieGrid';
 import Pagination from './Pagination';
 
@@ -19,6 +20,8 @@ export default async function MovieDataContainer({
                                                      category,
                                                      page
                                                  }: MovieDataContainerProps) {
+    const t = await getTranslations('Movies');
+
     try {
 
         const response = await fetchMedia(mediaType, category, page);
@@ -51,9 +54,9 @@ export default async function MovieDataContainer({
                 <div className="card bg-base-100 shadow-xl max-w-md mx-auto">
                     <div className="card-body text-center">
                         <div className="text-6xl mb-4">❌</div>
-                        <h3 className="card-title justify-center text-xl text-error">加载失败</h3>
+                        <h3 className="card-title justify-center text-xl text-error">{t('loadFailed')}</h3>
                         <p className="text-base-content/60 mb-6">
-                            获取电影数据时出现错误，请稍后重试
+                            {t('loadFailedDesc')}
                         </p>
                     </div>
                 </div>

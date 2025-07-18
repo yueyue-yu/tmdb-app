@@ -3,25 +3,29 @@
  * 参考 app/api/movies/popular/route.ts 的实现
  */
 
+import { getTmdbLanguage } from './utils';
+
 const API_KEY = process.env.TMDB_API_KEY || 'c07245f6cabd71848d42faa2949c0f61';
 const API_BASE_URL = process.env.TMDB_API_BASE_URL || 'https://api.themoviedb.org/3';
 
 class ApiClient {
   private baseURL: string;
   private apiKey: string;
+  private language: string;
 
-  constructor(baseURL: string = API_BASE_URL, apiKey: string = API_KEY) {
+  constructor(baseURL: string = API_BASE_URL, apiKey: string = API_KEY, language: string = 'zh-CN') {
     this.baseURL = baseURL;
     this.apiKey = apiKey;
+    this.language = language;
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     // 构建完整的URL，参考API route的做法
     const url = `${this.baseURL}${endpoint}`;
-    
+
     // 添加API key和语言参数，参考API route
     const separator = url.includes('?') ? '&' : '?';
-    const fullUrl = `${url}${separator}api_key=${this.apiKey}&language=zh-CN`;
+    const fullUrl = `${url}${separator}api_key=${this.apiKey}&language=${this.language}`;
 
     const config: RequestInit = {
       headers: {
@@ -79,4 +83,23 @@ class ApiClient {
   }
 }
 
+// 默认API客户端实例（向后兼容）
 export const apiClient = new ApiClient();
+
+/**
+ * 创建语言感知的API客户端
+ * @param language TMDB API语言代码 (如: zh-CN, en-US)
+ * @returns 配置了指定语言的API客户端实例
+ */
+export function createApiClient(language: string): ApiClient {
+  return new ApiClient(API_BASE_URL, API_KEY, language);
+}
+
+/**
+ * 获取当前用户语言的API客户端
+ * @returns 配置了用户当前语言的API客户端实例
+ */
+export async function getApiClient(): Promise<ApiClient> {
+  const language = await getTmdbLanguage();
+  return createApiClient(language);
+}

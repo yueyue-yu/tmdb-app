@@ -1,10 +1,13 @@
 import React from 'react';
 import { BellIcon } from '@heroicons/react/24/outline';
 import ThemeSelector from '../components/layout/ThemeSelector';
+import LanguageSelector from '../components/layout/LanguageSelector';
 import SearchBar from '../components/layout/SearchBar';
 import Navigation from '../components/layout/Navigation';
+import { getTranslations } from 'next-intl/server';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+    const t = await getTranslations('Layout');
 
     return (
         <div className="flex flex-col h-screen bg-base-200">
@@ -21,6 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {/* Search & Actions */}
                 <div className="navbar-end gap-2">
                     <SearchBar />
+                    <LanguageSelector />
                     <ThemeSelector />
 
                     {/* Notifications */}
@@ -39,9 +43,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a className="justify-between">个人中心 <span className="badge">New</span></a></li>
-                            <li><a>设置</a></li>
-                            <li><a>退出</a></li>
+                            <li><a className="justify-between">{t('personalCenter')} <span className="badge">{t('new')}</span></a></li>
+                            <li><a>{t('settings')}</a></li>
+                            <li><a>{t('logout')}</a></li>
                         </ul>
                     </div>
                 </div>

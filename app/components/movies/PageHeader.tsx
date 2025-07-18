@@ -4,7 +4,8 @@
  */
 
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
-import type { CategoryConfig } from '@/app/constant/movieCategories';
+import { getTranslations } from 'next-intl/server';
+import type { CategoryConfig } from '@/app/lib/categoryUtils';
 import RefreshButton from './RefreshButton';
 
 interface PageHeaderProps {
@@ -12,8 +13,9 @@ interface PageHeaderProps {
   currentCategory: string;
 }
 
-export default function PageHeader({ categoryConfig, currentCategory }: PageHeaderProps) {
+export default async function PageHeader({ categoryConfig, currentCategory }: PageHeaderProps) {
   const IconComponent = categoryConfig.icon;
+  const t = await getTranslations('Categories');
 
   return (
     <div className="mb-8">
@@ -22,8 +24,8 @@ export default function PageHeader({ categoryConfig, currentCategory }: PageHead
           <IconComponent className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold">{categoryConfig.label}</h1>
-          <p className="text-base-content/60 mt-1">{categoryConfig.description}</p>
+          <h1 className="text-3xl font-bold">{t(categoryConfig.labelKey as any)}</h1>
+          <p className="text-base-content/60 mt-1">{t(categoryConfig.descriptionKey as any)}</p>
         </div>
         
         {/* 刷新按钮 */}

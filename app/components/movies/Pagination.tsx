@@ -7,6 +7,7 @@
 
 import { useState, useTransition } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { useTranslations } from 'next-intl';
 import { MediaTypeEnum } from '@/app/type/movie';
 
 interface PaginationProps {
@@ -17,16 +18,17 @@ interface PaginationProps {
   totalMovies: number;
 }
 
-export default function Pagination({ 
+export default function Pagination({
   mediaType,
   category,
-  currentPage, 
-  hasMore, 
-  totalMovies 
+  currentPage,
+  hasMore,
+  totalMovies
 }: PaginationProps) {
   const [, startTransition] = useTransition();
   const [navigatingToPage, setNavigatingToPage] = useState<number | null>(null);
   const hasPrevious = currentPage > 1;
+  const t = useTranslations('Movies');
 
   // 导航到指定页面
   const navigateToPage = (page: number) => {
@@ -49,7 +51,7 @@ export default function Pagination({
         <div className="text-center">
           <div className="loading loading-spinner loading-lg text-primary"></div>
           <p className="text-base-content/60 mt-2">
-            正在加载第 {navigatingToPage} 页...
+            {t('loadingPage')} {navigatingToPage} 页...
           </p>
         </div>
       </div>
@@ -63,10 +65,10 @@ export default function Pagination({
         <div className="card bg-base-100 shadow-md max-w-md mx-auto">
           <div className="card-body text-center">
             <h3 className="card-title justify-center text-base-content/80">
-              🎬 已经到底了
+              {t('reachedEnd')}
             </h3>
             <p className="text-base-content/60">
-              共找到 <span className="font-bold text-primary">{totalMovies}</span> 部电影
+              {t('totalFound')} <span className="font-bold text-primary">{totalMovies}</span> {t('totalMovies')}
             </p>
           </div>
         </div>
@@ -79,9 +81,9 @@ export default function Pagination({
       {/* 分页信息 */}
       <div className="text-center">
         <p className="text-base-content/60">
-          第 <span className="font-bold text-primary">{currentPage}</span> 页
+          {t('page')} <span className="font-bold text-primary">{currentPage}</span> 页
           {totalMovies > 0 && (
-            <span> · 本页 <span className="font-bold">{totalMovies}</span> 部电影</span>
+            <span> · {t('thisPage')} <span className="font-bold">{totalMovies}</span> {t('totalMovies')}</span>
           )}
         </p>
       </div>
@@ -95,7 +97,7 @@ export default function Pagination({
           className="btn btn-outline gap-2 min-w-32"
         >
           <ArrowLeftIcon className="w-4 h-4" />
-          上一页
+          {t('previousPage')}
         </button>
 
         {/* 下一页按钮 */}
@@ -104,7 +106,7 @@ export default function Pagination({
           disabled={!hasMore}
           className="btn btn-primary gap-2 min-w-32"
         >
-          下一页
+          {t('nextPage')}
           <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
@@ -117,7 +119,7 @@ export default function Pagination({
               onClick={() => navigateToPage(1)}
               className="btn btn-ghost btn-xs"
             >
-              第1页
+              {t('firstPage')}
             </button>
           )}
           

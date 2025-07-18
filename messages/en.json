@@ -1,0 +1,160 @@
+{
+  "HomePage": {
+    "title": "Welcome to TMDB App",
+    "subtitle": "Discover movies, TV shows, and celebrities"
+  },
+  "Navigation": {
+    "home": "Home",
+    "movies": "Movies",
+    "tv": "TV Shows",
+    "people": "People",
+    "search": "Search",
+    "favorites": "Favorites"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "language": "Language",
+    "noOverview": "No overview available for this movie...",
+    "loadingFailed": "Loading failed"
+  },
+  "Hero": {
+    "title": "TMDB Movie Database",
+    "subtitle": "Discover the latest and hottest movies, TV shows and celebrity information worldwide. Explore the infinite world of film and television and find your next favorite work.",
+    "millionResources": "Million Film Resources",
+    "realTimeUpdate": "Real-time Updates",
+    "freeAccess": "Free Access",
+    "startExploring": "Start Exploring",
+    "searchMovies": "Search Movies"
+  },
+  "Features": {
+    "popularMovies": "Popular Movies",
+    "popularMoviesDesc": "Discover the latest and hottest movie works",
+    "tvShows": "TV Shows",
+    "tvShowsDesc": "Explore the wonderful world of TV series",
+    "celebrities": "Celebrity Info",
+    "celebritiesDesc": "Learn about your favorite actors and directors",
+    "smartSearch": "Smart Search",
+    "smartSearchDesc": "Quickly find the content you want",
+    "apiTest": "API Test",
+    "apiTestDesc": "Test and explore TMDB API"
+  },
+  "Layout": {
+    "personalCenter": "Personal Center",
+    "settings": "Settings",
+    "logout": "Logout",
+    "new": "New"
+  },
+  "MovieCard": {
+    "noOverview": "No overview available for this movie...",
+    "loading": "Loading...",
+    "error": "Loading failed",
+    "viewDetails": "View Details",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "addToWatchlist": "Add to Watchlist",
+    "share": "Share",
+    "favorite": "Favorite",
+    "report": "Report",
+    "year": "Year",
+    "views": "Views"
+  },
+  "Search": {
+    "placeholder": "Search...",
+    "shortcut": "⌘K to search"
+  },
+  "Theme": {
+    "selectTheme": "Select Theme",
+    "current": "Current"
+  },
+  "Movies": {
+    "noMovies": "No Movies",
+    "noMoviesDesc": "No content available in this category at the moment",
+    "totalMovies": "movies",
+    "page": "Page",
+    "thisPage": "This page",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "firstPage": "Page 1",
+    "loadingPage": "Loading page",
+    "reachedEnd": "🎬 You've reached the end",
+    "totalFound": "Total found",
+    "loadFailed": "Load Failed",
+    "loadFailedDesc": "An error occurred while fetching movie data, please try again later"
+  },
+  "TV": {
+    "noTVShows": "No TV Shows",
+    "noTVShowsDesc": "No TV shows available in this category at the moment",
+    "totalShows": "shows",
+    "fetchError": "Failed to fetch TV show data, please try again later"
+  },
+  "Media": {
+    "noData": "No data available",
+    "movie": "movie",
+    "tvShow": "TV show",
+    "unknownTitle": "Unknown Title",
+    "noImage": "No Image",
+    "releaseDate": "Released",
+    "firstAirDate": "First Aired",
+    "viewDetails": "View Details"
+  },
+  "Categories": {
+    "popular": "Popular",
+    "topRated": "Top Rated",
+    "nowPlaying": "Now Playing",
+    "upcoming": "Upcoming",
+    "onTheAir": "On The Air",
+    "airingToday": "Airing Today",
+    "popularMovies": "Popular Movies",
+    "topRatedMovies": "Top Rated Movies",
+    "nowPlayingMovies": "Now Playing",
+    "upcomingMovies": "Upcoming",
+    "popularTVShows": "Popular TV Shows",
+    "topRatedTVShows": "Top Rated TV Shows",
+    "onTheAirTVShows": "On The Air",
+    "airingTodayTVShows": "Airing Today",
+    "popularMoviesDesc": "Currently most popular movies",
+    "topRatedMoviesDesc": "Highest rated classic masterpieces",
+    "nowPlayingMoviesDesc": "New movies currently playing in theaters",
+    "upcomingMoviesDesc": "New movies coming soon to audiences",
+    "popularTVShowsDesc": "Currently most popular TV shows",
+    "topRatedTVShowsDesc": "Highest rated TV shows",
+    "onTheAirTVShowsDesc": "TV shows currently on the air",
+    "airingTodayTVShowsDesc": "TV shows airing today"
+  },
+  "Themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "cupcake": "Cupcake",
+    "bumblebee": "Bumblebee",
+    "emerald": "Emerald",
+    "corporate": "Corporate",
+    "synthwave": "Synthwave",
+    "retro": "Retro",
+    "cyberpunk": "Cyberpunk",
+    "valentine": "Valentine",
+    "halloween": "Halloween",
+    "garden": "Garden",
+    "forest": "Forest",
+    "aqua": "Aqua",
+    "lofi": "Lo-fi",
+    "pastel": "Pastel",
+    "fantasy": "Fantasy",
+    "wireframe": "Wireframe",
+    "black": "Black",
+    "luxury": "Luxury",
+    "dracula": "Dracula",
+    "cmyk": "CMYK",
+    "autumn": "Autumn",
+    "business": "Business",
+    "acid": "Acid",
+    "lemonade": "Lemonade",
+    "night": "Night",
+    "coffee": "Coffee",
+    "winter": "Winter",
+    "dim": "Dim",
+    "nord": "Nord",
+    "sunset": "Sunset"
+  }
+}

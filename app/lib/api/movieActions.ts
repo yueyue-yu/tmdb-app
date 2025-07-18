@@ -4,7 +4,7 @@
 
 'use server';
 
-import { apiClient } from './client';
+import { getApiClient } from './client';
 import type { ApiResponse, Movie, MovieDetails } from './types';
 import {MovieCategoryKeys} from "@/app/type/movie";
 
@@ -29,13 +29,14 @@ export async function fetchMovies(
 ): Promise<ApiResponse<Movie>> {
   try {
     const endpoint = MOVIE_ENDPOINTS[category];
-    
+
     if (!endpoint) {
       throw new Error(`不支持的电影分类: ${category}`);
     }
 
-    const response = await apiClient.get<ApiResponse<Movie>>(endpoint, { 
-      page: page.toString() 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<Movie>>(endpoint, {
+      page: page.toString()
     });
 
     return response;
@@ -52,6 +53,7 @@ export async function fetchMovies(
  */
 export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> {
   try {
+    const apiClient = await getApiClient();
     const response = await apiClient.get<MovieDetails>(`/movie/${movieId}`);
     return response;
   } catch (error) {
@@ -67,7 +69,7 @@ export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> 
  * @returns 搜索结果
  */
 export async function searchMovies(
-  query: string, 
+  query: string,
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {
@@ -75,9 +77,10 @@ export async function searchMovies(
       throw new Error('搜索关键词不能为空');
     }
 
-    const response = await apiClient.get<ApiResponse<Movie>>('/search/movie', { 
-      query: query.trim(), 
-      page: page.toString() 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<Movie>>('/search/movie', {
+      query: query.trim(),
+      page: page.toString()
     });
 
     return response;
@@ -94,13 +97,14 @@ export async function searchMovies(
  * @returns 电影数据
  */
 export async function fetchMoviesByGenre(
-  genreId: number, 
+  genreId: number,
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {
-    const response = await apiClient.get<ApiResponse<Movie>>('/discover/movie', { 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<Movie>>('/discover/movie', {
       with_genres: genreId.toString(),
-      page: page.toString() 
+      page: page.toString()
     });
 
     return response;
@@ -117,12 +121,13 @@ export async function fetchMoviesByGenre(
  * @returns 相似电影数据
  */
 export async function fetchSimilarMovies(
-  movieId: number, 
+  movieId: number,
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {
-    const response = await apiClient.get<ApiResponse<Movie>>(`/movie/${movieId}/similar`, { 
-      page: page.toString() 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<Movie>>(`/movie/${movieId}/similar`, {
+      page: page.toString()
     });
 
     return response;
@@ -139,12 +144,13 @@ export async function fetchSimilarMovies(
  * @returns 推荐电影数据
  */
 export async function fetchRecommendedMovies(
-  movieId: number, 
+  movieId: number,
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {
-    const response = await apiClient.get<ApiResponse<Movie>>(`/movie/${movieId}/recommendations`, { 
-      page: page.toString() 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<Movie>>(`/movie/${movieId}/recommendations`, {
+      page: page.toString()
     });
 
     return response;

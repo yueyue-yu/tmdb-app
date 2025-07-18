@@ -4,7 +4,7 @@
 
 'use server';
 
-import { apiClient } from './client';
+import { getApiClient } from './client';
 import type { ApiResponse, TvShow, Movie } from './types';
 import {TvCategoryKeys} from "@/app/type/movie";
 
@@ -31,13 +31,14 @@ export async function fetchTvShows(
 ): Promise<ApiResponse<TvShow>> {
   try {
     const endpoint = TV_ENDPOINTS[category];
-    
+
     if (!endpoint) {
       throw new Error(`不支持的电视剧分类: ${category}`);
     }
 
-    const response = await apiClient.get<ApiResponse<TvShow>>(endpoint, { 
-      page: page.toString() 
+    const apiClient = await getApiClient();
+    const response = await apiClient.get<ApiResponse<TvShow>>(endpoint, {
+      page: page.toString()
     });
 
     return response;
@@ -54,6 +55,7 @@ export async function fetchTvShows(
  */
 export async function fetchTvDetails(id: number): Promise<TvShow> {
   try {
+    const apiClient = await getApiClient();
     const response = await apiClient.get<TvShow>(`/tv/${id}`);
     return response;
   } catch (error) {
@@ -69,7 +71,7 @@ export async function fetchTvDetails(id: number): Promise<TvShow> {
  * @returns 电视剧搜索结果
  */
 export async function searchTvShows(
-  query: string, 
+  query: string,
   page: number = 1
 ): Promise<ApiResponse<TvShow>> {
   try {
@@ -77,6 +79,7 @@ export async function searchTvShows(
       throw new Error('搜索关键词不能为空');
     }
 
+    const apiClient = await getApiClient();
     const response = await apiClient.get<ApiResponse<TvShow>>('/search/tv', {
       query: query.trim(),
       page: page.toString()
@@ -96,10 +99,11 @@ export async function searchTvShows(
  * @returns 电视剧数据
  */
 export async function fetchTvShowsByGenre(
-  genreId: number, 
+  genreId: number,
   page: number = 1
 ): Promise<ApiResponse<TvShow>> {
   try {
+    const apiClient = await getApiClient();
     const response = await apiClient.get<ApiResponse<TvShow>>('/discover/tv', {
       with_genres: genreId.toString(),
       page: page.toString()
@@ -119,10 +123,11 @@ export async function fetchTvShowsByGenre(
  * @returns 相似电视剧数据
  */
 export async function fetchSimilarTvShows(
-  id: number, 
+  id: number,
   page: number = 1
 ): Promise<ApiResponse<TvShow>> {
   try {
+    const apiClient = await getApiClient();
     const response = await apiClient.get<ApiResponse<TvShow>>(`/tv/${id}/similar`, {
       page: page.toString()
     });
@@ -141,10 +146,11 @@ export async function fetchSimilarTvShows(
  * @returns 推荐电视剧数据
  */
 export async function fetchRecommendedTvShows(
-  id: number, 
+  id: number,
   page: number = 1
 ): Promise<ApiResponse<TvShow>> {
   try {
+    const apiClient = await getApiClient();
     const response = await apiClient.get<ApiResponse<TvShow>>(`/tv/${id}/recommendations`, {
       page: page.toString()
     });

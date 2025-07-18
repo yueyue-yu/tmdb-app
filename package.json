@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.2.0",
     "daisyui": "^5.0.46",
     "next": "15.3.5",
+    "next-intl": "^4.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

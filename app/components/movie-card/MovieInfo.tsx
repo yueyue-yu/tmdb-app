@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import type { MovieInfoProps } from '@/app/type/movieCard';
-import { DEFAULT_TEXTS } from '@/app/constant/movieCard';
+import { getTranslations } from 'next-intl/server';
 import MovieStats from './MovieStats';
 import MovieActions from './MovieActions';
 
 /**
- * 电影信息组件（服务端组件）
+ * 电影信息组件（服务器组件）
  */
-export default function MovieInfo({ movie, year }: MovieInfoProps) {
+export default async function MovieInfo({ movie, year }: MovieInfoProps) {
+  const t = await getTranslations('MovieCard');
   return (
     <div className="card-body p-4 space-y-3">
       {/* 标题 */}
@@ -22,7 +23,7 @@ export default function MovieInfo({ movie, year }: MovieInfoProps) {
 
       {/* 简介 */}
       <p className="text-sm text-base-content/70 line-clamp-3 leading-relaxed">
-        {movie.overview || DEFAULT_TEXTS.NO_OVERVIEW}
+        {movie.overview || t('noOverview')}
       </p>
 
       {/* 操作按钮 */}

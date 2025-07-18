@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function SearchBar() {
+    const t = useTranslations('Search');
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     // 键盘快捷键监听
@@ -39,7 +41,7 @@ export default function SearchBar() {
                     ref={searchInputRef}
                     type="search"
                     className="grow"
-                    placeholder="搜索..."
+                    placeholder={t('placeholder')}
                 />
                 <kbd className="kbd kbd-sm">⌘</kbd>
                 <kbd className="kbd kbd-sm">K</kbd>

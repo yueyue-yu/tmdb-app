@@ -6,7 +6,7 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { MediaTypeEnum, MovieCategoryKeys, TvCategoryKeys } from '@/app/type/movie';
-import { getMovieCategoryConfig, MOVIE_CATEGORIES, TV_CATEGORIES, getTvCategoryConfig } from '@/app/constant/movieCategories';
+import { getMovieCategoryConfig, getTvCategoryConfig, MOVIE_CATEGORIES, TV_CATEGORIES } from '@/app/lib/categoryUtils';
 import CategorySelector from '@/app/components/movies/CategorySelector';
 import PageHeader from '@/app/components/movies/PageHeader';
 import MovieGridSkeleton from '@/app/components/movies/MovieGridSkeleton';
@@ -55,15 +55,40 @@ export async function generateMetadata({ params }: PageProps) {
   // 根据媒体类型获取配置
   if (mediaType === MediaTypeEnum.Movie) {
     const categoryConfig = getMovieCategoryConfig(category as MovieCategoryKeys);
+    // 使用翻译键的简化版本作为临时标题
+    const titleMap: Record<string, string> = {
+      'popularMovies': '热门电影',
+      'topRatedMovies': '高分电影',
+      'nowPlayingMovies': '正在上映',
+      'upcomingMovies': '即将上映'
+    };
+    const descMap: Record<string, string> = {
+      'popularMoviesDesc': '当前最受欢迎的电影',
+      'topRatedMoviesDesc': '评分最高的经典佳作',
+      'nowPlayingMoviesDesc': '影院正在热映的新片',
+      'upcomingMoviesDesc': '即将与观众见面的新电影'
+    };
     return {
-      title: `${categoryConfig.label} - TMDB电影`,
-      description: categoryConfig.description,
+      title: `${titleMap[categoryConfig.labelKey] || '电影'} - TMDB电影`,
+      description: descMap[categoryConfig.descriptionKey] || '浏览热门电影内容',
     };
   } else if (mediaType === MediaTypeEnum.TV) {
     const categoryConfig = getTvCategoryConfig(category as TvCategoryKeys);
+    const titleMap: Record<string, string> = {
+      'popularTVShows': '热门电视剧',
+      'topRatedTVShows': '高分电视剧',
+      'onTheAirTVShows': '正在播出',
+      'airingTodayTVShows': '今日播出'
+    };
+    const descMap: Record<string, string> = {
+      'popularTVShowsDesc': '当前最受欢迎的电视剧',
+      'topRatedTVShowsDesc': '评分最高的电视剧',
+      'onTheAirTVShowsDesc': '目前正在播出的电视剧',
+      'airingTodayTVShowsDesc': '今天播出的电视剧'
+    };
     return {
-      title: `${categoryConfig.label} - TMDB电视剧`,
-      description: categoryConfig.description,
+      title: `${titleMap[categoryConfig.labelKey] || '电视剧'} - TMDB电视剧`,
+      description: descMap[categoryConfig.descriptionKey] || '浏览热门电视剧内容',
     };
   }
 

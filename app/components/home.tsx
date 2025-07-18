@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import {
     FilmIcon,
@@ -9,40 +11,43 @@ import {
     StarIcon,
     PlayIcon
 } from '@heroicons/react/24/outline';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+    const t = useTranslations('Features');
+    const heroT = useTranslations('Hero');
     const features = [
         {
-            title: '热门电影',
-            description: '发现最新、最热门的电影作品',
+            title: t('popularMovies'),
+            description: t('popularMoviesDesc'),
             icon: <FilmIcon className="h-8 w-8"/>,
             path: '/movies/popular',
             color: 'bg-red-500'
         },
         {
-            title: '电视剧',
-            description: '探索精彩的电视剧世界',
+            title: t('tvShows'),
+            description: t('tvShowsDesc'),
             icon: <TvIcon className="h-8 w-8"/>,
             path: '/tv',
             color: 'bg-blue-500'
         },
         {
-            title: '明星信息',
-            description: '了解你喜爱的演员和导演',
+            title: t('celebrities'),
+            description: t('celebritiesDesc'),
             icon: <UserIcon className="h-8 w-8"/>,
             path: '/people',
             color: 'bg-green-500'
         },
         {
-            title: '智能搜索',
-            description: '快速找到想要的内容',
+            title: t('smartSearch'),
+            description: t('smartSearchDesc'),
             icon: <MagnifyingGlassIcon className="h-8 w-8"/>,
             path: '/search',
             color: 'bg-purple-500'
         },
         {
-            title: 'API 测试',
-            description: '测试和探索 TMDB API',
+            title: t('apiTest'),
+            description: t('apiTestDesc'),
             icon: <CodeBracketSquareIcon className="h-8 w-8"/>,
             path: '/api-test',
             color: 'bg-orange-500'
@@ -56,19 +61,19 @@ export default function Home() {
                 <div className="hero-content text-center py-20">
                     <div className="max-w-md">
                         <h1 className="text-5xl font-bold mb-6">
-                            欢迎来到 TMDB
+                            {heroT('title')}
                         </h1>
                         <p className="text-xl mb-8 opacity-90">
-                            探索电影、电视剧和明星信息的最佳平台
+                            {heroT('subtitle')}
                         </p>
                         <div className="flex flex-wrap justify-center gap-2 mb-8">
                             <div className="badge badge-accent badge-lg">
                                 <StarIcon className="h-4 w-4 mr-1"/>
-                                高质量内容
+                                {heroT('millionResources')}
                             </div>
                             <div className="badge badge-accent badge-lg">
                                 <FireIcon className="h-4 w-4 mr-1"/>
-                                实时更新
+                                {heroT('realTimeUpdate')}
                             </div>
                             <div className="badge badge-accent badge-lg">
                                 <CodeBracketSquareIcon className="h-4 w-4 mr-1"/>
@@ -77,7 +82,7 @@ export default function Home() {
                         </div>
                         <Link href="/search" className="btn btn-accent btn-lg">
                             <PlayIcon className="h-5 w-5 mr-2"/>
-                            开始探索
+                            {heroT('startExploring')}
                         </Link>
                     </div>
                 </div>

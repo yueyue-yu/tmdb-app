@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { SwatchIcon } from '@heroicons/react/24/outline';
-import { THEMES, DEFAULT_THEME, type Theme } from '../../constant/themes';
+import { useTranslations } from 'next-intl';
+import { THEMES, DEFAULT_THEME, type Theme } from '../../lib/themeUtils';
 
 export default function ThemeSelector() {
+    const t = useTranslations('Theme');
+    const themeT = useTranslations('Themes');
     const [currentTheme, setCurrentTheme] = useState(DEFAULT_THEME);
 
     // DaisyUI 主题切换逻辑
@@ -36,9 +39,9 @@ export default function ThemeSelector() {
             </label>
             <div tabIndex={0} className="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-80 max-h-96 overflow-y-auto">
                 <div className="p-3 border-b border-base-300">
-                    <h3 className="font-bold text-sm text-base-content">选择主题</h3>
+                    <h3 className="font-bold text-sm text-base-content">{t('selectTheme')}</h3>
                     <p className="text-xs text-base-content/60 mt-1">
-                        当前: {currentThemeInfo.emoji} {currentThemeInfo.label}
+                        {t('current')}: {currentThemeInfo.emoji} {themeT(currentThemeInfo.labelKey as any)}
                     </p>
                 </div>
                 <div className="grid grid-cols-2 gap-2 p-3">
@@ -51,7 +54,7 @@ export default function ThemeSelector() {
                             onClick={() => handleThemeChange(theme.name)}
                         >
                             <span>{theme.emoji}</span>
-                            <span className="text-xs">{theme.label}</span>
+                            <span className="text-xs">{themeT(theme.labelKey as any)}</span>
                         </button>
                     ))}
                 </div>

@@ -7,7 +7,8 @@
 
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {TV_CATEGORIES, MOVIE_CATEGORIES} from '@/app/constant/movieCategories';
+import { useTranslations } from 'next-intl';
+import { getCategoryConfigs } from '@/app/lib/categoryUtils';
 import {MediaCategoryKeys, MediaTypeEnum} from "@/app/type/movie";
 
 
@@ -18,7 +19,8 @@ interface CategorySelectorProps {
 
 export default function CategorySelector({currentCategoryKey,mediaType}: CategorySelectorProps) {
     const pathname = usePathname();
-    const categoryConfigs = mediaType === MediaTypeEnum.Movie ? MOVIE_CATEGORIES : TV_CATEGORIES;
+    const t = useTranslations('Categories');
+    const categoryConfigs = getCategoryConfigs(mediaType);
 
     return (
         <div className="mb-8">
@@ -39,7 +41,7 @@ export default function CategorySelector({currentCategoryKey,mediaType}: Categor
               <span className={category.color}>
                 <IconComponent className="w-5 h-5"/>
               </span>
-                            <span className="hidden sm:inline">{category.label}</span>
+                            <span className="hidden sm:inline">{t(category.labelKey as any)}</span>
                         </Link>
                     );
                 })}
