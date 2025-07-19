@@ -3,6 +3,7 @@
  */
 
 import type { Movie } from '@/app/lib/api/types';
+import type { MediaTypeEnum } from '@/app/type/movie';
 
 /**
  * 受欢迎程度等级
@@ -20,6 +21,7 @@ export type RatingBadgeClass = 'badge-success' | 'badge-warning' | 'badge-orange
 export interface MovieCardProps {
   movie: Movie;
   index: number;
+  mediaType?: MediaTypeEnum; // 媒体类型，用于生成正确的详情链接
 }
 
 /**
@@ -31,6 +33,7 @@ export interface MoviePosterProps {
   popularityLevel: PopularityLevel;
   ratingBadgeClass: RatingBadgeClass;
   priority?: boolean;
+  mediaType?: MediaTypeEnum;
 }
 
 /**
@@ -39,6 +42,7 @@ export interface MoviePosterProps {
 export interface MovieInfoProps {
   movie: Movie;
   year: number;
+  mediaType?: MediaTypeEnum;
 }
 
 /**
@@ -46,16 +50,10 @@ export interface MovieInfoProps {
  */
 export interface MovieActionsProps {
   movieId: number;
+  mediaType?: MediaTypeEnum;
 }
 
-/**
- * 喜欢按钮组件属性
- */
-export interface LikeButtonProps {
-  isLiked: boolean;
-  movieId: number;
-  onClick?: (movieId: number) => void;
-}
+
 
 /**
  * 受欢迎程度徽章组件属性
@@ -77,6 +75,7 @@ export interface RatingBadgeProps {
  */
 export interface PlayButtonProps {
   movieId: number;
+  mediaType?: MediaTypeEnum;
 }
 
 /**

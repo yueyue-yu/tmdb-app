@@ -46,21 +46,7 @@ export async function fetchMovies(
   }
 }
 
-/**
- * 获取电影详情 - Server Action
- * @param movieId 电影ID
- * @returns 电影详情
- */
-export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> {
-  try {
-    const apiClient = await getApiClient();
-    const response = await apiClient.get<MovieDetails>(`/movie/${movieId}`);
-    return response;
-  } catch (error) {
-    console.error('获取电影详情失败:', error);
-    throw new Error(`获取电影详情失败: ${error instanceof Error ? error.message : '未知错误'}`);
-  }
-}
+// fetchMovieDetails 已移至 mediaDetailsActions.ts 以提供统一接口
 
 /**
  * 搜索电影 - Server Action

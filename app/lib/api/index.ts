@@ -11,29 +11,38 @@ export { genresApi } from './genres';
 
 
 // 🆕 新的 Server Actions
-export { 
-  fetchMovies, 
-  fetchMovieDetails, 
-  searchMovies, 
-  fetchMoviesByGenre, 
-  fetchSimilarMovies, 
+export {
+  fetchMovies,
+  searchMovies,
+  fetchMoviesByGenre,
+  fetchSimilarMovies,
   fetchRecommendedMovies,
 } from './movieActions';
 
-export { 
+export {
   fetchTvShows,
-  fetchTvDetails,
   searchTvShows,
   fetchTvShowsByGenre,
   fetchSimilarTvShows,
   fetchRecommendedTvShows,
 } from './tvActions';
 
+// 🆕 统一的媒体详情 Server Actions
+export {
+  fetchMediaDetails,
+  fetchMovieDetails,
+  fetchTvDetails,
+} from './mediaDetailsActions';
+
 export type {
   ApiResponse,
   Movie,
   MovieDetails,
   TvShow,
+  TvDetails,
+  MediaDetails,
+  Season,
+  Network,
   Person,
   Genre,
   ProductionCompany,

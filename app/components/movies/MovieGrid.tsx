@@ -4,15 +4,17 @@
  */
 
 import type { Movie } from '@/app/lib/api';
+import type { MediaTypeEnum } from '@/app/type/movie';
 import MovieCard from '../movie-card/MovieCard';
 import { getTranslations } from 'next-intl/server';
 
 interface MovieGridProps {
   movies: Movie[];
   category: string;
+  mediaType?: MediaTypeEnum;
 }
 
-export default async function MovieGrid({ movies, category }: MovieGridProps) {
+export default async function MovieGrid({ movies, category, mediaType }: MovieGridProps) {
   const t = await getTranslations('Movies');
   if (!movies || movies.length === 0) {
     return (
@@ -37,6 +39,7 @@ export default async function MovieGrid({ movies, category }: MovieGridProps) {
           key={`${category}-${movie.id}`}
           movie={movie}
           index={index}
+          mediaType={mediaType}
         />
       ))}
     </div>

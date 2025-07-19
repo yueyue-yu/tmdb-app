@@ -15,6 +15,16 @@ export const getPosterUrl = (posterPath: string | null): string => {
 };
 
 /**
+ * 获取背景图片URL
+ */
+export const getBackdropUrl = (backdropPath: string | null): string => {
+  if (!backdropPath) {
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0NDQ0NDQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyMjIyMjIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2JnKSIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBvcGFjaXR5PSIwLjYiPuaaguaXoOiDjOaZr+WbvueJhzwvdGV4dD48L3N2Zz4=';
+  }
+  return `https://image.tmdb.org/t/p/w1280${backdropPath}`;
+};
+
+/**
  * 从日期字符串提取年份
  */
 export const getYear = (dateString: string): number => {

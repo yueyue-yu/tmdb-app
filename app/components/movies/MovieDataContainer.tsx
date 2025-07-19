@@ -34,6 +34,7 @@ export default async function MovieDataContainer({
                 <MovieGrid
                     movies={movies}
                     category={category}
+                    mediaType={mediaType}
                 />
 
                 {/* 分页导航 */}

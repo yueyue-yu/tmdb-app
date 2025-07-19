@@ -6,27 +6,20 @@ import type { MoviePosterProps } from '@/app/type/movieCard';
 import { IMAGE_SIZES } from '@/app/constant/movieCard';
 import PopularityBadge from './PopularityBadge';
 import RatingBadge from './RatingBadge';
-import LikeButton from './LikeButton';
 import PlayButton from './PlayButton';
 
 /**
  * 电影海报组件（客户端组件 - 仅因为需要图片加载状态）
  */
-export default function MoviePoster({ 
-  movie, 
-  posterUrl, 
-  popularityLevel, 
-  ratingBadgeClass, 
-  priority = false 
+export default function MoviePoster({
+  movie,
+  posterUrl,
+  popularityLevel,
+  ratingBadgeClass,
+  priority = false,
+  mediaType
 }: MoviePosterProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-
-  const handleLike = (movieId: number) => {
-    setIsLiked(!isLiked);
-    // TODO: 实现喜欢功能的 API 调用
-    console.log('切换喜欢状态', movieId);
-  };
 
   return (
     <figure className="relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
@@ -53,17 +46,8 @@ export default function MoviePoster({
       {/* 评分徽章 */}
       <RatingBadge rating={movie.vote_average} badgeClass={ratingBadgeClass} />
 
-      {/* 喜欢按钮 */}
-      <div className="absolute bottom-3 right-3">
-        <LikeButton 
-          isLiked={isLiked} 
-          movieId={movie.id} 
-          onClick={handleLike} 
-        />
-      </div>
-
       {/* 播放按钮 */}
-      <PlayButton movieId={movie.id} />
+      <PlayButton movieId={movie.id} mediaType={mediaType} />
     </figure>
   );
 }

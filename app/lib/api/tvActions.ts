@@ -5,7 +5,7 @@
 'use server';
 
 import { getApiClient } from './client';
-import type { ApiResponse, TvShow, Movie } from './types';
+import type { ApiResponse, TvShow, TvDetails, Movie } from './types';
 import {TvCategoryKeys} from "@/app/type/movie";
 
 // 电视剧分类类型
@@ -53,10 +53,10 @@ export async function fetchTvShows(
  * @param id 电视剧ID
  * @returns 电视剧详情
  */
-export async function fetchTvDetails(id: number): Promise<TvShow> {
+export async function fetchTvDetails(id: number): Promise<TvDetails> {
   try {
     const apiClient = await getApiClient();
-    const response = await apiClient.get<TvShow>(`/tv/${id}`);
+    const response = await apiClient.get<TvDetails>(`/tv/${id}`);
     return response;
   } catch (error) {
     console.error(`获取电视剧详情失败 (ID: ${id}):`, error);

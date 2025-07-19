@@ -1,15 +1,13 @@
-'use client';
-
 import Link from 'next/link';
 import {
   FilmIcon,
   StarIcon,
   PlayIcon
 } from '@heroicons/react/24/outline';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export default function Hero() {
-    const t = useTranslations('Hero');
+export default async function Hero() {
+    const t = await getTranslations('Hero');
     return (<div
         className="hero min-h-screen"
         style={{

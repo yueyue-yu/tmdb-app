@@ -1,4 +1,5 @@
 import type { MovieCardProps } from '@/app/type/movieCard';
+import { MediaTypeEnum } from '@/app/type/movie';
 import { 
   getPosterUrl, 
   getYear, 
@@ -13,7 +14,7 @@ import MovieInfo from "@/app/components/movie-card/MovieInfo";
  * 电影卡片服务端组件
  * 负责数据处理和预计算，将结果传递给纯展示组件
  */
-export default function MovieCard({ movie, index }: MovieCardProps) {
+export default function MovieCard({ movie, index, mediaType = MediaTypeEnum.Movie }: MovieCardProps) {
   // 服务端预计算所有值
   const posterUrl = getPosterUrl(movie.poster_path);
   const year = getYear(movie.release_date);
@@ -33,10 +34,11 @@ export default function MovieCard({ movie, index }: MovieCardProps) {
               popularityLevel={popularityLevel}
               ratingBadgeClass={ratingBadgeClass}
               priority={priority}
+              mediaType={mediaType}
           />
 
           {/* 信息区域 - 服务端组件 */}
-          <MovieInfo movie={movie} year={year} />
+          <MovieInfo movie={movie} year={year} mediaType={mediaType} />
         </div>
       </div>
   );
