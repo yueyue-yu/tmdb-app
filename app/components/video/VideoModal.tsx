@@ -88,8 +88,8 @@ export default function VideoModal({
     }
   };
 
-  const embedUrl = getEmbedUrl(video, true, true); // 自动播放，显示控制条
-  const videoTitle = title || getVideoDisplayTitle(video);
+  const embedUrl = video ? getEmbedUrl(video, true, true) : ''; // 自动播放，显示控制条
+  const videoTitle = title || (video ? getVideoDisplayTitle(video) : '');
   const videoType = video ? getVideoTypeLabel(video.type) : '';
 
   // 如果没有视频或视频无效，不渲染任何内容

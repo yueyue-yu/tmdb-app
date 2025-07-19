@@ -17,7 +17,9 @@ import MovieInfo from "@/app/components/movie-card/MovieInfo";
 export default function MovieCard({ movie, index, mediaType = MediaTypeEnum.Movie }: MovieCardProps) {
   // 服务端预计算所有值
   const posterUrl = getPosterUrl(movie.poster_path);
-  const year = getYear(movie.release_date);
+  // 根据媒体类型使用正确的日期字段
+  const dateString = mediaType === MediaTypeEnum.Movie ? movie.release_date : movie.first_air_date;
+  const year = dateString ? getYear(dateString) : null;
   const popularity = movie.popularity || 0;
   const popularityLevel = getPopularityLevel(popularity);
   const ratingBadgeClass = getRatingBadgeClass(movie.vote_average);

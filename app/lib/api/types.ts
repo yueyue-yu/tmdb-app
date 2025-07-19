@@ -16,6 +16,7 @@ export interface Movie {
   poster_path: string | null;
   backdrop_path: string | null;
   release_date: string;
+  first_air_date?: string; // 用于TV Show转换后的数据
   vote_average: number;
   vote_count: number;
   genre_ids: number[];

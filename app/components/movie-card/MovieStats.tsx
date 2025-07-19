@@ -14,7 +14,7 @@ export default async function MovieStats({ year, voteCount }: MovieStatsProps) {
         <div className="stat-figure text-primary">
           <ClockIcon className="w-4 h-4" />
         </div>
-        <div className="stat-value text-sm">{year}</div>
+        <div className="stat-value text-sm">{year || 'N/A'}</div>
         <div className="stat-desc text-xs">{t('year')}</div>
       </div>
 

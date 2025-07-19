@@ -16,24 +16,38 @@ import {
 } from '@/app/lib/utils/videoUtils';
 import VideoModal from './VideoModal';
 
-export default function VideoList({ 
-  videos, 
-  title = '视频', 
+interface VideoListClientProps extends VideoListProps {
+  translations: {
+    videos: string;
+    showMore: string;
+    showLess: string;
+    official: string;
+  };
+}
+
+export default function VideoList({
+  videos,
+  title,
   showType = true,
-  maxItems,
-  onVideoClick 
-}: VideoListProps) {
+  maxItems = 4,
+  onVideoClick,
+  translations
+}: VideoListClientProps) {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // 筛选有效视频
   const validVideos = videos.filter(isValidVideo);
-  
+
   // 限制显示数量
-  const displayVideos = maxItems ? validVideos.slice(0, maxItems) : validVideos;
+  const defaultMaxItems = maxItems || 4;
+  const displayVideos = isExpanded ? validVideos : validVideos.slice(0, defaultMaxItems);
+  const remainingVideos = validVideos.slice(defaultMaxItems);
+  const hasMoreVideos = validVideos.length > defaultMaxItems;
 
   // 如果没有有效视频，不显示组件
-  if (displayVideos.length === 0) {
+  if (validVideos.length === 0) {
     return null;
   }
 
@@ -57,9 +71,9 @@ export default function VideoList({
     <div className="space-y-4">
       {/* 标题 */}
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold">{title}</h3>
+        <h3 className="text-xl font-bold">{title || translations.videos}</h3>
         <span className="text-base-content/60 text-sm">
-          {displayVideos.length} 个视频
+          {validVideos.length} {translations.videos}
         </span>
       </div>
 
@@ -71,15 +85,33 @@ export default function VideoList({
             video={video}
             showType={showType}
             onClick={handleVideoClick}
+            translations={translations}
           />
         ))}
       </div>
 
-      {/* 显示更多按钮 */}
-      {maxItems && validVideos.length > maxItems && (
+      {/* 展开/折叠按钮 */}
+      {hasMoreVideos && (
         <div className="text-center">
-          <button className="btn btn-outline btn-sm">
-            查看全部 {validVideos.length} 个视频
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="btn btn-outline btn-sm gap-2"
+          >
+            {isExpanded ? (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+                {translations.showLess}
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                {translations.showMore} ({remainingVideos.length})
+              </>
+            )}
           </button>
         </div>
       )}
@@ -101,9 +133,12 @@ interface VideoCardProps {
   video: Video;
   showType?: boolean;
   onClick: (video: Video) => void;
+  translations: {
+    official: string;
+  };
 }
 
-function VideoCard({ video, showType = true, onClick }: VideoCardProps) {
+function VideoCard({ video, showType = true, onClick, translations }: VideoCardProps) {
   const thumbnailUrl = getThumbnailUrl(video, 'medium');
   const videoTitle = getVideoDisplayTitle(video, 40);
   const videoType = getVideoTypeLabel(video.type);
@@ -141,7 +176,7 @@ function VideoCard({ video, showType = true, onClick }: VideoCardProps) {
         {/* 官方标识 */}
         {video.official && (
           <div className="absolute top-2 right-2">
-            <span className="badge badge-success badge-sm">官方</span>
+            <span className="badge badge-success badge-sm">{translations.official}</span>
           </div>
         )}
 
@@ -162,7 +197,7 @@ function VideoCard({ video, showType = true, onClick }: VideoCardProps) {
           <span>{videoType}</span>
           {video.published_at && (
             <span>
-              {new Date(video.published_at).toLocaleDateString('zh-CN', {
+              {new Date(video.published_at).toLocaleDateString(undefined, {
                 year: 'numeric',
                 month: 'short'
               })}

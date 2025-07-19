@@ -14,6 +14,15 @@ export interface TvDetailPageProps {
 }
 
 /**
+ * 电视剧Cast页面属性
+ */
+export interface TvCastPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+/**
  * 电视剧详情Hero组件属性
  */
 export interface TvDetailHeroProps {

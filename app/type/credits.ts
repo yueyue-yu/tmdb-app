@@ -78,6 +78,9 @@ export interface PersonCardProps {
   person: Cast | Crew;
   type: 'cast' | 'crew';
   mediaType: 'movie' | 'tv';
+  index?: number;
+  priority?: boolean;
+  className?: string;
 }
 
 /**

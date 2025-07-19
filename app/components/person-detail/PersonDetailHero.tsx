@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { CalendarIcon, MapPinIcon, UserIcon } from '@heroicons/react/24/outline';
 import { getTranslations } from 'next-intl/server';
 import type { PersonDetailHeroProps } from '@/app/type/personDetail';
-import BackButton from '../shared/BackButton';
+import BackButton from '../common/BackButton';
 import { PageType } from '@/app/lib/utils/navigationUtils';
 
 // 获取人员头像URL

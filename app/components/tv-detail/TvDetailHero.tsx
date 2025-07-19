@@ -9,7 +9,7 @@ import { getTranslations } from 'next-intl/server';
 import type { TvDetailHeroProps } from '@/app/type/tvDetail';
 import { getBackdropUrl, getPosterUrl, getYear } from '@/app/lib/movieUtils';
 import GenreBadges from '../movie-detail/GenreBadges';
-import BackButton from '../shared/BackButton';
+import BackButton from '../common/BackButton';
 import { PageType } from '@/app/lib/utils/navigationUtils';
 
 export default async function TvDetailHero({ tv }: TvDetailHeroProps) {

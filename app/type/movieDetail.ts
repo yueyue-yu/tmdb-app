@@ -14,6 +14,15 @@ export interface MovieDetailPageProps {
 }
 
 /**
+ * 电影Cast页面属性
+ */
+export interface MovieCastPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+/**
  * 电影详情Hero组件属性
  */
 export interface MovieDetailHeroProps {

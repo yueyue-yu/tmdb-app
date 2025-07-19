@@ -7,10 +7,9 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { fetchPersonFullDetails } from '@/app/lib/api/personDetailsActions';
-import { 
-  PersonDetailHero, 
-  PersonCredits, 
-  PersonDetailActions 
+import {
+  PersonDetailHero,
+  PersonCredits
 } from '@/app/components/person-detail';
 import type { PersonDetailPageProps } from '@/app/type/personDetail';
 
@@ -146,10 +145,7 @@ export default async function PersonDetailPage({ params }: PersonDetailPageProps
           personName={person.name}
         />
 
-        {/* 操作按钮 */}
-        <PersonDetailActions personId={person.id} personName={person.name} />
-
-        {/* 底部间距（为固定的操作栏留空间） */}
+        {/* 底部间距 */}
         <div className="h-20 lg:h-0"></div>
       </>
     );

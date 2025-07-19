@@ -35,12 +35,37 @@ export default async function CreditsSection({ credits, mediaType, mediaTitle }:
       <div className="space-y-12">
         {/* 演员区域 */}
         {credits.cast && credits.cast.length > 0 && (
-          <CastSection cast={credits.cast} mediaType={mediaType} />
+          <CastSection
+            cast={credits.cast}
+            mediaType={mediaType}
+            translations={{
+              cast: t('cast'),
+              noCastInfo: t('noCastInfo'),
+              showMore: t('showMore'),
+              showLess: t('showLess')
+            }}
+          />
         )}
 
         {/* 制作人员区域 */}
         {credits.crew && credits.crew.length > 0 && (
-          <CrewSection crew={credits.crew} mediaType={mediaType} />
+          <CrewSection
+            crew={credits.crew}
+            mediaType={mediaType}
+            translations={{
+              crew: t('crew'),
+              noCrewInfo: t('noCrewInfo'),
+              showMore: t('showMore'),
+              showLess: t('showLess'),
+              keyCrewMembers: t('keyCrewMembers'),
+              director: t('director'),
+              writer: t('writer'),
+              producer: t('producer'),
+              composer: t('composer'),
+              creator: t('creator'),
+              executiveProducer: t('executiveProducer')
+            }}
+          />
         )}
       </div>
 

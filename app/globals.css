@@ -3,3 +3,44 @@
 @plugin "daisyui" {
     themes: all;
 }
+
+/* 推荐组件样式 */
+.recommendation-list {
+  @apply relative;
+}
+
+.recommendation-card {
+  @apply transition-all duration-300;
+}
+
+.recommendation-card:hover {
+  @apply transform scale-105;
+}
+
+/* 隐藏滚动条 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* 推荐卡片悬停效果 */
+.recommendation-card .group:hover h3 {
+  @apply text-primary;
+}
+
+/* 评分徽章样式 */
+.badge-orange {
+  @apply bg-orange-500 text-white border-orange-500;
+}
+
+/* 文本截断 */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

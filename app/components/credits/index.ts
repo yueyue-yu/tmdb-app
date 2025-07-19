@@ -4,8 +4,11 @@
 
 export { default as CreditsSection } from './CreditsSection';
 export { default as CastSection } from './CastSection';
+export { default as CastSectionSimple } from './CastSectionSimple';
 export { default as CrewSection } from './CrewSection';
 export { default as PersonCard } from './PersonCard';
+export { default as CastPage } from './CastPage';
+export { default as CastPageClient } from './CastPageClient';
 
 // 类型导出
 export type * from '@/app/type/credits';

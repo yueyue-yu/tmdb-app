@@ -41,7 +41,7 @@ export interface MoviePosterProps {
  */
 export interface MovieInfoProps {
   movie: Movie;
-  year: number;
+  year: number | null;
   mediaType?: MediaTypeEnum;
 }
 
@@ -82,7 +82,7 @@ export interface PlayButtonProps {
  * 统计信息组件属性
  */
 export interface MovieStatsProps {
-  year: number;
+  year: number | null;
   voteCount: number;
 }
 

@@ -17,7 +17,5 @@ export const MENU_ITEMS: MenuItem[] = [
     { key: 'home', path: '/home', icon: HomeIcon },
     { key: 'movies', path: '/home/movie', icon: FilmIcon },
     { key: 'tv', path: '/home/tv', icon: TvIcon },
-    { key: 'people', path: '/home/people', icon: UserIcon },
     { key: 'search', path: '/home/search', icon: MagnifyingGlassIcon },
-    { key: 'favorites', path: '/home/favorites', icon: HeartIcon },
 ];

@@ -8,14 +8,18 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { fetchMovieDetails } from '@/app/lib/api/mediaDetailsActions';
 import { fetchMovieCredits } from '@/app/lib/api/creditsActions';
+import { fetchAllReviews } from '@/app/lib/api/reviewActions';
 import {
   MovieDetailHero,
-  MovieDetailInfo,
-  MovieDetailActions
+  MovieDetailInfo
 } from '@/app/components/movie-detail';
-import { CreditsSection } from '@/app/components/credits';
+import CastSectionSimple from '@/app/components/credits/CastSectionSimple';
+import ReviewSectionSimple from '@/app/components/reviews/ReviewSectionSimple';
 import { VideoSection } from '@/app/components/video';
+import { ImageSection } from '@/app/components/gallery';
+import RecommendationSection from '@/app/components/recommendations/RecommendationSection';
 import type { MovieDetailPageProps } from '@/app/type/movieDetail';
+import { MediaTypeEnum } from '@/app/type/movie';
 
 // 生成页面元数据
 export async function generateMetadata({ params }: MovieDetailPageProps): Promise<Metadata> {
@@ -115,11 +119,17 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
   }
 
   try {
-    // 并行获取电影详情和演职人员数据
-    const [movie, credits] = await Promise.all([
+    // 并行获取电影详情、演职人员数据和评论
+    const [movie, credits, reviewsResponse] = await Promise.all([
       fetchMovieDetails(movieId),
-      fetchMovieCredits(movieId)
+      fetchMovieCredits(movieId),
+      fetchAllReviews(movieId, MediaTypeEnum.Movie, 1).catch(error => {
+        console.error('获取评论失败:', error);
+        return { results: [], total_results: 0, total_pages: 0, page: 1, id: movieId };
+      })
     ]);
+
+    const reviews = reviewsResponse.results;
 
     return (
       <>
@@ -136,18 +146,42 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
           mediaTitle={movie.title}
         />
 
-        {/* 演职人员信息 */}
-        <CreditsSection
-          credits={credits}
+        {/* 图片画廊 */}
+        <ImageSection
+          mediaId={movie.id}
           mediaType="movie"
           mediaTitle={movie.title}
         />
 
-        {/* 操作按钮 */}
-        <MovieDetailActions movieId={movie.id} title={movie.title} />
+        {/* 演员信息 */}
+        {credits.cast && credits.cast.length > 0 && (
+          <div className="max-w-6xl mx-auto px-4 py-8">
+            <CastSectionSimple
+              cast={credits.cast}
+              mediaType="movie"
+              mediaId={movie.id}
+            />
+          </div>
+        )}
 
-        {/* 底部间距（为固定的操作栏留空间） */}
-        <div className="h-20 lg:h-0"></div>
+        {/* 评论区域 */}
+        {reviews && reviews.length > 0 && (
+          <div className="max-w-6xl mx-auto px-4 py-8">
+            <ReviewSectionSimple
+              reviews={reviews}
+              mediaType="movie"
+              mediaId={movie.id}
+              totalReviews={reviewsResponse.total_results}
+            />
+          </div>
+        )}
+
+        {/* 推荐和相似内容 */}
+        <RecommendationSection
+          mediaId={movie.id}
+          mediaType={MediaTypeEnum.Movie}
+          mediaTitle={movie.title}
+        />
       </>
     );
   } catch (error) {

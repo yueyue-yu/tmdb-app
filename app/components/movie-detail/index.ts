@@ -4,7 +4,7 @@
 
 export { default as MovieDetailHero } from './MovieDetailHero';
 export { default as MovieDetailInfo } from './MovieDetailInfo';
-export { default as MovieDetailActions } from './MovieDetailActions';
+
 export { default as GenreBadges } from './GenreBadges';
 export { default as ProductionCompanies } from './ProductionCompanies';
 

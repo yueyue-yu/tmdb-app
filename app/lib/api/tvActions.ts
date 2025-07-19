@@ -175,6 +175,7 @@ function convertTvShowToMovie(tvShow: TvShow): Movie {
     poster_path: tvShow.poster_path,
     backdrop_path: tvShow.backdrop_path,
     release_date: tvShow.first_air_date,
+    first_air_date: tvShow.first_air_date, // 保留原始字段
     vote_average: tvShow.vote_average,
     vote_count: tvShow.vote_count,
     genre_ids: tvShow.genre_ids,

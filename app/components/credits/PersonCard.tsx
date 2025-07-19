@@ -3,8 +3,11 @@
  * 显示演员或制作人员的信息
  */
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import type { PersonCardProps } from '@/app/type/credits';
 
 // 获取人员头像URL
@@ -16,15 +19,16 @@ function getProfileUrl(profilePath: string | null): string {
 }
 
 // 获取性别显示文本
-function getGenderText(gender: number): string {
+function getGenderText(gender: number, t: any): string {
   switch (gender) {
-    case 1: return '女';
-    case 2: return '男';
+    case 1: return t('female');
+    case 2: return t('male');
     default: return '';
   }
 }
 
 export default function PersonCard({ person, type, mediaType }: PersonCardProps) {
+  const t = useTranslations('Credits');
   const profileUrl = getProfileUrl(person.profile_path);
   const isActor = type === 'cast';
 
@@ -58,7 +62,7 @@ export default function PersonCard({ person, type, mediaType }: PersonCardProps)
           {/* 角色/职位 */}
           {roleOrJob && (
             <p className="text-xs text-base-content/70 line-clamp-2 mt-1">
-              {isActor ? `饰演 ${roleOrJob}` : roleOrJob}
+              {isActor ? `${t('playedBy')} ${roleOrJob}` : roleOrJob}
             </p>
           )}
           
@@ -66,7 +70,7 @@ export default function PersonCard({ person, type, mediaType }: PersonCardProps)
           <div className="flex items-center justify-between mt-2 text-xs text-base-content/50">
             {/* 性别 */}
             {person.gender > 0 && (
-              <span>{getGenderText(person.gender)}</span>
+              <span>{getGenderText(person.gender, t)}</span>
             )}
             
             {/* 知名度 */}

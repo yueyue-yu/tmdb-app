@@ -28,7 +28,9 @@ export const getBackdropUrl = (backdropPath: string | null): string => {
  * 从日期字符串提取年份
  */
 export const getYear = (dateString: string): number => {
-  return new Date(dateString).getFullYear();
+  if (!dateString) return 0;
+  const year = new Date(dateString).getFullYear();
+  return isNaN(year) ? 0 : year;
 };
 
 /**
