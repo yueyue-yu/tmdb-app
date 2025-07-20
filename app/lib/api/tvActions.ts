@@ -167,7 +167,7 @@ export async function fetchRecommendedTvShows(
  * @param tvShow 电视剧数据
  * @returns 转换后的电影数据
  */
-function convertTvShowToMovie(tvShow: TvShow): Movie {
+function convertTvShowToMovie(tvShow: TvShow): Movie & { media_type: 'tv' } {
   return {
     id: tvShow.id,
     title: tvShow.name,
@@ -183,7 +183,8 @@ function convertTvShowToMovie(tvShow: TvShow): Movie {
     original_language: tvShow.original_language,
     original_title: tvShow.original_name,
     popularity: tvShow.popularity,
-    video: false // 电视剧不是视频格式
+    video: false, // 电视剧不是视频格式
+    media_type: 'tv' as const // 明确标记为电视剧类型
   };
 }
 
@@ -223,16 +224,26 @@ export async function fetchTvShowsAsMovies(
  * @returns 转换为电影格式的电视剧搜索结果
  */
 export async function searchTvShowsAsMovies(
-  query: string, 
+  query: string,
   page: number = 1
 ): Promise<ApiResponse<Movie>> {
   try {
     // 先搜索电视剧
     const tvResponse = await searchTvShows(query, page);
-    
+
     // 转换为电影格式
     const convertedMovies = tvResponse.results.map(convertTvShowToMovie);
-    
+
+    // 调试信息
+    if (process.env.NODE_ENV === 'development') {
+      console.log('searchTvShowsAsMovies debug:', {
+        query,
+        originalCount: tvResponse.results.length,
+        convertedCount: convertedMovies.length,
+        firstConverted: convertedMovies[0]
+      });
+    }
+
     return {
       results: convertedMovies,
       page: tvResponse.page,

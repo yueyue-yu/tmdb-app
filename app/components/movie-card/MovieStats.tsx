@@ -1,13 +1,15 @@
+'use client';
+
 import { ClockIcon, EyeIcon } from '@heroicons/react/24/outline';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import type { MovieStatsProps } from '@/app/type/movieCard';
 import { formatVoteCount } from '@/app/lib/movieUtils';
 
 /**
- * 电影统计信息组件（服务器组件）
+ * 电影统计信息组件（客户端组件）
  */
-export default async function MovieStats({ year, voteCount }: MovieStatsProps) {
-  const t = await getTranslations('MovieCard');
+export default function MovieStats({ year, voteCount }: MovieStatsProps) {
+  const t = useTranslations('MovieCard');
   return (
     <div className="stats stats-horizontal shadow-sm bg-base-100/50">
       <div className="stat py-2 px-3">

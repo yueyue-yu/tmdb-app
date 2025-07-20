@@ -3,7 +3,7 @@
  * 参考 app/api/movies/popular/route.ts 的实现
  */
 
-import { getTmdbLanguage } from './utils';
+// 移除服务器端语言工具的导入，避免客户端组件使用服务器端代码
 
 const API_KEY = process.env.TMDB_API_KEY || 'c07245f6cabd71848d42faa2949c0f61';
 const API_BASE_URL = process.env.TMDB_API_BASE_URL || 'https://api.themoviedb.org/3';
@@ -165,6 +165,8 @@ export function createApiClient(language: string): ApiClient {
  * @returns 配置了用户当前语言的API客户端实例
  */
 export async function getApiClient(): Promise<ApiClient> {
+  // 动态导入服务器端语言工具，避免客户端组件使用
+  const { getTmdbLanguage } = await import('./languageUtils');
   const language = await getTmdbLanguage();
   return createApiClient(language);
 }
