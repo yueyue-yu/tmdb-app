@@ -12,7 +12,6 @@ export { default as MovieInfo } from './MovieInfo';
 // 子组件
 export { default as PopularityBadge } from './PopularityBadge';
 export { default as RatingBadge } from './RatingBadge';
-export { default as PlayButton } from './PlayButton';
 export { default as MovieStats } from './MovieStats';
 
 

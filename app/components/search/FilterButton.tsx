@@ -27,8 +27,7 @@ export default function FilterButton({
     if (filters.yearFrom || filters.yearTo) count++;
     if (filters.ratingFrom || filters.ratingTo) count++;
     if (filters.genres && filters.genres.length > 0) count++;
-    if (filters.sortBy && filters.sortBy !== 'popularity.desc') count++;
-    
+
     return count;
   };
 
