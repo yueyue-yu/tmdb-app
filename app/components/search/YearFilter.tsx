@@ -52,22 +52,7 @@ export default function YearFilter({
     }
   };
 
-  // 预设年份选项
-  const presetYears = [
-    { label: '最近5年', yearFrom: currentYear - 4, yearTo: currentYear },
-    { label: '2020年代', yearFrom: 2020, yearTo: currentYear },
-    { label: '2010年代', yearFrom: 2010, yearTo: 2019 },
-    { label: '2000年代', yearFrom: 2000, yearTo: 2009 },
-    { label: '90年代', yearFrom: 1990, yearTo: 1999 },
-    { label: '经典老片', yearFrom: minYear, yearTo: 1989 }
-  ];
 
-  // 应用预设年份
-  const applyPreset = (preset: { yearFrom: number; yearTo: number }) => {
-    setLocalYearFrom(preset.yearFrom.toString());
-    setLocalYearTo(preset.yearTo.toString());
-    onChange(preset.yearFrom, preset.yearTo);
-  };
 
   // 清除年份筛选
   const clearYearFilter = () => {
@@ -107,26 +92,6 @@ export default function YearFilter({
             max={currentYear}
             className="input input-bordered w-full"
           />
-        </div>
-      </div>
-
-      {/* 预设年份选项 */}
-      <div className="space-y-3">
-        <p className="text-sm text-base-content/80 font-medium">快速选择:</p>
-        <div className="grid grid-cols-2 gap-2">
-          {presetYears.map((preset) => (
-            <button
-              key={preset.label}
-              onClick={() => applyPreset(preset)}
-              className={`btn btn-sm text-base ${
-                yearFrom === preset.yearFrom && yearTo === preset.yearTo
-                  ? 'btn-primary'
-                  : 'btn-outline'
-              }`}
-            >
-              {preset.label}
-            </button>
-          ))}
         </div>
       </div>
 

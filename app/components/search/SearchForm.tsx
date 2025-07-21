@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import type { SearchFormProps, SearchTypeEnum } from '@/app/type/search';
 
 export default function SearchForm({
@@ -62,8 +62,7 @@ export default function SearchForm({
     try {
       const searchParams = {
         query: query.trim(),
-        type: searchType,
-        page: 1
+        type: searchType
       };
 
       // 如果有自定义搜索处理函数，使用它
@@ -73,10 +72,9 @@ export default function SearchForm({
         // 否则导航到搜索页面
         const params = new URLSearchParams({
           q: searchParams.query,
-          type: searchParams.type,
-          page: searchParams.page.toString()
+          type: searchParams.type
         });
-        
+
         router.push(`/home/search?${params.toString()}`);
       }
     } catch (error) {
@@ -95,66 +93,42 @@ export default function SearchForm({
 
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-3xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* 主搜索框 */}
         <div className="form-control">
-          <div className="input-group">
-            {/* 搜索输入框 */}
-            <div className="relative flex-1">
-              <input
-                ref={inputRef}
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={t('searchPlaceholder')}
-                className="input input-bordered w-full pr-20"
-                disabled={isLoading}
-                autoComplete="off"
-                spellCheck="false"
-              />
-              
-              {/* 清空按钮 */}
-              {query && (
-                <button
-                  type="button"
-                  onClick={handleClear}
-                  className="absolute right-12 top-1/2 transform -translate-y-1/2 btn btn-ghost btn-sm btn-circle"
-                  disabled={isLoading}
-                >
-                  <XMarkIcon className="h-4 w-4" />
-                </button>
-              )}
-              
-              {/* 快捷键提示 */}
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 hidden md:flex gap-1">
-                <kbd className="kbd kbd-xs">⌘</kbd>
-                <kbd className="kbd kbd-xs">K</kbd>
-              </div>
-            </div>
+          {/* 搜索输入框 */}
+          <div className="relative">
+            <input
+              ref={inputRef}
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t('searchPlaceholder')}
+              className="input input-bordered input-lg w-full pr-12"
+              disabled={isLoading}
+              autoComplete="off"
+              spellCheck="false"
+            />
 
-            {/* 搜索按钮 */}
-            <button
-              type="submit"
-              disabled={!query.trim() || isLoading}
-              className="btn btn-primary"
-            >
-              {isLoading ? (
-                <span className="loading loading-spinner loading-sm"></span>
-              ) : (
-                <MagnifyingGlassIcon className="h-5 w-5" />
-              )}
-              <span className="hidden sm:inline ml-2">
-                {isLoading ? t('searching') : t('searchButton')}
-              </span>
-            </button>
+            {/* 清空按钮 */}
+            {query && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 btn btn-ghost btn-sm btn-circle"
+                disabled={isLoading}
+              >
+                <XMarkIcon className="h-4 w-4" />
+              </button>
+            )}
           </div>
         </div>
 
         {/* 搜索提示 */}
         <div className="text-center">
           <p className="text-sm text-base-content/60">
-            {t('shortcut')} • ESC {t('clearSearch')}
+            Enter {t('searchButton')} • ESC {t('clearSearch')}
           </p>
         </div>
       </form>

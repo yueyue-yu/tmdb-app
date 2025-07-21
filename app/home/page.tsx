@@ -1,8 +1,18 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import HomeComponent from '@/app/components/home/home';
 import { fetchMedia } from '@/app/lib/api/mediaActions';
 import { MediaTypeEnum } from '@/app/type/movie';
+
+export const metadata: Metadata = {
+  title: '主页',
+  description: '探索热门电影、高分佳作和精彩电视剧。发现最新上映的电影和备受好评的影视作品，开启你的观影之旅。',
+  openGraph: {
+    title: 'TMDB - 影视主页',
+    description: '探索热门电影、高分佳作和精彩电视剧',
+  },
+};
 
 // 加载组件
 function HomeLoading() {

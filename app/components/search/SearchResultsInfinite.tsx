@@ -57,7 +57,7 @@ export default function SearchResultsInfinite({
       }
     } catch (error) {
       console.error('加载搜索结果失败:', error);
-      throw new Error('加载搜索结果失败');
+      throw new Error(t('searchError'));
     }
   }, [query, type, filters]);
 

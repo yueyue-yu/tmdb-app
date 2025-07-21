@@ -90,7 +90,6 @@
     "searchError": "Search failed",
     "searchErrorDesc": "Please try again later or contact support",
     "searching": "Searching...",
-    "filters": "Filters",
     "openFilters": "Open filters",
     "close": "Close",
     "infiniteScrollHint": "Scroll down to load more results",
@@ -102,7 +101,8 @@
       "all": "All",
       "movie": "Movies",
       "tv": "TV Shows",
-      "person": "People"
+      "person": "People",
+      "content": "content"
     },
     "searchTypeDescriptions": {
       "all": "Movies, TV shows, actors",
@@ -121,12 +121,6 @@
     "loadMore": "Load More",
     "backToTop": "Back to Top",
     "sortBy": "Sort By",
-    "sortOptions": {
-      "relevance": "Relevance",
-      "popularity": "Popularity",
-      "rating": "Rating",
-      "date": "Date"
-    },
     "description": "Search for movies, TV shows and actor information, discover content you're interested in",
     "startSearching": "Start Searching",
     "startSearchingDesc": "Enter keywords to search for movies, TV shows or actors",
@@ -139,6 +133,8 @@
     "noPeopleFoundDesc": "Try using different keywords",
     "noResultsFound": "No results found",
     "noResultsFoundDesc": "Try using different keywords or adjust filters",
+    "unknown": "Unknown",
+    "noOverview": "No overview available",
     "searchError": "Search error occurred",
     "retry": "Retry",
     "infiniteScrollHint": "Scroll down to load more results",
@@ -157,19 +153,6 @@
       "clearFilter": "Clear",
       "applyFilters": "Apply Filters",
       "noFilters": "No filters applied"
-    },
-    "sortOptions": {
-      "relevance": "Relevance",
-      "popularity_desc": "Popularity ↓",
-      "popularity_asc": "Popularity ↑",
-      "vote_average_desc": "Rating ↓",
-      "vote_average_asc": "Rating ↑",
-      "release_date_desc": "Release Date ↓",
-      "release_date_asc": "Release Date ↑",
-      "first_air_date_desc": "Air Date ↓",
-      "first_air_date_asc": "Air Date ↑",
-      "title_asc": "Title A-Z",
-      "title_desc": "Title Z-A"
     }
   },
   "Theme": {

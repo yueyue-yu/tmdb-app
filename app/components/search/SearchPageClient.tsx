@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import FilterDrawer from './FilterDrawer';
 import FilterButton from './FilterButton';
 import type { SearchTypeEnum, FilterParams } from '@/app/type/search';
@@ -25,6 +26,7 @@ export default function SearchPageClient({
 }: SearchPageClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations('Search');
 
   // 筛选器抽屉状态
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
@@ -48,7 +50,7 @@ export default function SearchPageClient({
     params.delete('ratingFrom');
     params.delete('ratingTo');
     params.delete('genres');
-    params.delete('sortBy');
+
 
     // 设置新的筛选参数（排除type，因为已经处理过了）
     const { type: _, ...filterParams } = newFilters;
@@ -68,9 +70,7 @@ export default function SearchPageClient({
     if (filterParams.genres && filterParams.genres.length > 0) {
       params.set('genres', filterParams.genres.join(','));
     }
-    if (filterParams.sortBy) {
-      params.set('sortBy', filterParams.sortBy);
-    }
+
 
     // 导航到新的URL
     router.push(`/home/search?${params.toString()}`);
@@ -83,7 +83,7 @@ export default function SearchPageClient({
         {/* 顶部工具栏 */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">
-            搜索结果
+            {t('searchResults')}
           </h2>
 
           {/* 筛选器按钮 */}

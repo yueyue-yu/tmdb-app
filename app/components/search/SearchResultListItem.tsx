@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { EyeIcon, CalendarIcon, StarIcon } from '@heroicons/react/24/outline';
 import type { Movie, TvShow as TVShow, Person } from '@/app/lib/api/types';
 
@@ -15,6 +16,8 @@ interface SearchResultListItemProps {
  * 左边显示海报，右边显示详细信息
  */
 export default function SearchResultListItem({ item, index }: SearchResultListItemProps) {
+  const t = useTranslations('Search');
+
   // 获取基本信息
   const getItemInfo = () => {
     // 检查是否有media_type字段
@@ -48,7 +51,7 @@ export default function SearchResultListItem({ item, index }: SearchResultListIt
         popularity: tvData.popularity,
         voteCount: tvData.vote_count,
         detailUrl: `/detail/tv/${tvData.id}`,
-        mediaType: '电视剧'
+        mediaType: t('searchTypes.tv')
       };
     } else if (mediaType === 'movie' || ('title' in item && 'release_date' in item)) {
       const movie = item as Movie;
@@ -63,7 +66,7 @@ export default function SearchResultListItem({ item, index }: SearchResultListIt
         popularity: movie.popularity,
         voteCount: movie.vote_count,
         detailUrl: `/detail/movie/${movie.id}`,
-        mediaType: '电影'
+        mediaType: t('searchTypes.movie')
       };
     } else if (mediaType === 'person' || 'known_for_department' in item) {
       const person = item as Person;
@@ -72,18 +75,18 @@ export default function SearchResultListItem({ item, index }: SearchResultListIt
         subtitle: '',
         year: null,
         rating: null,
-        overview: `${person.known_for_department} • 知名作品: ${(person as any).known_for?.map((work: any) => work.title || work.name).join(', ') || '暂无'}`,
+        overview: `${person.known_for_department} • ${t('knownFor')} ${(person as any).known_for?.map((work: any) => work.title || work.name).join(', ') || t('noOverview')}`,
         posterPath: person.profile_path,
         backdropPath: null,
         popularity: person.popularity,
         voteCount: null,
         detailUrl: `/detail/person/${person.id}`,
-        mediaType: '演员'
+        mediaType: t('searchTypes.person')
       };
     }
     
     return {
-      title: '未知',
+      title: t('unknown') || 'Unknown',
       subtitle: '',
       year: null,
       rating: null,
@@ -93,7 +96,7 @@ export default function SearchResultListItem({ item, index }: SearchResultListIt
       popularity: 0,
       voteCount: null,
       detailUrl: '#',
-      mediaType: '未知'
+      mediaType: t('unknown') || 'Unknown'
     };
   };
 
@@ -176,7 +179,7 @@ export default function SearchResultListItem({ item, index }: SearchResultListIt
 
         {/* 简介 */}
         <p className="text-sm text-base-content/80 line-clamp-2 mb-3">
-          {info.overview || '暂无简介'}
+          {info.overview || t('noOverview')}
         </p>
 
         {/* 底部标记 */}

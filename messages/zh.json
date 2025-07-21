@@ -90,7 +90,6 @@
     "searchError": "搜索失败",
     "searchErrorDesc": "请稍后重试或联系客服",
     "searching": "搜索中...",
-    "filters": "筛选",
     "openFilters": "打开筛选器",
     "close": "关闭",
     "infiniteScrollHint": "向下滚动加载更多结果",
@@ -102,7 +101,8 @@
       "all": "全部",
       "movie": "电影",
       "tv": "电视剧",
-      "person": "演员"
+      "person": "演员",
+      "content": "内容"
     },
     "searchTypeDescriptions": {
       "all": "电影、电视剧、演员",
@@ -110,23 +110,10 @@
       "tv": "电视剧集",
       "person": "演员导演"
     },
-    "filters": {
-      "type": "类型",
-      "year": "年份",
-      "rating": "评分",
-      "genre": "分类"
-    },
     "resultsCount": "共 {count} 个结果",
     "showingResults": "显示第 {start}-{end} 个结果，共 {total} 个",
     "loadMore": "加载更多",
-    "backToTop": "返回顶部",
     "sortBy": "排序方式",
-    "sortOptions": {
-      "relevance": "相关度",
-      "popularity": "热门度",
-      "rating": "评分",
-      "date": "日期"
-    },
     "description": "搜索电影、电视剧和演员信息，发现你感兴趣的内容",
     "startSearching": "开始搜索",
     "startSearchingDesc": "输入关键词搜索电影、电视剧或演员",
@@ -139,10 +126,8 @@
     "noPeopleFoundDesc": "尝试使用不同的关键词搜索",
     "noResultsFound": "未找到搜索结果",
     "noResultsFoundDesc": "尝试使用不同的关键词或调整筛选条件",
-    "searchError": "搜索出错了",
-    "retry": "重试",
-    "infiniteScrollHint": "向下滚动加载更多结果",
-    "searchResultsFor": "\"{query}\" 的搜索结果",
+    "unknown": "未知",
+    "noOverview": "暂无简介",
     "filters": {
       "title": "筛选",
       "year": "年份",
@@ -157,19 +142,6 @@
       "clearFilter": "清除",
       "applyFilters": "应用筛选",
       "noFilters": "暂无筛选条件"
-    },
-    "sortOptions": {
-      "relevance": "相关度",
-      "popularity_desc": "热门度 ↓",
-      "popularity_asc": "热门度 ↑",
-      "vote_average_desc": "评分 ↓",
-      "vote_average_asc": "评分 ↑",
-      "release_date_desc": "发布日期 ↓",
-      "release_date_asc": "发布日期 ↑",
-      "first_air_date_desc": "首播日期 ↓",
-      "first_air_date_asc": "首播日期 ↑",
-      "title_asc": "标题 A-Z",
-      "title_desc": "标题 Z-A"
     }
   },
   "Theme": {

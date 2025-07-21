@@ -2,7 +2,7 @@
  * 人员相关的API请求方法
  */
 
-import { apiClient } from './client';
+import { apiClient, getApiClient } from './client';
 import type { ApiResponse, Person } from './types';
 
 export const peopleApi = {
@@ -16,10 +16,11 @@ export const peopleApi = {
   /**
    * 搜索人员
    */
-  search: (query: string, page: number = 1): Promise<ApiResponse<Person>> => {
-    return apiClient.get('/search/person', { 
-      query, 
-      page: page.toString() 
+  search: async (query: string, page: number = 1): Promise<ApiResponse<Person>> => {
+    const client = await getApiClient();
+    return client.get('/search/person', {
+      query,
+      page: page.toString()
     });
   },
 

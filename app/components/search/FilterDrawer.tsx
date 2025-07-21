@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import FilterSidebar from './FilterSidebar';
 import type { FilterSidebarProps } from '@/app/type/search';
@@ -22,6 +23,7 @@ export default function FilterDrawer({
   className = ''
 }: FilterDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations('Search');
 
   // 处理ESC键关闭
   useEffect(() => {
@@ -74,12 +76,12 @@ export default function FilterDrawer({
         {/* 抽屉头部 */}
         <div className="flex items-center justify-between p-4 border-b border-base-200 flex-shrink-0">
           <h2 id="filter-drawer-title" className="text-xl font-semibold">
-            筛选
+            {t('filters.title')}
           </h2>
           <button
             onClick={onClose}
             className="btn btn-ghost btn-sm btn-circle"
-            aria-label="关闭"
+            aria-label={t('close')}
           >
             <XMarkIcon className="w-5 h-5" />
           </button>

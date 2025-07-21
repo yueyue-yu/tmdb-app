@@ -1,3 +1,14 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '演员',
+  description: '浏览知名演员和导演的详细信息，了解他们的作品和职业生涯。',
+  openGraph: {
+    title: '演员 - TMDB',
+    description: '浏览知名演员和导演的详细信息',
+  },
+};
+
 export default function PeoplePage() {
   return (
 

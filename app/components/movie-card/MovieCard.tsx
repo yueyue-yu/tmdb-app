@@ -1,10 +1,10 @@
 import type { MovieCardProps } from '@/app/type/movieCard';
 import { MediaTypeEnum } from '@/app/type/movie';
-import { 
-  getPosterUrl, 
-  getYear, 
-  getPopularityLevel, 
-  getRatingBadgeClass 
+import {
+  getPosterUrl,
+  getYear,
+  getPopularityLevel,
+  getRatingBadgeClass
 } from '@/app/lib/movieUtils';
 
 import MoviePoster from "@/app/components/movie-card/MoviePoster";

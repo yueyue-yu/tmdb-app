@@ -42,8 +42,7 @@ export default function FilterStatus({
         return `${value}分以下`;
       case 'genres':
         return `${Array.isArray(value) ? value.length : 0}个类型`;
-      case 'sortBy':
-        return t(`sortOptions.${value}`);
+
       default:
         return String(value);
     }

@@ -8,6 +8,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import {
   PlayIcon,
   InformationCircleIcon,
@@ -26,6 +27,7 @@ interface HomeHeroProps {
 
 export default function HomeHero({ featuredMovies }: HomeHeroProps) {
   const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
+  const t = useTranslations('MovieCard');
 
   // 轮播背景图片
   useEffect(() => {
@@ -149,15 +151,8 @@ export default function HomeHero({ featuredMovies }: HomeHeroProps) {
                     href={`/detail/movie/${currentMovie.id}`}
                     className="btn btn-primary btn-lg gap-2 shadow-lg"
                   >
-                    <PlayIcon className="w-5 h-5" />
-                    立即观看
-                  </Link>
-                  <Link
-                    href={`/detail/movie/${currentMovie.id}`}
-                    className="btn btn-outline btn-lg gap-2 text-white border-white/50 hover:bg-white hover:text-black shadow-lg"
-                  >
                     <InformationCircleIcon className="w-5 h-5" />
-                    详细信息
+                    {t('viewDetails')}
                   </Link>
                 </div>
               </div>

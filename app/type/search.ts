@@ -24,40 +24,7 @@ export interface SearchTypeConfig {
   icon: string;
 }
 
-/**
- * 排序选项枚举
- */
-export enum SortOption {
-  RELEVANCE = 'relevance',           // 相关度（仅搜索时可用）
-  POPULARITY_DESC = 'popularity.desc', // 热门度降序
-  POPULARITY_ASC = 'popularity.asc',   // 热门度升序
-  VOTE_AVERAGE_DESC = 'vote_average.desc', // 评分降序
-  VOTE_AVERAGE_ASC = 'vote_average.asc',   // 评分升序
-  RELEASE_DATE_DESC = 'release_date.desc', // 发布日期降序（电影）
-  RELEASE_DATE_ASC = 'release_date.asc',   // 发布日期升序（电影）
-  FIRST_AIR_DATE_DESC = 'first_air_date.desc', // 首播日期降序（电视剧）
-  FIRST_AIR_DATE_ASC = 'first_air_date.asc',   // 首播日期升序（电视剧）
-  TITLE_ASC = 'title.asc',           // 标题升序
-  TITLE_DESC = 'title.desc'          // 标题降序
-}
 
-/**
- * 排序选项到国际化键名的映射
- * 将包含点号的排序选项映射到下划线键名
- */
-export const SORT_OPTION_I18N_MAP: Record<SortOption, string> = {
-  [SortOption.RELEVANCE]: 'relevance',
-  [SortOption.POPULARITY_DESC]: 'popularity_desc',
-  [SortOption.POPULARITY_ASC]: 'popularity_asc',
-  [SortOption.VOTE_AVERAGE_DESC]: 'vote_average_desc',
-  [SortOption.VOTE_AVERAGE_ASC]: 'vote_average_asc',
-  [SortOption.RELEASE_DATE_DESC]: 'release_date_desc',
-  [SortOption.RELEASE_DATE_ASC]: 'release_date_asc',
-  [SortOption.FIRST_AIR_DATE_DESC]: 'first_air_date_desc',
-  [SortOption.FIRST_AIR_DATE_ASC]: 'first_air_date_asc',
-  [SortOption.TITLE_ASC]: 'title_asc',
-  [SortOption.TITLE_DESC]: 'title_desc'
-}
 
 /**
  * 筛选参数
@@ -73,9 +40,6 @@ export interface FilterParams {
 
   // 类型筛选
   genres?: number[];
-
-  // 排序
-  sortBy?: SortOption;
 }
 
 /**

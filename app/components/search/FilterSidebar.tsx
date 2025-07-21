@@ -10,7 +10,6 @@ import MediaTypeFilter from './MediaTypeFilter';
 import YearFilter from './YearFilter';
 import RatingFilter from './RatingFilter';
 import GenreFilter from './GenreFilter';
-import SortFilter from './SortFilter';
 import FilterStatus from './FilterStatus';
 
 /**
@@ -177,17 +176,7 @@ function FilterSidebarContent({
         />
       </div>
 
-      {/* 排序选择 */}
-      <div className="space-y-4">
-        <h3 className="font-semibold text-lg text-base-content">
-          排序
-        </h3>
-        <SortFilter
-          value={localFilters.sortBy}
-          onChange={(value) => onFilterChange('sortBy', value)}
-          searchType={searchParams.type}
-        />
-      </div>
+
 
       {/* 年份筛选 */}
       <div className="space-y-4">

@@ -1,36 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { SwatchIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
-import { THEMES, DEFAULT_THEME, type Theme } from '../../lib/themeUtils';
+import { useTheme } from '../../hooks/useTheme';
+import { type Theme } from '../../lib/themeUtils';
 
 export default function ThemeSelector() {
     const t = useTranslations('Theme');
     const themeT = useTranslations('Themes');
-    const [currentTheme, setCurrentTheme] = useState(DEFAULT_THEME);
-
-    // DaisyUI 主题切换逻辑
-    useEffect(() => {
-        const html = document.documentElement;
-        html.setAttribute('data-theme', currentTheme);
-        // 保存到 localStorage
-        localStorage.setItem('theme', currentTheme);
-    }, [currentTheme]);
-
-    // 页面加载时读取保存的主题
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme && THEMES.find(t => t.name === savedTheme)) {
-            setCurrentTheme(savedTheme);
-        }
-    }, []);
+    const { currentTheme, setTheme, themes, currentThemeInfo, isInitialized } = useTheme();
 
     const handleThemeChange = (themeName: string) => {
-        setCurrentTheme(themeName);
+        setTheme(themeName);
     };
 
-    const currentThemeInfo = THEMES.find(t => t.name === currentTheme) || THEMES[1];
+    // 如果主题未初始化，显示加载状态（避免闪烁）
+    if (!isInitialized) {
+        return (
+            <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                    <SwatchIcon className="h-6 w-6" />
+                </label>
+            </div>
+        );
+    }
 
     return (
         <div className="dropdown dropdown-end">
@@ -45,7 +38,7 @@ export default function ThemeSelector() {
                     </p>
                 </div>
                 <div className="grid grid-cols-2 gap-2 p-3">
-                    {THEMES.map((theme: Theme) => (
+                    {themes.map((theme: Theme) => (
                         <button
                             key={theme.name}
                             className={`btn btn-sm justify-start gap-2 ${

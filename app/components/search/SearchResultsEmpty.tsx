@@ -54,11 +54,7 @@ export default async function SearchResultsEmpty({
         
         {/* 描述 */}
         <p className="text-base-content/60 mb-6">
-          没有找到与 "<span className="font-semibold text-primary">{query}</span>" 相关的
-          {searchType === 'movie' && '电影'}
-          {searchType === 'tv' && '电视剧'}
-          {searchType === 'person' && '人员'}
-          {searchType === 'all' && '内容'}
+          {t('noResultsDesc')}
         </p>
         
         {/* 建议 */}
@@ -70,7 +66,7 @@ export default async function SearchResultsEmpty({
           {/* 搜索建议 */}
           <div className="space-y-2">
             <p className="text-sm font-medium text-base-content/80">
-              试试这些热门搜索:
+              {t('popularSearches')}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               {suggestions.map((suggestion, index) => (

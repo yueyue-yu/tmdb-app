@@ -7,12 +7,13 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import type { Metadata } from 'next';
 
 // 导入搜索组件
 import SearchForm from '@/app/components/search/SearchForm';
 import SearchResultsInfinite from '@/app/components/search/SearchResultsInfinite';
 import SearchPageClient from '@/app/components/search/SearchPageClient';
-import { SortOption, SearchTypeEnum } from '@/app/type/search';
+import { SearchTypeEnum } from '@/app/type/search';
 import type { FilterParams } from '@/app/type/search';
 
 interface SearchPageProps {
@@ -27,6 +28,42 @@ interface SearchPageProps {
     genres?: string;
     sortBy?: string;
   }>;
+}
+
+// 生成页面元数据
+export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const query = params.q?.trim() || '';
+  const type = params.type || 'all';
+
+  if (query) {
+    const typeMap = {
+      'all': '全部',
+      'movie': '电影',
+      'tv': '电视剧',
+      'person': '演员'
+    };
+
+    const typeText = typeMap[type as keyof typeof typeMap] || '全部';
+
+    return {
+      title: `"${query}" 的搜索结果`,
+      description: `在 ${typeText} 中搜索 "${query}" 的结果，发现相关的电影、电视剧和演员信息。`,
+      openGraph: {
+        title: `"${query}" 的搜索结果 - TMDB`,
+        description: `在 ${typeText} 中搜索 "${query}" 的结果`,
+      },
+    };
+  }
+
+  return {
+    title: '搜索',
+    description: '搜索电影、电视剧和演员信息，发现你感兴趣的内容。支持多种筛选条件，帮你快速找到想要的影视作品。',
+    openGraph: {
+      title: '搜索 - TMDB',
+      description: '搜索电影、电视剧和演员信息',
+    },
+  };
 }
 
 
@@ -67,9 +104,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     if (genres.length > 0) filters.genres = genres;
   }
 
-  if (params.sortBy && Object.values(SortOption).includes(params.sortBy as SortOption)) {
-    filters.sortBy = params.sortBy as SortOption;
-  }
+
 
   // 验证搜索类型
   const validTypes: SearchTypeEnum[] = [SearchTypeEnum.ALL, SearchTypeEnum.MOVIE, SearchTypeEnum.TV, SearchTypeEnum.PERSON];
@@ -130,7 +165,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 {(t.raw('popularSearchTerms') as string[]).map((suggestion) => (
                   <a
                     key={suggestion}
-                    href={`/home/search?q=${encodeURIComponent(suggestion)}&type=all&page=1`}
+                    href={`/home/search?q=${encodeURIComponent(suggestion)}&type=all`}
                     className="badge badge-outline hover:badge-primary transition-colors cursor-pointer"
                   >
                     {suggestion}

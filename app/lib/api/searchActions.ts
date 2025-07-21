@@ -9,7 +9,7 @@ import { searchTvShowsAsMovies } from './tvActions';
 import { peopleApi } from './people';
 import { getApiClient } from './client';
 import type { ApiResponse, Movie, Person } from './types';
-import { SearchTypeEnum, SortOption } from '@/app/type/search';
+import { SearchTypeEnum } from '@/app/type/search';
 import type { SearchParams, MultiSearchResponse, FilterParams } from '@/app/type/search';
 
 /**
@@ -45,16 +45,11 @@ function convertFiltersToApiParams(filters: FilterParams, mediaType: 'movie' | '
     params['with_genres'] = filters.genres.join(',');
   }
 
-  // 排序
-  if (filters.sortBy && filters.sortBy !== SortOption.RELEVANCE) {
-    params['sort_by'] = filters.sortBy;
-  }
-
   return params;
 }
 
 /**
- * 使用discover API搜索电影（支持筛选）
+ * 搜索电影（支持筛选和排序）
  * @param query 搜索关键词
  * @param filters 筛选参数
  * @param page 页码
@@ -68,30 +63,39 @@ async function discoverMovies(
   try {
     const apiClient = await getApiClient();
 
-    // 如果有筛选条件，使用discover API，否则使用search API
-    if (hasFilters(filters)) {
-      const apiParams = convertFiltersToApiParams(filters, 'movie');
+    // 如果有搜索关键词，优先使用search API
+    if (query.trim()) {
+      let response = await searchMovies(query, page);
 
-      // 如果有搜索关键词，添加到参数中（注意：discover API不直接支持关键词搜索）
-      // 这里我们使用discover API的筛选功能
+      // 如果有筛选条件，在客户端进行筛选
+      if (hasFilters(filters)) {
+        response = await applyFiltersToResults(response, filters);
+      }
+
+      return response;
+    } else if (hasFilters(filters)) {
+      // 没有搜索关键词但有筛选条件时，使用discover API
+      const apiParams = convertFiltersToApiParams(filters, 'movie');
       const response = await apiClient.get<ApiResponse<Movie>>('/discover/movie', {
         ...apiParams,
         page: page.toString()
       });
-
       return response;
     } else {
-      // 没有筛选条件时，使用普通搜索
-      return searchMovies(query, page);
+      // 既没有关键词也没有筛选条件，返回热门电影
+      const response = await apiClient.get<ApiResponse<Movie>>('/movie/popular', {
+        page: page.toString()
+      });
+      return response;
     }
   } catch (error) {
-    console.error('Discover电影失败:', error);
-    throw new Error(`Discover电影失败: ${error instanceof Error ? error.message : '未知错误'}`);
+    console.error('搜索电影失败:', error);
+    throw new Error(`搜索电影失败: ${error instanceof Error ? error.message : '未知错误'}`);
   }
 }
 
 /**
- * 使用discover API搜索电视剧（支持筛选）
+ * 搜索电视剧（支持筛选和排序）
  * @param query 搜索关键词
  * @param filters 筛选参数
  * @param page 页码
@@ -105,23 +109,34 @@ async function discoverTvShows(
   try {
     const apiClient = await getApiClient();
 
-    // 如果有筛选条件，使用discover API，否则使用search API
-    if (hasFilters(filters)) {
-      const apiParams = convertFiltersToApiParams(filters, 'tv');
+    // 如果有搜索关键词，优先使用search API
+    if (query.trim()) {
+      let response = await searchTvShowsAsMovies(query, page);
 
+      // 如果有筛选条件，在客户端进行筛选
+      if (hasFilters(filters)) {
+        response = await applyFiltersToResults(response, filters);
+      }
+
+      return response;
+    } else if (hasFilters(filters)) {
+      // 没有搜索关键词但有筛选条件时，使用discover API
+      const apiParams = convertFiltersToApiParams(filters, 'tv');
       const response = await apiClient.get<ApiResponse<Movie>>('/discover/tv', {
         ...apiParams,
         page: page.toString()
       });
-
       return response;
     } else {
-      // 没有筛选条件时，使用普通搜索
-      return searchTvShowsAsMovies(query, page);
+      // 既没有关键词也没有筛选条件，返回热门电视剧
+      const response = await apiClient.get<ApiResponse<Movie>>('/tv/popular', {
+        page: page.toString()
+      });
+      return response;
     }
   } catch (error) {
-    console.error('Discover电视剧失败:', error);
-    throw new Error(`Discover电视剧失败: ${error instanceof Error ? error.message : '未知错误'}`);
+    console.error('搜索电视剧失败:', error);
+    throw new Error(`搜索电视剧失败: ${error instanceof Error ? error.message : '未知错误'}`);
   }
 }
 
@@ -136,9 +151,58 @@ function hasFilters(filters: FilterParams): boolean {
     filters.yearTo ||
     filters.ratingFrom !== undefined ||
     filters.ratingTo !== undefined ||
-    (filters.genres && filters.genres.length > 0) ||
-    (filters.sortBy && filters.sortBy !== SortOption.RELEVANCE)
+    (filters.genres && filters.genres.length > 0)
   );
+}
+
+/**
+ * 在客户端对搜索结果应用筛选
+ * @param response 原始搜索结果
+ * @param filters 筛选参数
+ * @returns 筛选后的结果
+ */
+async function applyFiltersToResults(
+  response: ApiResponse<Movie>,
+  filters: FilterParams
+): Promise<ApiResponse<Movie>> {
+  let filteredResults = [...response.results];
+
+  // 年份筛选
+  if (filters.yearFrom || filters.yearTo) {
+    filteredResults = filteredResults.filter(item => {
+      const releaseDate = item.release_date || item.first_air_date;
+      if (!releaseDate) return false;
+
+      const year = new Date(releaseDate).getFullYear();
+      if (filters.yearFrom && year < filters.yearFrom) return false;
+      if (filters.yearTo && year > filters.yearTo) return false;
+      return true;
+    });
+  }
+
+  // 评分筛选
+  if (filters.ratingFrom !== undefined || filters.ratingTo !== undefined) {
+    filteredResults = filteredResults.filter(item => {
+      const rating = item.vote_average;
+      if (filters.ratingFrom !== undefined && rating < filters.ratingFrom) return false;
+      if (filters.ratingTo !== undefined && rating > filters.ratingTo) return false;
+      return true;
+    });
+  }
+
+  // 类型筛选
+  if (filters.genres && filters.genres.length > 0) {
+    filteredResults = filteredResults.filter(item => {
+      return filters.genres!.some(genreId => item.genre_ids.includes(genreId));
+    });
+  }
+
+  return {
+    ...response,
+    results: filteredResults,
+    total_results: filteredResults.length,
+    total_pages: Math.ceil(filteredResults.length / 20) // 假设每页20个结果
+  };
 }
 
 /**
