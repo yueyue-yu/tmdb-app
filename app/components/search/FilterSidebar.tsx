@@ -9,7 +9,6 @@ import type { FilterSidebarProps } from '@/app/type/search';
 import MediaTypeFilter from './MediaTypeFilter';
 import YearFilter from './YearFilter';
 import RatingFilter from './RatingFilter';
-import GenreFilter from './GenreFilter';
 import FilterStatus from './FilterStatus';
 
 /**
@@ -208,19 +207,7 @@ function FilterSidebarContent({
         />
       </div>
 
-      {/* 类型筛选 - 仅在电影和电视剧搜索时显示 */}
-      {(searchParams.type === 'movie' || searchParams.type === 'tv' || searchParams.type === 'all') && (
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg text-base-content">
-            类型
-          </h3>
-          <GenreFilter
-            selectedGenres={localFilters.genres || []}
-            onChange={(genres) => onFilterChange('genres', genres)}
-            mediaType={searchParams.type === 'tv' ? 'tv' : 'movie'}
-          />
-        </div>
-      )}
+
     </div>
   );
 }

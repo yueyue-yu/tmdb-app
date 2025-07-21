@@ -49,7 +49,6 @@ export default function SearchPageClient({
     params.delete('yearTo');
     params.delete('ratingFrom');
     params.delete('ratingTo');
-    params.delete('genres');
 
 
     // 设置新的筛选参数（排除type，因为已经处理过了）
@@ -66,9 +65,6 @@ export default function SearchPageClient({
     }
     if (filterParams.ratingTo !== undefined) {
       params.set('ratingTo', filterParams.ratingTo.toString());
-    }
-    if (filterParams.genres && filterParams.genres.length > 0) {
-      params.set('genres', filterParams.genres.join(','));
     }
 
 

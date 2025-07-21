@@ -25,8 +25,6 @@ interface SearchPageProps {
     yearTo?: string;
     ratingFrom?: string;
     ratingTo?: string;
-    genres?: string;
-    sortBy?: string;
   }>;
 }
 
@@ -99,10 +97,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     if (!isNaN(ratingTo)) filters.ratingTo = ratingTo;
   }
 
-  if (params.genres) {
-    const genres = params.genres.split(',').map(id => parseInt(id)).filter(id => !isNaN(id));
-    if (genres.length > 0) filters.genres = genres;
-  }
+
 
 
 

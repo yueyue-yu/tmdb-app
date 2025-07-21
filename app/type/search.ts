@@ -37,9 +37,6 @@ export interface FilterParams {
   // 评分筛选
   ratingFrom?: number;
   ratingTo?: number;
-
-  // 类型筛选
-  genres?: number[];
 }
 
 /**

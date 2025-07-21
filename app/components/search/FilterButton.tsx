@@ -26,7 +26,6 @@ export default function FilterButton({
     let count = 0;
     if (filters.yearFrom || filters.yearTo) count++;
     if (filters.ratingFrom || filters.ratingTo) count++;
-    if (filters.genres && filters.genres.length > 0) count++;
 
     return count;
   };

@@ -40,10 +40,7 @@ function convertFiltersToApiParams(filters: FilterParams, mediaType: 'movie' | '
     params['vote_average.lte'] = filters.ratingTo.toString();
   }
 
-  // 类型筛选
-  if (filters.genres && filters.genres.length > 0) {
-    params['with_genres'] = filters.genres.join(',');
-  }
+
 
   return params;
 }
@@ -150,8 +147,7 @@ function hasFilters(filters: FilterParams): boolean {
     filters.yearFrom ||
     filters.yearTo ||
     filters.ratingFrom !== undefined ||
-    filters.ratingTo !== undefined ||
-    (filters.genres && filters.genres.length > 0)
+    filters.ratingTo !== undefined
   );
 }
 
@@ -190,12 +186,7 @@ async function applyFiltersToResults(
     });
   }
 
-  // 类型筛选
-  if (filters.genres && filters.genres.length > 0) {
-    filteredResults = filteredResults.filter(item => {
-      return filters.genres!.some(genreId => item.genre_ids.includes(genreId));
-    });
-  }
+
 
   return {
     ...response,

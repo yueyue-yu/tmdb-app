@@ -141,7 +141,7 @@ export default function FilterStatus({
     }
 
     // 其他单独的筛选条件
-    const validKeys: (keyof FilterParams)[] = ['genres'];
+    const validKeys: (keyof FilterParams)[] = [];
 
     validKeys.forEach(key => {
       const value = filters[key];
