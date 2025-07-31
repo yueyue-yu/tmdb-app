@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 import { ThemeContext } from '../components/providers/ThemeProvider';
-import { ThemeContextType } from '../types/theme';
+import { ThemeContextType } from '../type/theme';
 
 /**
  * 主题 Hook

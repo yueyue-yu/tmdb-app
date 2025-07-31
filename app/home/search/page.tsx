@@ -108,69 +108,76 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* 页面标题 */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="p-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-            <MagnifyingGlassIcon className="w-6 h-6 text-white" />
+    <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200">
+      {/* 移动端优先的头部 - 正常滚动 */}
+      <div className="max-w-4xl mx-auto px-4 py-6">
+        {/* 简化的页面标题 */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
+            <MagnifyingGlassIcon className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-3xl font-bold">{t('title')}</h1>
-        </div>
-        <p className="text-base-content/60 max-w-2xl mx-auto">
-          {t('description')}
-        </p>
-      </div>
-
-      {/* 搜索表单 */}
-      <div className="mb-8">
-        <SearchForm
-          initialQuery={query}
-        />
-      </div>
-
-      {/* 搜索结果 */}
-      {query ? (
-        <SearchPageClient
-          query={query}
-          type={type}
-          filters={filters}
-        >
-          <SearchResultsInfinite
-            key={`infinite-search-${query}-${type}-${JSON.stringify(filters)}`}
-            searchParams={{ query, type, filters }}
-          />
-        </SearchPageClient>
-      ) : (
-        /* 空状态 - 显示搜索建议 */
-        <div className="text-center py-16">
-          <div className="max-w-md mx-auto">
-            <div className="text-6xl mb-6">🔍</div>
-            <h2 className="text-xl font-semibold mb-4">{t('startSearching')}</h2>
-            <p className="text-base-content/60 mb-8">
-              {t('startSearchingDesc')}
+          <div>
+            <h1 className="text-xl font-bold">{t('title')}</h1>
+            <p className="text-xs text-base-content/60 hidden sm:block">
+              {t('description')}
             </p>
+          </div>
+        </div>
 
-            {/* 热门搜索建议 */}
-            <div className="space-y-4">
-              <p className="text-sm font-medium text-base-content/80">
-                {t('popularSearches')}
+        {/* 搜索表单 */}
+        <div className="mb-6">
+          <SearchForm
+            initialQuery={query}
+          />
+        </div>
+
+        {/* 搜索结果 */}
+        {query ? (
+          <SearchPageClient
+            query={query}
+            type={type}
+            filters={filters}
+          >
+            <SearchResultsInfinite
+              key={`infinite-search-${query}-${type}-${JSON.stringify(filters)}`}
+              searchParams={{ query, type, filters }}
+            />
+          </SearchPageClient>
+        ) : (
+          /* 移动端优先的空状态 */
+          <div className="text-center py-8">
+            <div className="max-w-sm mx-auto">
+              {/* 搜索图标 */}
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center">
+                <MagnifyingGlassIcon className="w-10 h-10 text-purple-500" />
+              </div>
+
+              <h2 className="text-lg font-semibold mb-3">{t('startSearching')}</h2>
+              <p className="text-sm text-base-content/60 mb-6">
+                {t('startSearchingDesc')}
               </p>
-              <div className="flex flex-wrap gap-2 justify-center">
-                {(t.raw('popularSearchTerms') as string[]).map((suggestion) => (
-                  <a
-                    key={suggestion}
-                    href={`/home/search?q=${encodeURIComponent(suggestion)}&type=all`}
-                    className="badge badge-outline hover:badge-primary transition-colors cursor-pointer"
-                  >
-                    {suggestion}
-                  </a>
-                ))}
+
+              {/* 热门搜索建议 - 移动端优化 */}
+              <div className="space-y-4">
+                <p className="text-sm font-medium text-base-content/80">
+                  {t('popularSearches')}
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {(t.raw('popularSearchTerms') as string[]).slice(0, 6).map((suggestion) => (
+                    <a
+                      key={suggestion}
+                      href={`/home/search?q=${encodeURIComponent(suggestion)}&type=all`}
+                      className="btn btn-outline btn-sm text-xs hover:btn-primary transition-colors"
+                    >
+                      {suggestion}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

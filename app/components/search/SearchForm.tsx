@@ -93,42 +93,55 @@ export default function SearchForm({
 
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* 主搜索框 */}
-        <div className="form-control">
-          {/* 搜索输入框 */}
-          <div className="relative">
-            <input
-              ref={inputRef}
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={t('searchPlaceholder')}
-              className="input input-bordered input-lg w-full pr-12"
-              disabled={isLoading}
-              autoComplete="off"
-              spellCheck="false"
-            />
+    <div className="w-full">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        {/* 紧凑的搜索框 */}
+        <div className="relative">
+          <input
+            ref={inputRef}
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('searchPlaceholder')}
+            className="input input-bordered w-full pr-20 h-12 text-base bg-base-100/50 backdrop-blur-sm border-base-300 focus:border-primary focus:bg-base-100 transition-all"
+            disabled={isLoading}
+            autoComplete="off"
+            spellCheck="false"
+          />
 
+          {/* 右侧按钮组 */}
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
             {/* 清空按钮 */}
             {query && (
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 btn btn-ghost btn-sm btn-circle"
+                className="btn btn-ghost btn-sm btn-circle"
                 disabled={isLoading}
               >
                 <XMarkIcon className="h-4 w-4" />
               </button>
             )}
+
+            {/* 搜索按钮 */}
+            <button
+              type="submit"
+              disabled={isLoading || !query.trim()}
+              className="btn btn-primary btn-sm px-3 h-8 min-h-8"
+            >
+              {isLoading ? (
+                <span className="loading loading-spinner loading-xs"></span>
+              ) : (
+                <span className="text-xs font-medium">搜索</span>
+              )}
+            </button>
           </div>
         </div>
 
-        {/* 搜索提示 */}
-        <div className="text-center">
-          <p className="text-sm text-base-content/60">
-            Enter {t('searchButton')} • ESC {t('clearSearch')}
+        {/* 移动端搜索提示 */}
+        <div className="text-center sm:hidden">
+          <p className="text-xs text-base-content/50">
+            输入关键词开始搜索
           </p>
         </div>
       </form>

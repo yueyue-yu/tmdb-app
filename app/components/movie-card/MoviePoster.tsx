@@ -28,8 +28,8 @@ export default function MoviePoster({
     : `/detail/movie/${movie.id}`;
 
   return (
-    <Link href={detailPath} className="block">
-      <figure className="relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
+    <Link href={detailPath} className="block h-full">
+      <figure className="relative aspect-[2/3] sm:aspect-[2/3] overflow-hidden bg-gradient-to-br from-base-200 to-base-300 h-full sm:h-auto">
       <Image
         src={posterUrl}
         alt={movie.title}

@@ -4,6 +4,7 @@ import ThemeSelector from '../components/layout/ThemeSelector';
 import LanguageSelector from '../components/layout/LanguageSelector';
 import SearchBar from '../components/layout/SearchBar';
 import Navigation from '../components/layout/Navigation';
+import MobileSidebar from '../components/layout/MobileSidebar';
 import { getTranslations } from 'next-intl/server';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
@@ -15,7 +16,10 @@ export default async function Layout({ children }: { children: React.ReactNode }
             <header className="navbar bg-base-100 border-b border-base-300 shadow-sm fixed top-0 left-0 right-0 z-30 h-16">
                 {/* Logo */}
                 <div className="navbar-start">
-                    <div className="flex items-center justify-center w-32 gap-2">
+                    {/* 移动端汉堡菜单按钮 */}
+                    <MobileSidebar />
+
+                    <div className="flex items-center justify-center gap-2 ml-2 lg:ml-0">
                         <span className="text-xl">🎭</span>
                         <h1 className="text-xl font-bold text-primary hidden sm:block">TMDB</h1>
                     </div>

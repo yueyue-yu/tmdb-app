@@ -79,14 +79,6 @@ export interface PlayButtonProps {
 }
 
 /**
- * 统计信息组件属性
- */
-export interface MovieStatsProps {
-  year: number | null;
-  voteCount: number;
-}
-
-/**
  * 更多操作菜单组件属性
  */
 export interface MoreActionsProps {

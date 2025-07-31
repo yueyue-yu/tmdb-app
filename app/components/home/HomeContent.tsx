@@ -35,38 +35,7 @@ export default async function HomeContent({
 
   return (
     <div className="space-y-12">
-      {/* 热门电影 */}
-      <section>
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-red-500 rounded-lg">
-              <FireIcon className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold">{t('popularMovies')}</h2>
-              <p className="text-base-content/60">{t('popularMoviesDesc')}</p>
-            </div>
-          </div>
-          <Link 
-            href="/home/movie/popular" 
-            className="btn btn-ghost btn-sm gap-2"
-          >
-            {t('viewAll')}
-            <ChevronRightIcon className="w-4 h-4" />
-          </Link>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {popularMovies.slice(0, 5).map((movie, index) => (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              index={index}
-              mediaType={MediaTypeEnum.Movie}
-            />
-          ))}
-        </div>
-      </section>
+     
 
       {/* 评分最高 */}
       <section>
@@ -77,7 +46,6 @@ export default async function HomeContent({
             </div>
             <div>
               <h2 className="text-2xl font-bold">{t('topRated')}</h2>
-              <p className="text-base-content/60">{t('topRatedMoviesDesc')}</p>
             </div>
           </div>
           <Link 
@@ -89,8 +57,41 @@ export default async function HomeContent({
           </Link>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
           {topRatedMovies.slice(0, 5).map((movie, index) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              index={index}
+              mediaType={MediaTypeEnum.Movie}
+            />
+          ))}
+        </div>
+      </section>
+
+
+       {/* 热门电影 */}
+      <section>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-red-500 rounded-lg">
+              <FireIcon className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">{t('popularMovies')}</h2>
+            </div>
+          </div>
+          <Link 
+            href="/home/movie/popular" 
+            className="btn btn-ghost btn-sm gap-2"
+          >
+            {t('viewAll')}
+            <ChevronRightIcon className="w-4 h-4" />
+          </Link>
+        </div>
+        
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+          {popularMovies.slice(0, 5).map((movie, index) => (
             <MovieCard
               key={movie.id}
               movie={movie}
@@ -112,7 +113,6 @@ export default async function HomeContent({
             </div>
             <div>
               <h2 className="text-2xl font-bold">{t('popularTv')}</h2>
-              <p className="text-base-content/60">{t('popularTvDesc')}</p>
             </div>
           </div>
           <Link 
@@ -124,7 +124,7 @@ export default async function HomeContent({
           </Link>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
           {popularTvShows.slice(0, 5).map((movie, index) => (
             <MovieCard
               key={movie.id}
@@ -140,7 +140,7 @@ export default async function HomeContent({
       <section className="bg-base-200 rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-center mb-8">{t('exploreMovieCategories')}</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
           <Link
             href="/home/movie/popular"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"

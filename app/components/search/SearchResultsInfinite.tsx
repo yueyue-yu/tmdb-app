@@ -3,9 +3,9 @@
 import { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import InfiniteScrollContainer from '@/app/components/common/InfiniteScrollContainer';
-import SearchResultListItem from './SearchResultListItem';
+import SearchResultCard from './SearchResultCard';
 import { unifiedSearch } from '@/app/lib/api/searchActions';
-import type { InfiniteSearchResultsProps, SearchTypeEnum } from '@/app/type/search';
+import type { InfiniteSearchResultsProps } from '@/app/type/search';
 import type { Movie, Person } from '@/app/lib/api/types';
 
 /**
@@ -64,7 +64,7 @@ export default function SearchResultsInfinite({
   // 渲染单个搜索结果项
   const renderItem = useCallback((item: Movie | Person, index: number) => {
     return (
-      <SearchResultListItem
+      <SearchResultCard
         key={`search-result-${item.id}-${index}`}
         item={item}
         index={index}
@@ -72,16 +72,18 @@ export default function SearchResultsInfinite({
     );
   }, []);
 
-  // 渲染空状态
+  // 渲染空状态 - 移动端优化
   const renderEmpty = useCallback(() => (
-    <div className="text-center py-12">
-      <div className="space-y-4">
-        <div className="text-6xl">🔍</div>
+    <div className="text-center py-8">
+      <div className="max-w-sm mx-auto space-y-4">
+        <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+          <span className="text-2xl">🔍</span>
+        </div>
         <div>
           <h3 className="text-lg font-semibold mb-2">
             {t('noResultsFound')}
           </h3>
-          <p className="text-base-content/60">
+          <p className="text-sm text-base-content/60">
             {t('noResultsFoundDesc')}
           </p>
         </div>
@@ -109,17 +111,17 @@ export default function SearchResultsInfinite({
 
   return (
     <div className={className}>
-      {/* 搜索结果标题 */}
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">
+      {/* 搜索结果标题 - 移动端优化 */}
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold mb-1">
           {t('searchResultsFor', { query })}
         </h2>
-        <p className="text-sm text-base-content/60">
+        <p className="text-xs text-base-content/60">
           {t('infiniteScrollHint')}
         </p>
       </div>
 
-      {/* 无限滚动容器 */}
+      {/* 无限滚动容器 - Tailwind 响应式网格布局 */}
       <InfiniteScrollContainer
         loadMore={loadMore}
         renderItem={renderItem}
@@ -130,7 +132,7 @@ export default function SearchResultsInfinite({
           rootMargin: '200px',
           enabled: !!query
         }}
-        className=""
+        className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
         itemClassName=""
         showBackToTop={true}
         backToTopThreshold={500}

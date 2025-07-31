@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useEffect, useMemo } from 'react';
 import { THEMES, DEFAULT_THEME } from '../../lib/themeUtils';
-import { ThemeContextType, ThemeProviderProps } from '../../types/theme';
+import { ThemeContextType, ThemeProviderProps } from '../../type/theme';
 
 /**
  * 主题上下文

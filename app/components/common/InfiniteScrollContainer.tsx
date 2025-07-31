@@ -105,9 +105,9 @@ export default function InfiniteScrollContainer<T>({
   }
 
   return (
-    <div className={className}>
-      {/* 数据列表 - 单列列表布局 */}
-      <div className="space-y-4">
+    <div>
+      {/* 数据列表 - 支持外部布局类名 */}
+      <div className={className}>
         {items.map((item, index) => {
           // 生成唯一的key，优先使用item的id，否则使用index
           const uniqueKey = (item as any)?.id ? `item-${(item as any).id}-${index}` : `index-${index}`;

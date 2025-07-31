@@ -3,8 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import FilterDrawer from './FilterDrawer';
-import FilterButton from './FilterButton';
+import SimpleFilter from './SimpleFilter';
 import type { SearchTypeEnum, FilterParams } from '@/app/type/search';
 
 interface SearchPageClientProps {
@@ -74,32 +73,24 @@ export default function SearchPageClient({
 
   return (
     <>
-      {/* 主要内容区域 - 全宽度布局 */}
+      {/* 主要内容区域 - 移动端优化 */}
       <div className="w-full">
-        {/* 顶部工具栏 */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">
-            {t('searchResults')}
+        {/* 顶部工具栏 - 紧凑设计 */}
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">
+            搜索结果
           </h2>
 
-          {/* 筛选器按钮 */}
-          <FilterButton
-            onClick={() => setIsFilterDrawerOpen(true)}
-            filters={filters}
+          {/* 简化筛选器 */}
+          <SimpleFilter
+            searchParams={{ query, type, filters }}
+            onFiltersChange={handleFiltersChange}
           />
         </div>
 
         {/* 无限滚动内容 */}
         {children}
       </div>
-
-      {/* 筛选器抽屉 */}
-      <FilterDrawer
-        isOpen={isFilterDrawerOpen}
-        onClose={() => setIsFilterDrawerOpen(false)}
-        searchParams={{ query, type, filters }}
-        onFiltersChange={handleFiltersChange}
-      />
     </>
   );
 }
