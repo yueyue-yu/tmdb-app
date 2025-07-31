@@ -15,7 +15,7 @@ export interface MenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
     { key: 'home', path: '/home', icon: HomeIcon },
-    { key: 'movies', path: '/home/movie', icon: FilmIcon },
-    { key: 'tv', path: '/home/tv', icon: TvIcon },
-    { key: 'search', path: '/home/search', icon: MagnifyingGlassIcon },
+    { key: 'movies', path: '/movie', icon: FilmIcon },
+    { key: 'tv', path: '/tv', icon: TvIcon },
+    { key: 'search', path: '/search', icon: MagnifyingGlassIcon },
 ];

@@ -64,16 +64,16 @@ export function getPageTypeFromPath(pathname: string): PageType {
   }
 
   // 列表页面
-  if (cleanPath.includes('/home/movie')) {
+  if (cleanPath.includes('/movie')) {
     return PageType.MOVIE_LIST;
   }
-  if (cleanPath.includes('/home/tv')) {
+  if (cleanPath.includes('/tv')) {
     return PageType.TV_LIST;
   }
-  if (cleanPath.includes('/home/people')) {
+  if (cleanPath.includes('/people')) {
     return PageType.PEOPLE_LIST;
   }
-  if (cleanPath.includes('/home/search')) {
+  if (cleanPath.includes('/search')) {
     return PageType.SEARCH;
   }
   if (cleanPath.includes('/home')) {
@@ -191,19 +191,19 @@ export function getBreadcrumbPaths(
   switch (currentPageType) {
     case PageType.MOVIE_DETAIL:
       breadcrumbs.push(
-        { label: '电影', path: '/home/movie' },
+        { label: '电影', path: '/movie' },
         { label: '电影详情', path: currentPath }
       );
       break;
     case PageType.TV_DETAIL:
       breadcrumbs.push(
-        { label: '电视剧', path: '/home/tv' },
+        { label: '电视剧', path: '/tv' },
         { label: '电视剧详情', path: currentPath }
       );
       break;
     case PageType.PERSON_DETAIL:
       breadcrumbs.push(
-        { label: '演员', path: '/home/people' },
+        { label: '演员', path: '/people' },
         { label: '演员详情', path: currentPath }
       );
       break;

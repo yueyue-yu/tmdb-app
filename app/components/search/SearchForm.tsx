@@ -75,7 +75,7 @@ export default function SearchForm({
           type: searchParams.type
         });
 
-        router.push(`/home/search?${params.toString()}`);
+        router.push(`/search?${params.toString()}`);
       }
     } catch (error) {
       console.error('搜索失败:', error);

@@ -33,8 +33,8 @@ export default function Pagination({
   // 导航到指定页面
   const navigateToPage = (page: number) => {
     const url = page === 1 
-      ? `/home/${mediaType}/${category}`
-      : `/home/${mediaType}/${category}?page=${page}`;
+      ? `/${mediaType}/${category}`
+      : `/${mediaType}/${category}?page=${page}`;
 
     setNavigatingToPage(page);
     

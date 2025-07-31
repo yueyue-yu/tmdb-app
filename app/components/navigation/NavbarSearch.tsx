@@ -26,7 +26,7 @@ export default function NavbarSearch({ isScrolled = false, isMobile = false, cla
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/home/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
       setIsExpanded(false);
     }

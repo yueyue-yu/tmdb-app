@@ -31,7 +31,7 @@ export default function SearchBar() {
 
         if (!query.trim()) {
             // 如果没有输入内容，直接跳转到搜索页面
-            router.push('/home/search');
+            router.push('/search');
             return;
         }
 
@@ -42,7 +42,7 @@ export default function SearchBar() {
             page: '1'
         });
 
-        router.push(`/home/search?${params.toString()}`);
+        router.push(`/search?${params.toString()}`);
 
         // 清空输入框并失去焦点
         setQuery('');
@@ -52,7 +52,7 @@ export default function SearchBar() {
     // 处理输入框点击 - 如果没有内容则跳转到搜索页面
     const handleInputClick = () => {
         if (!query.trim()) {
-            router.push('/home/search');
+            router.push('/search');
         }
     };
 

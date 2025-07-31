@@ -68,7 +68,7 @@ export default function SearchPageClient({
 
 
     // 导航到新的URL
-    router.push(`/home/search?${params.toString()}`);
+    router.push(`/search?${params.toString()}`);
   }, [query, type, searchParams, router]);
 
   return (

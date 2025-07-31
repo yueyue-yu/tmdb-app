@@ -49,7 +49,7 @@ export default async function HomeContent({
             </div>
           </div>
           <Link 
-            href="/home/movie/top_rated" 
+            href="/movie/top_rated" 
             className="btn btn-ghost btn-sm gap-2"
           >
             {t('viewAll')}
@@ -82,7 +82,7 @@ export default async function HomeContent({
             </div>
           </div>
           <Link 
-            href="/home/movie/popular" 
+            href="/movie/popular" 
             className="btn btn-ghost btn-sm gap-2"
           >
             {t('viewAll')}
@@ -116,7 +116,7 @@ export default async function HomeContent({
             </div>
           </div>
           <Link 
-            href="/home/tv/popular" 
+            href="/tv/popular" 
             className="btn btn-ghost btn-sm gap-2"
           >
             {t('viewAll')}
