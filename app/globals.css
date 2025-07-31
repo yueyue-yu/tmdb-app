@@ -45,5 +45,59 @@
   overflow: hidden;
 }
 
+/* ICE•ICE FILM Hero 样式 */
+.ice-hero-bg {
+  background: linear-gradient(135deg,
+    rgb(15, 23, 42) 0%,
+    rgb(30, 58, 138) 35%,
+    rgb(67, 56, 202) 100%);
+}
+
+.ice-crystal-glow {
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.2),
+    0 0 60px rgba(99, 102, 241, 0.1);
+}
+
+.ice-text-glow {
+  text-shadow:
+    0 0 10px rgba(34, 211, 238, 0.5),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* 冰晶动画 */
+@keyframes ice-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+.ice-float {
+  animation: ice-float 3s ease-in-out infinite;
+}
+
+/* 玻璃拟态效果 */
+.glass-morphism {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 滚动提示动画增强 */
+.scroll-indicator {
+  transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 4px 8px rgba(34, 211, 238, 0.3));
+}
+
 
 

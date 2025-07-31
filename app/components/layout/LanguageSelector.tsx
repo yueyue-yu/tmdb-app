@@ -15,7 +15,11 @@ const languages: Language[] = [
   { code: 'en', name: 'English', flag: '🇺🇸' }
 ];
 
-export default function LanguageSelector() {
+interface LanguageSelectorProps {
+  isScrolled?: boolean;
+}
+
+export default function LanguageSelector({ isScrolled = false }: LanguageSelectorProps) {
   const t = useTranslations('Common');
   const [currentLocale, setCurrentLocale] = useState('zh');
 
@@ -45,7 +49,11 @@ export default function LanguageSelector() {
 
   return (
     <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle">
+      <label tabIndex={0} className={`p-2 rounded-lg transition-all duration-300 ${
+        isScrolled
+          ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
+          : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
+      }`}>
         <LanguageIcon className="h-6 w-6" />
       </label>
       <div tabIndex={0} className="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-48">

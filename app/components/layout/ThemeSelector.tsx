@@ -5,7 +5,11 @@ import { useTranslations } from 'next-intl';
 import { useTheme } from '../../hooks/useTheme';
 import { type Theme } from '../../lib/themeUtils';
 
-export default function ThemeSelector() {
+interface ThemeSelectorProps {
+    isScrolled?: boolean;
+}
+
+export default function ThemeSelector({ isScrolled = false }: ThemeSelectorProps) {
     const t = useTranslations('Theme');
     const themeT = useTranslations('Themes');
     const { currentTheme, setTheme, themes, currentThemeInfo, isInitialized } = useTheme();
@@ -18,7 +22,11 @@ export default function ThemeSelector() {
     if (!isInitialized) {
         return (
             <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                <label tabIndex={0} className={`p-2 rounded-lg transition-all duration-300 ${
+                    isScrolled
+                        ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
+                        : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
+                }`}>
                     <SwatchIcon className="h-6 w-6" />
                 </label>
             </div>
@@ -27,7 +35,11 @@ export default function ThemeSelector() {
 
     return (
         <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <label tabIndex={0} className={`p-2 rounded-lg transition-all duration-300 ${
+                isScrolled
+                    ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
+                    : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
+            }`}>
                 <SwatchIcon className="h-6 w-6" />
             </label>
             <div tabIndex={0} className="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-80 max-h-96 overflow-y-auto">

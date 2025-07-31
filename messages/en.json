@@ -9,7 +9,18 @@
     "tv": "TV Shows",
     "people": "People",
     "search": "Search",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "menu": "Menu",
+    "close": "Close",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "searchPlaceholder": "Search movies, TV shows, actors...",
+    "openSearch": "Open Search",
+    "toggleTheme": "Toggle Theme",
+    "toggleLanguage": "Toggle Language",
+    "userProfile": "User Profile",
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "Common": {
     "loading": "Loading...",
@@ -20,13 +31,16 @@
     "loadingFailed": "Loading failed"
   },
   "Hero": {
-    "title": "TMDB Movie Database",
-    "subtitle": "Discover the latest and hottest movies, TV shows and celebrity information worldwide. Explore the infinite world of film and television and find your next favorite work.",
-    "millionResources": "Million Film Resources",
+    "title": "ICE•ICE FILM",
+    "subtitle": "Cinematic wonders in a world of ice and snow. Explore the infinite universe of film and television, discover the latest blockbusters, classic masterpieces, and celebrity insights.",
+    "tagline": "Pure as Ice, Brilliant as Film",
+    "millionResources": "Massive Film Library",
     "realTimeUpdate": "Real-time Updates",
-    "freeAccess": "Free Access",
+    "premiumExperience": "Premium Experience",
     "startExploring": "Start Exploring",
-    "searchMovies": "Search movies, TV shows, actors..."
+    "searchMovies": "Search movies, TV shows, actors...",
+    "discoverMore": "Discover More",
+    "watchNow": "Watch Now"
   },
   "Features": {
     "popularMovies": "Popular Movies",

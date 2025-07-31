@@ -9,7 +9,18 @@
     "tv": "电视剧",
     "people": "演员",
     "search": "搜索",
-    "favorites": "收藏"
+    "favorites": "收藏",
+    "menu": "菜单",
+    "close": "关闭",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "searchPlaceholder": "搜索电影、电视剧、演员...",
+    "openSearch": "打开搜索",
+    "toggleTheme": "切换主题",
+    "toggleLanguage": "切换语言",
+    "userProfile": "用户资料",
+    "settings": "设置",
+    "logout": "退出登录"
   },
   "Common": {
     "loading": "加载中...",
@@ -20,13 +31,16 @@
     "loadingFailed": "加载失败"
   },
   "Hero": {
-    "title": "TMDB 电影数据库",
-    "subtitle": "发现全球最新最热门的电影、电视剧和明星信息。探索无限精彩的影视世界，找到你的下一部最爱作品。",
-    "millionResources": "百万影片资源",
+    "title": "ICE•ICE FILM",
+    "subtitle": "冰雪世界中的电影奇迹，探索无限精彩的影视宇宙。发现最新热门电影、经典佳作和明星资讯。",
+    "tagline": "纯净如冰，精彩如影",
+    "millionResources": "海量影片库",
     "realTimeUpdate": "实时更新",
-    "freeAccess": "免费访问",
+    "premiumExperience": "极致体验",
     "startExploring": "开始探索",
-    "searchMovies": "搜索电影、电视剧、演员..."
+    "searchMovies": "搜索电影、电视剧、演员...",
+    "discoverMore": "发现更多",
+    "watchNow": "立即观看"
   },
   "Features": {
     "popularMovies": "热门电影",

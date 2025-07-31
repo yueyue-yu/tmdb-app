@@ -17,26 +17,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - TMDB',
-    default: 'TMDB - 电影数据库'
+    template: '%s - ICE•ICE FILM',
+    default: 'ICE•ICE FILM - 冰雪世界的电影奇迹'
   },
-  description: "探索全球最新最热门的电影、电视剧和明星信息。发现你的下一部最爱作品，获取详细的影片资料、评分和评论。",
-  keywords: ['电影', '电视剧', '明星', 'TMDB', '影评', '电影数据库', '娱乐'],
-  authors: [{ name: 'TMDB App' }],
-  creator: 'TMDB App',
-  publisher: 'TMDB App',
+  description: "冰雪世界中的电影奇迹，纯净如冰，精彩如影。探索无限精彩的影视宇宙，发现最新热门电影、经典佳作和明星资讯。",
+  keywords: ['电影', '电视剧', '明星', 'ICE FILM', '影评', '电影数据库', '娱乐', '冰雪', '电影奇迹'],
+  authors: [{ name: 'ICE•ICE FILM' }],
+  creator: 'ICE•ICE FILM',
+  publisher: 'ICE•ICE FILM',
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
-    url: 'https://tmdb-app.com',
-    title: 'TMDB - 电影数据库',
-    description: '探索全球最新最热门的电影、电视剧和明星信息',
-    siteName: 'TMDB',
+    url: 'https://ice-film.com',
+    title: 'ICE•ICE FILM - 冰雪世界的电影奇迹',
+    description: '纯净如冰，精彩如影。探索无限精彩的影视宇宙，发现最新热门电影、经典佳作和明星资讯。',
+    siteName: 'ICE•ICE FILM',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TMDB - 电影数据库',
-    description: '探索全球最新最热门的电影、电视剧和明星信息',
+    title: 'ICE•ICE FILM - 冰雪世界的电影奇迹',
+    description: '纯净如冰，精彩如影。探索无限精彩的影视宇宙',
   },
 };
 
