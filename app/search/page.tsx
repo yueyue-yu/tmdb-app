@@ -13,6 +13,7 @@ import type { Metadata } from 'next';
 import SearchForm from '@/app/components/search/SearchForm';
 import SearchResultsInfinite from '@/app/components/search/SearchResultsInfinite';
 import SearchPageClient from '@/app/components/search/SearchPageClient';
+import CommonLayout from '@/app/components/layout/CommonLayout';
 import { SearchTypeEnum } from '@/app/type/search';
 import type { FilterParams } from '@/app/type/search';
 
@@ -108,9 +109,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200">
-      {/* 移动端优先的头部 - 正常滚动 */}
-      <div className="max-w-4xl mx-auto px-4 py-6">
+    <CommonLayout>
+      <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200">
+        {/* 移动端优先的头部 - 正常滚动 */}
+        <div className="max-w-4xl mx-auto px-4 py-6">
         {/* 简化的页面标题 */}
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
@@ -166,7 +168,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                   {(t.raw('popularSearchTerms') as string[]).slice(0, 6).map((suggestion) => (
                     <a
                       key={suggestion}
-                      href={`/home/search?q=${encodeURIComponent(suggestion)}&type=all`}
+                      href={`/search?q=${encodeURIComponent(suggestion)}&type=all`}
                       className="btn btn-outline btn-sm text-xs hover:btn-primary transition-colors"
                     >
                       {suggestion}
@@ -177,7 +179,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             </div>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </CommonLayout>
   );
 }

@@ -26,22 +26,22 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
   },
   {
     key: 'movies',
-    path: '/home/movie/popular',
+    path: '/movie/popular',
     icon: FilmIcon,
   },
   {
     key: 'tv',
-    path: '/home/tv/popular',
+    path: '/tv/popular',
     icon: TvIcon,
   },
   {
     key: 'people',
-    path: '/home/people',
+    path: '/people',
     icon: UserGroupIcon,
   },
   {
     key: 'search',
-    path: '/home/search',
+    path: '/search',
     icon: MagnifyingGlassIcon,
   },
 ];
@@ -52,7 +52,7 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
 export const USER_NAVIGATION: NavigationItem[] = [
   {
     key: 'favorites',
-    path: '/home/favorites',
+    path: '/favorites',
     icon: HeartIcon,
     requiresAuth: true,
   },

@@ -142,7 +142,7 @@ export default async function HomeContent({
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
           <Link
-            href="/home/movie/popular"
+            href="/movie/popular"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">
@@ -153,7 +153,7 @@ export default async function HomeContent({
           </Link>
 
           <Link
-            href="/home/movie/top_rated"
+            href="/movie/top_rated"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">
@@ -164,7 +164,7 @@ export default async function HomeContent({
           </Link>
 
           <Link
-            href="/home/movie/now_playing"
+            href="/movie/now_playing"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">
@@ -175,7 +175,7 @@ export default async function HomeContent({
           </Link>
 
           <Link
-            href="/home/movie/upcoming"
+            href="/movie/upcoming"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">

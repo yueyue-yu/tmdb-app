@@ -27,16 +27,16 @@ export enum PageType {
  * 默认返回路径映射
  */
 export const DEFAULT_RETURN_PATHS = {
-  [PageType.MOVIE_DETAIL]: '/home/movie/popular',
-  [PageType.TV_DETAIL]: '/home/tv/popular',
-  [PageType.PERSON_DETAIL]: '/home',
-  [PageType.MOVIE_LIST]: '/home/movie',
-  [PageType.TV_LIST]: '/home/tv',
-  [PageType.PEOPLE_LIST]: '/home',
-  [PageType.SEARCH]: '/home/search',
-  [PageType.HOME]: '/home',
-  [PageType.EXTERNAL]: '/home',
-  [PageType.UNKNOWN]: '/home'
+  [PageType.MOVIE_DETAIL]: '/movie/popular',
+  [PageType.TV_DETAIL]: '/tv/popular',
+  [PageType.PERSON_DETAIL]: '/',
+  [PageType.MOVIE_LIST]: '/movie',
+  [PageType.TV_LIST]: '/tv',
+  [PageType.PEOPLE_LIST]: '/',
+  [PageType.SEARCH]: '/search',
+  [PageType.HOME]: '/',
+  [PageType.EXTERNAL]: '/',
+  [PageType.UNKNOWN]: '/'
 } as const;
 
 /**
@@ -164,13 +164,13 @@ export function smartNavigateBack(
     }
 
     // 2. 使用自定义回退路径或默认路径
-    const targetPath = fallbackPath || DEFAULT_RETURN_PATHS[currentPageType] || '/home';
+    const targetPath = fallbackPath || DEFAULT_RETURN_PATHS[currentPageType] || '/';
     console.log('导航到默认路径:', targetPath);
     router.push(targetPath);
   } catch (error) {
     console.error('智能导航失败:', error);
     // 最后的回退方案：返回首页
-    router.push('/home');
+    router.push('/');
   }
 }
 
@@ -185,7 +185,7 @@ export function getBreadcrumbPaths(
   currentPath: string
 ): Array<{ label: string; path: string }> {
   const breadcrumbs: Array<{ label: string; path: string }> = [
-    { label: '首页', path: '/home' }
+    { label: '首页', path: '/' }
   ];
 
   switch (currentPageType) {
