@@ -23,6 +23,15 @@ export interface MovieCastPageProps {
 }
 
 /**
+ * 电影画廊页面属性
+ */
+export interface MovieGalleryPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+/**
  * 电影详情Hero组件属性
  */
 export interface MovieDetailHeroProps {

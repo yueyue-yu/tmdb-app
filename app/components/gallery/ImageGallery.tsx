@@ -11,6 +11,8 @@ import type { ImageGalleryProps, ProcessedImage, ImageType } from '@/app/type/im
 import { createImageTabs, filterAndSortImages } from '@/app/lib/utils/imageUtils';
 import ImageCard from './ImageCard';
 import ImageModal from './ImageModal';
+import BatchDownloadToolbar from './BatchDownloadToolbar';
+import { useBatchDownload } from '@/app/hooks/useBatchDownload';
 
 interface ImageGalleryClientProps extends ImageGalleryProps {
   translations: {
@@ -44,6 +46,9 @@ export default function ImageGallery({
   const [languageFilter, setLanguageFilter] = useState<string | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 批量下载功能
+  const batchDownload = useBatchDownload();
 
   // 创建标签页数据
   const tabs = useMemo(() => 
@@ -175,6 +180,16 @@ export default function ImageGallery({
         </div>
       )}
 
+      {/* 批量下载工具栏 */}
+      {displayImages.length > 0 && (
+        <BatchDownloadToolbar
+          images={displayImages}
+          mediaTitle={mediaTitle}
+          batchDownload={batchDownload}
+          className="mb-6"
+        />
+      )}
+
       {/* 图片网格 */}
       {displayImages.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -184,6 +199,9 @@ export default function ImageGallery({
               image={image}
               onClick={handleImageClick}
               showInfo={false}
+              isSelectable={true}
+              isSelected={batchDownload.isImageSelected(image.id)}
+              onSelectionChange={batchDownload.toggleImageSelection}
             />
           ))}
         </div>

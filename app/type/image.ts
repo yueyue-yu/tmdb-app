@@ -143,9 +143,12 @@ export interface ImageSectionProps {
  */
 export interface ImageCardProps {
   image: ProcessedImage;
-  onClick: (image: ProcessedImage) => void;
+  onClick?: (image: ProcessedImage) => void;
   className?: string;
   showInfo?: boolean;
+  isSelectable?: boolean;
+  isSelected?: boolean;
+  onSelectionChange?: (imageId: string, selected: boolean) => void;
 }
 
 /**

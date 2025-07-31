@@ -23,6 +23,15 @@ export interface TvCastPageProps {
 }
 
 /**
+ * 电视剧画廊页面属性
+ */
+export interface TvGalleryPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+/**
  * 电视剧详情Hero组件属性
  */
 export interface TvDetailHeroProps {

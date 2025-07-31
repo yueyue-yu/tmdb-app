@@ -6,7 +6,7 @@
 import { getTranslations } from 'next-intl/server';
 import type { TvDetailInfoProps } from '@/app/type/tvDetail';
 import NetworksInfo from './NetworksInfo';
-import SeasonsInfo from './SeasonsInfo';
+import SeasonsHorizontal from './SeasonsHorizontal';
 
 export default async function TvDetailInfo({ tv }: TvDetailInfoProps) {
   const t = await getTranslations('TvDetail');
@@ -187,11 +187,12 @@ export default async function TvDetailInfo({ tv }: TvDetailInfoProps) {
 
       {/* 季度信息 */}
       {tv.seasons.length > 0 && (
-        <div className="card bg-base-100 shadow-lg mt-8">
-          <div className="card-body">
-            <h2 className="card-title text-2xl mb-4">{t('seasons')}</h2>
-            <SeasonsInfo seasons={tv.seasons} />
-          </div>
+        <div className="mt-8">
+          <SeasonsHorizontal
+            seasons={tv.seasons}
+            tvId={tv.id}
+            tvTitle={tv.name}
+          />
         </div>
       )}
     </div>

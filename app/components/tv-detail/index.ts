@@ -7,6 +7,7 @@ export { default as TvDetailInfo } from './TvDetailInfo';
 
 export { default as NetworksInfo } from './NetworksInfo';
 export { default as SeasonsInfo } from './SeasonsInfo';
+export { default as SeasonsHorizontal } from './SeasonsHorizontal';
 
 // 类型导出
 export type * from '@/app/type/tvDetail';

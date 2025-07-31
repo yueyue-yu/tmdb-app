@@ -13,7 +13,7 @@ import {
   TvDetailHero,
   TvDetailInfo
 } from '@/app/components/tv-detail';
-import CastSectionSimple from '@/app/components/credits/CastSectionSimple';
+import CastSectionHorizontal from '@/app/components/credits/CastSectionHorizontal';
 import ReviewSectionSimple from '@/app/components/reviews/ReviewSectionSimple';
 import { VideoSection } from '@/app/components/video';
 import { ImageSection } from '@/app/components/gallery';
@@ -159,7 +159,7 @@ export default async function TvDetailPage({ params }: TvDetailPageProps) {
         {/* 演员信息 */}
         {credits.cast && credits.cast.length > 0 && (
           <div className="max-w-6xl mx-auto px-4 py-8">
-            <CastSectionSimple
+            <CastSectionHorizontal
               cast={credits.cast}
               mediaType="tv"
               mediaId={tv.id}

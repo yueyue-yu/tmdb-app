@@ -132,7 +132,7 @@ export default function SearchResultsInfinite({
           rootMargin: '200px',
           enabled: !!query
         }}
-        className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+        className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         itemClassName=""
         showBackToTop={true}
         backToTopThreshold={500}

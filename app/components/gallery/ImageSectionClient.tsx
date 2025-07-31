@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import type { ImageSectionProps, GroupedImages } from '@/app/type/image';
 import { fetchMediaImages } from '@/app/lib/api/imageActions';
-import ImageGallery from './ImageGallery';
+import ImageSectionHorizontal from './ImageSectionHorizontal';
 import ErrorBoundary, { ApiErrorFallback } from '@/app/components/common/ErrorBoundary';
 
 interface ImageSectionClientProps extends ImageSectionProps {
@@ -138,19 +138,13 @@ export default function ImageSectionClient({
   return (
     <ErrorBoundary fallback={ApiErrorFallback}>
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* 标题 */}
-        <div className="flex items-center gap-3 mb-6">
-          <PhotoIcon className="w-6 h-6" />
-          <h2 className="text-2xl font-bold">{translations.images}</h2>
-          <span className="text-base-content/60">({totalImages})</span>
-        </div>
-
-        {/* 图片画廊 */}
+        {/* 横向滑动图片画廊 */}
         <ErrorBoundary>
-          <ImageGallery
+          <ImageSectionHorizontal
             images={images}
+            mediaType={mediaType}
+            mediaId={mediaId}
             mediaTitle={mediaTitle}
-            translations={translations}
           />
         </ErrorBoundary>
       </div>

@@ -7,7 +7,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { EyeIcon, ArrowDownTrayIcon, StarIcon } from '@heroicons/react/24/outline';
+import { EyeIcon, ArrowDownTrayIcon, StarIcon, CheckIcon } from '@heroicons/react/24/outline';
 import type { ImageCardProps } from '@/app/type/image';
 import { 
   getImageDisplayTitle, 
@@ -16,11 +16,14 @@ import {
   getBestImageForContainer
 } from '@/app/lib/utils/imageUtils';
 
-export default function ImageCard({ 
-  image, 
-  onClick, 
-  className = '', 
-  showInfo = true 
+export default function ImageCard({
+  image,
+  onClick,
+  className = '',
+  showInfo = true,
+  isSelectable = false,
+  isSelected = false,
+  onSelectionChange
 }: ImageCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -32,7 +35,17 @@ export default function ImageCard({
   
   // 处理图片点击
   const handleClick = () => {
-    onClick(image);
+    if (onClick) {
+      onClick(image);
+    }
+  };
+
+  // 处理选择状态变化
+  const handleSelectionChange = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onSelectionChange) {
+      onSelectionChange(image.id, !isSelected);
+    }
   };
 
   // 处理图片下载
@@ -57,10 +70,22 @@ export default function ImageCard({
       <div className={`relative bg-base-200 rounded-lg overflow-hidden ${className}`}>
         <div className="aspect-video flex items-center justify-center">
           <div className="text-center">
-            <div className="text-base-content/30 text-lg mb-2">🖼️</div>
-            <p className="text-base-content/60 text-sm">图片加载失败</p>
+            <div className="text-base-content/30 text-4xl mb-3">🖼️</div>
+            <p className="text-base-content/60 text-sm font-medium">图片加载失败</p>
+            <p className="text-base-content/40 text-xs mt-1">点击重试</p>
           </div>
         </div>
+
+        {/* 重试按钮 */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setImageError(false);
+            setImageLoaded(false);
+          }}
+          className="absolute inset-0 w-full h-full bg-transparent hover:bg-black/10 transition-colors"
+          title="重试加载图片"
+        />
       </div>
     );
   }
@@ -90,6 +115,27 @@ export default function ImageCard({
         {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="loading loading-spinner loading-sm"></div>
+          </div>
+        )}
+
+        {/* 选择复选框 */}
+        {isSelectable && (
+          <div className="absolute top-2 left-2 z-10">
+            <button
+              onClick={handleSelectionChange}
+              className={`btn btn-circle btn-sm transition-all duration-200 ${
+                isSelected
+                  ? 'bg-primary border-primary text-primary-content'
+                  : 'bg-white/20 border-white/30 text-white hover:bg-white/30'
+              }`}
+              title={isSelected ? '取消选择' : '选择图片'}
+            >
+              {isSelected ? (
+                <CheckIcon className="w-4 h-4" />
+              ) : (
+                <div className="w-4 h-4 border-2 border-current rounded"></div>
+              )}
+            </button>
           </div>
         )}
 

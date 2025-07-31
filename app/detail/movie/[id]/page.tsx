@@ -13,7 +13,7 @@ import {
   MovieDetailHero,
   MovieDetailInfo
 } from '@/app/components/movie-detail';
-import CastSectionSimple from '@/app/components/credits/CastSectionSimple';
+import CastSectionHorizontal from '@/app/components/credits/CastSectionHorizontal';
 import ReviewSectionSimple from '@/app/components/reviews/ReviewSectionSimple';
 import { VideoSection } from '@/app/components/video';
 import { ImageSection } from '@/app/components/gallery';
@@ -156,7 +156,7 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
         {/* 演员信息 */}
         {credits.cast && credits.cast.length > 0 && (
           <div className="max-w-6xl mx-auto px-4 py-8">
-            <CastSectionSimple
+            <CastSectionHorizontal
               cast={credits.cast}
               mediaType="movie"
               mediaId={movie.id}

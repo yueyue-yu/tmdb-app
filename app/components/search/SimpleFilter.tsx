@@ -114,8 +114,8 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
                         key={type.value}
                         onClick={() => handleFilterChange('type', type.value)}
                         className={`btn btn-sm justify-start gap-2 ${
-                          (localFilters.type || searchParams.type) === type.value 
-                            ? 'btn-primary' 
+                          searchParams.type === type.value
+                            ? 'btn-primary'
                             : 'btn-outline'
                         }`}
                       >
