@@ -7,12 +7,11 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { MovieCategoryKeys } from '@/app/type/movie';
-import { getMovieCategoryConfig, MOVIE_CATEGORIES } from '@/app/lib/categoryUtils';
+import { getMovieCategoryConfig, MOVIE_CATEGORIES } from '@/app/lib/utils/categoryUtils';
 import CategorySelector from '@/app/components/movies/CategorySelector';
 import PageHeader from '@/app/components/movies/PageHeader';
 import MovieGridSkeleton from '@/app/components/movies/MovieGridSkeleton';
 import MovieDataContainer from '@/app/components/movies/MovieDataContainer';
-import CommonLayout from '@/app/components/layout/CommonLayout';
 import { MediaTypeEnum } from '@/app/type/movie';
 
 interface PageProps {
@@ -69,7 +68,6 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
   const categoryConfig = getMovieCategoryConfig(categoryKey);
 
   return (
-    <CommonLayout>
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* 分类导航 */}
         <CategorySelector mediaType={MediaTypeEnum.Movie} currentCategoryKey={categoryKey} />
@@ -92,7 +90,6 @@ export default async function MovieCategoryPage({ params, searchParams }: PagePr
           />
         </Suspense>
       </div>
-    </CommonLayout>
   );
 }
 

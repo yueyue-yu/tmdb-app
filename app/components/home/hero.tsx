@@ -27,7 +27,7 @@ export default function Hero() {
     return (
         <div className="relative min-h-screen overflow-hidden">
             {/* 冰雪主题渐变背景 */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 via-cyan-600 to-sky-800">
                 {/* 冰晶效果层 */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-blue-500/20 to-indigo-500/10"></div>
                 {/* 动态光效 */}
@@ -47,7 +47,7 @@ export default function Hero() {
                 <div className="text-center max-w-4xl mx-auto">
 
                     {/* 品牌标识区域 */}
-                    <div className="mb-8 md:mb-12">
+                    <div className="mt-10 mb-8 md:mb-12">
                         {/* 图标装饰 */}
                         <div className="flex justify-center mb-6 md:mb-8">
                             <div className="relative">

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { CalendarIcon, TvIcon, StarIcon } from '@heroicons/react/24/outline';
 import { getTranslations } from 'next-intl/server';
 import type { TvDetailHeroProps } from '@/app/type/tvDetail';
-import { getBackdropUrl, getPosterUrl, getYear } from '@/app/lib/movieUtils';
+import { getBackdropUrl, getPosterUrl, getYear } from '@/app/lib/utils/movieUtils';
 import GenreBadges from '../movie-detail/GenreBadges';
 import BackButton from '../common/BackButton';
 import { PageType } from '@/app/lib/utils/navigationUtils';

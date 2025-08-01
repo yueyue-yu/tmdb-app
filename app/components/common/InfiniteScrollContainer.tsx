@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { useInfiniteScroll, LoadMoreFunction, InfiniteScrollConfig } from '@/app/hooks/useInfiniteScroll';
+import { useInfiniteScroll, LoadMoreFunction, InfiniteScrollConfig } from '@/app/lib/hooks/useInfiniteScroll';
 import LoadingTrigger from './LoadingTrigger';
 import BackToTop from './BackToTop';
 

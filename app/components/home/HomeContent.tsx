@@ -49,7 +49,7 @@ export default async function HomeContent({
             </div>
           </div>
           <Link 
-            href="/movie/top_rated" 
+            href="/movie/top-rated"
             className="btn btn-ghost btn-sm gap-2"
           >
             {t('viewAll')}

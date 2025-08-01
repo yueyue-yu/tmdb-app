@@ -5,7 +5,7 @@
 
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { getTranslations } from 'next-intl/server';
-import type { CategoryConfig } from '@/app/lib/categoryUtils';
+import type { CategoryConfig } from '@/app/lib/utils/categoryUtils';
 import RefreshButton from './RefreshButton';
 
 interface PageHeaderProps {

@@ -5,7 +5,7 @@ import {
   getYear,
   getPopularityLevel,
   getRatingBadgeClass
-} from '@/app/lib/movieUtils';
+} from '@/app/lib/utils/movieUtils';
 
 import MoviePoster from "@/app/components/movie-card/MoviePoster";
 import MovieInfo from "@/app/components/movie-card/MovieInfo";

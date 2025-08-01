@@ -3,7 +3,6 @@
  * 支持电影、电视剧、演员的综合搜索
  */
 
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -13,7 +12,6 @@ import type { Metadata } from 'next';
 import SearchForm from '@/app/components/search/SearchForm';
 import SearchResultsInfinite from '@/app/components/search/SearchResultsInfinite';
 import SearchPageClient from '@/app/components/search/SearchPageClient';
-import CommonLayout from '@/app/components/layout/CommonLayout';
 import { SearchTypeEnum } from '@/app/type/search';
 import type { FilterParams } from '@/app/type/search';
 
@@ -109,7 +107,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   }
 
   return (
-    <CommonLayout>
       <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200">
         {/* 移动端优先的头部 - 正常滚动 */}
         <div className="max-w-4xl mx-auto px-4 py-6">
@@ -181,6 +178,5 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         )}
         </div>
       </div>
-    </CommonLayout>
   );
 }

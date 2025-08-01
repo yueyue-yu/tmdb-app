@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { MoviePosterProps } from '@/app/type/movieCard';
-import { IMAGE_SIZES } from '@/app/constant/movieCard';
+import { IMAGE_SIZES } from '@/app/lib/constant/movieCard';
 import { MediaTypeEnum } from '@/app/type/movie';
 import PopularityBadge from './PopularityBadge';
 import RatingBadge from './RatingBadge';

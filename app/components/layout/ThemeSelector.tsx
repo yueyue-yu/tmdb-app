@@ -2,14 +2,10 @@
 
 import { SwatchIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '@/app/lib/hooks/useTheme';
 import { type Theme } from '../../lib/themeUtils';
 
-interface ThemeSelectorProps {
-    isScrolled?: boolean;
-}
-
-export default function ThemeSelector({ isScrolled = false }: ThemeSelectorProps) {
+export default function ThemeSelector() {
     const t = useTranslations('Theme');
     const themeT = useTranslations('Themes');
     const { currentTheme, setTheme, themes, currentThemeInfo, isInitialized } = useTheme();
@@ -18,16 +14,16 @@ export default function ThemeSelector({ isScrolled = false }: ThemeSelectorProps
         setTheme(themeName);
     };
 
-    // 如果主题未初始化，显示加载状态（避免闪烁）
+    const iconBgClasses = 'group-hover:bg-primary/5';
+    const iconColorClasses = 'text-base-content group-hover:text-primary';
+
+    // 2. 即使在加载状态，也应用统一的样式和结构
     if (!isInitialized) {
         return (
             <div className="dropdown dropdown-end">
-                <label tabIndex={0} className={`p-2 rounded-lg transition-all duration-300 ${
-                    isScrolled
-                        ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
-                        : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
-                }`}>
-                    <SwatchIcon className="h-6 w-6" />
+                <label tabIndex={0} className={`btn btn-ghost btn-circle group transition-colors duration-300 ${iconBgClasses}`}>
+                    {/* 使用 skeleton 效果或一个静态图标占位 */}
+                    <span className="skeleton h-6 w-6"></span>
                 </label>
             </div>
         );
@@ -35,13 +31,10 @@ export default function ThemeSelector({ isScrolled = false }: ThemeSelectorProps
 
     return (
         <div className="dropdown dropdown-end">
-            <label tabIndex={0} className={`p-2 rounded-lg transition-all duration-300 ${
-                isScrolled
-                    ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
-                    : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
-            }`}>
-                <SwatchIcon className="h-6 w-6" />
+            <label tabIndex={0} className={`btn btn-ghost btn-circle group transition-colors duration-300 ${iconBgClasses}`}>
+                <SwatchIcon className={`h-6 w-6 transition-colors duration-300 ${iconColorClasses}`} />
             </label>
+
             <div tabIndex={0} className="dropdown-content z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-80 max-h-96 overflow-y-auto">
                 <div className="p-3 border-b border-base-300">
                     <h3 className="font-bold text-sm text-base-content">{t('selectTheme')}</h3>

@@ -5,7 +5,6 @@
 
 import type { Metadata } from 'next';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
-import CommonLayout from '@/app/components/layout/CommonLayout';
 
 export const metadata: Metadata = {
   title: '演员 - ICE•ICE FILM',
@@ -18,7 +17,6 @@ export const metadata: Metadata = {
 
 export default function PeoplePage() {
   return (
-    <CommonLayout>
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* 页面标题 */}
         <div className="mb-8">
@@ -76,6 +74,5 @@ export default function PeoplePage() {
           </div>
         </div>
       </div>
-    </CommonLayout>
   );
 }

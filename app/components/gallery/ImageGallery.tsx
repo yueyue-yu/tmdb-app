@@ -12,7 +12,7 @@ import { createImageTabs, filterAndSortImages } from '@/app/lib/utils/imageUtils
 import ImageCard from './ImageCard';
 import ImageModal from './ImageModal';
 import BatchDownloadToolbar from './BatchDownloadToolbar';
-import { useBatchDownload } from '@/app/hooks/useBatchDownload';
+import { useBatchDownload } from '@/app/lib/hooks/useBatchDownload';
 
 interface ImageGalleryClientProps extends ImageGalleryProps {
   translations: {

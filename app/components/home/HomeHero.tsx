@@ -18,7 +18,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { StarIcon as StarSolidIcon } from '@heroicons/react/24/solid';
 
-import { getPosterUrl, getYear } from '@/app/lib/movieUtils';
+import { getPosterUrl, getYear } from '@/app/lib/utils/movieUtils';
 import {Movie} from "@/app/lib/api";
 
 interface HomeHeroProps {

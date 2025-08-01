@@ -12,7 +12,7 @@ import {
   DocumentArrowDownIcon 
 } from '@heroicons/react/24/outline';
 import type { ProcessedImage } from '@/app/type/image';
-import type { BatchDownloadState, BatchDownloadActions } from '@/app/hooks/useBatchDownload';
+import type { BatchDownloadState, BatchDownloadActions } from '@/app/lib/hooks/useBatchDownload';
 
 interface BatchDownloadToolbarProps {
   images: ProcessedImage[];

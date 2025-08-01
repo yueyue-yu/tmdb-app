@@ -32,7 +32,6 @@ export default function UserActions({ isMobile = false, className = '' }: UserAc
     if (isMobile) {
         return (
             <div className={`flex items-center gap-2 ${className}`}>
-
                 <ThemeSelector />
                 <LanguageSelector />
             </div>

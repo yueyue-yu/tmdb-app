@@ -1,8 +1,8 @@
 'use client';
 
 import { useContext } from 'react';
-import { ThemeContext } from '../components/providers/ThemeProvider';
-import { ThemeContextType } from '../type/theme';
+import { ThemeContext } from '../../components/providers/ThemeProvider';
+import { ThemeContextType } from '../../type/theme';
 
 /**
  * 主题 Hook

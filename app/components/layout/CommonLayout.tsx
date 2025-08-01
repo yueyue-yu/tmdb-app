@@ -16,9 +16,7 @@ interface CommonLayoutProps {
 export default function CommonLayout({ children, className = '' }: CommonLayoutProps) {
   return (
     <div className="min-h-screen bg-base-100">
-      {/* 浮动导航栏 */}
       <FloatingNavbar />
-      
       {/* 主要内容区域 */}
       <main className={`pt-16 ${className}`}>
         {children}

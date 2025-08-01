@@ -4,7 +4,7 @@
  */
 
 import { redirect } from 'next/navigation';
-import { DEFAULT_CATEGORY } from '@/app/lib/categoryUtils';
+import { DEFAULT_CATEGORY } from '@/app/lib/utils/categoryUtils';
 
 export default function MoviePage() {
   redirect(`/movie/${DEFAULT_CATEGORY}`);

@@ -1,11 +1,11 @@
 'use client';
 
-import { useNavbarState } from '@/app/hooks/useScrollPosition';
+import { useNavbarState } from '@/app/lib/hooks/useScrollPosition';
 import NavbarLogo from './NavbarLogo';
 import DesktopNavigation from './DesktopNavigation';
-import MobileNavigation from './MobileNavigation';
 import NavbarSearch from './NavbarSearch';
 import UserActions from './UserActions';
+import MobileNav from "@/app/components/navigation/MobileNav";
 
 interface FloatingNavbarProps {
   className?: string;
@@ -16,7 +16,7 @@ interface FloatingNavbarProps {
  * 根据滚动状态自动调整样式和行为
  */
 export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) {
-  const {isVisible, shouldShowBackground, shouldShowShadow } = useNavbarState(100);
+  const {isVisible, shouldShowBackground} = useNavbarState(100);
 
   return (
     <header 
@@ -27,30 +27,25 @@ export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) 
       {/* 导航栏容器 */}
       <div className={`transition-all duration-300 ${
         shouldShowBackground
-          ? 'bg-base-100/95 backdrop-blur-lg border-b border-base-300/50'
-          : 'bg-gradient-to-b from-white/30 via-white/10 to-transparent backdrop-blur-2xl'
-      } ${
-        shouldShowShadow ? 'shadow-lg' : ''
-      }`}>
-        
+          ? 'bg-base-100/95 backdrop-blur-2xl border-b border-base-200/50 shadow-lg'
+          : 'glass backdrop-blur-2xl'
+      } `}>
         {/* 导航栏内容 */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            
             {/* 左侧：移动端菜单 + Logo */}
+
+
             <div className="flex items-center gap-4">
-              <MobileNavigation/>
+              <MobileNav className="md:hidden" />
               <NavbarLogo/>
             </div>
             {/* 中间：桌面端导航菜单 */}
             <DesktopNavigation/>
             {/* 右侧：搜索 + 用户操作 */}
             <div className="flex items-center gap-4">
-              {/* 桌面端搜索 */}
-              <NavbarSearch className="hidden md:block" />
-              
               {/* 移动端搜索 */}
-              <NavbarSearch  isMobile className="md:hidden" />
+              <NavbarSearch  className="md:hidden" />
               
               {/* 用户操作 */}
               <UserActions className="hidden sm:flex" />

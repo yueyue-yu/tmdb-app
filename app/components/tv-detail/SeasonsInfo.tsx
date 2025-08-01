@@ -6,7 +6,7 @@
 import Image from 'next/image';
 import { CalendarIcon, FilmIcon, StarIcon } from '@heroicons/react/24/outline';
 import type { SeasonsInfoProps } from '@/app/type/tvDetail';
-import { getPosterUrl } from '@/app/lib/movieUtils';
+import { getPosterUrl } from '@/app/lib/utils/movieUtils';
 
 export default function SeasonsInfo({ seasons }: SeasonsInfoProps) {
   if (!seasons || seasons.length === 0) {

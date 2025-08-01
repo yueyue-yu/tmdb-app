@@ -54,7 +54,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider>
           <ThemeProvider>
-            {children}
+              {children}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

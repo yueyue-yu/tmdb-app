@@ -13,7 +13,7 @@ import {
   SignalIcon,
   SignalSlashIcon
 } from '@heroicons/react/24/outline';
-import { useNetworkStatus } from '@/app/hooks/useNetworkStatus';
+import { useNetworkStatus } from '@/app/lib/hooks/useNetworkStatus';
 
 interface NetworkStatusProps {
   onRetry?: () => void;

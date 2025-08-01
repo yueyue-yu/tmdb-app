@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { TvIcon, CalendarIcon, FilmIcon, StarIcon } from '@heroicons/react/24/outline';
 import HorizontalScrollContainer from '@/app/components/common/HorizontalScrollContainer';
-import { getPosterUrl } from '@/app/lib/movieUtils';
+import { getPosterUrl } from '@/app/lib/utils/movieUtils';
 import type { Season } from '@/app/lib/api/types';
 
 interface SeasonsHorizontalProps {

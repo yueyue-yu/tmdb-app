@@ -8,7 +8,7 @@
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { getCategoryConfigs } from '@/app/lib/categoryUtils';
+import { getCategoryConfigs } from '@/app/lib/utils/categoryUtils';
 import {MediaCategoryKeys, MediaTypeEnum} from "@/app/type/movie";
 
 

@@ -1,6 +1,6 @@
 import { FireIcon } from '@heroicons/react/24/outline';
 import type { PopularityBadgeProps } from '@/app/type/movieCard';
-import { POPULARITY_LABELS } from '@/app/constant/movieCard';
+import { POPULARITY_LABELS } from '@/app/lib/constant/movieCard';
 
 /**
  * 受欢迎程度徽章组件（服务端组件）
