@@ -16,7 +16,7 @@ interface FloatingNavbarProps {
  * 根据滚动状态自动调整样式和行为
  */
 export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) {
-  const { isScrolled, isVisible, shouldShowBackground, shouldShowShadow } = useNavbarState(100);
+  const {isVisible, shouldShowBackground, shouldShowShadow } = useNavbarState(100);
 
   return (
     <header 
@@ -28,7 +28,7 @@ export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) 
       <div className={`transition-all duration-300 ${
         shouldShowBackground
           ? 'bg-base-100/95 backdrop-blur-lg border-b border-base-300/50'
-          : 'bg-gradient-to-b from-black/20 via-black/10 to-transparent backdrop-blur-md'
+          : 'bg-gradient-to-b from-white/30 via-white/10 to-transparent backdrop-blur-2xl'
       } ${
         shouldShowShadow ? 'shadow-lg' : ''
       }`}>
@@ -39,35 +39,33 @@ export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) 
             
             {/* 左侧：移动端菜单 + Logo */}
             <div className="flex items-center gap-4">
-              <MobileNavigation isScrolled={isScrolled} />
-              <NavbarLogo isScrolled={isScrolled} />
+              <MobileNavigation/>
+              <NavbarLogo/>
             </div>
-
             {/* 中间：桌面端导航菜单 */}
-            <DesktopNavigation isScrolled={isScrolled} />
-
+            <DesktopNavigation/>
             {/* 右侧：搜索 + 用户操作 */}
             <div className="flex items-center gap-4">
               {/* 桌面端搜索 */}
-              <NavbarSearch isScrolled={isScrolled} className="hidden md:block" />
+              <NavbarSearch className="hidden md:block" />
               
               {/* 移动端搜索 */}
-              <NavbarSearch isScrolled={isScrolled} isMobile className="md:hidden" />
+              <NavbarSearch  isMobile className="md:hidden" />
               
               {/* 用户操作 */}
-              <UserActions isScrolled={isScrolled} className="hidden sm:flex" />
+              <UserActions className="hidden sm:flex" />
             </div>
           </div>
         </div>
 
         {/* 冰雪主题装饰线 */}
-        {!isScrolled && (
+        {!isVisible && (
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-300/30 to-transparent" />
         )}
       </div>
 
       {/* 冰晶装饰元素 */}
-      {!isScrolled && (
+      {!isVisible && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-4 left-1/4 w-1 h-1 bg-cyan-300/40 rounded-full animate-pulse" />
           <div className="absolute top-8 right-1/3 w-0.5 h-0.5 bg-blue-200/30 rounded-full animate-ping" />

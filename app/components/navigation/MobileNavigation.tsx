@@ -13,7 +13,6 @@ import { MAIN_NAVIGATION, USER_NAVIGATION, isPathActive } from '@/app/config/nav
 import UserActions from './UserActions';
 
 interface MobileNavigationProps {
-  isScrolled?: boolean;
   className?: string;
 }
 
@@ -21,7 +20,7 @@ interface MobileNavigationProps {
  * 移动端导航组件
  * 包含汉堡菜单按钮和侧滑菜单
  */
-export default function MobileNavigation({ isScrolled = false, className = '' }: MobileNavigationProps) {
+export default function MobileNavigation({className = '' }: MobileNavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations('Navigation');
@@ -52,11 +51,8 @@ export default function MobileNavigation({ isScrolled = false, className = '' }:
       {/* 汉堡菜单按钮 */}
       <button
         onClick={() => setIsMenuOpen(true)}
-        className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
-          isScrolled
-            ? 'text-base-content/70 hover:text-primary hover:bg-primary/5'
-            : 'text-white/80 hover:text-cyan-200 hover:bg-white/10'
-        } ${className}`}
+        className={`lg:hidden p-2 rounded-lg transition-all duration-300 
+        'text-base-content/70 hover:text-primary hover:bg-primary/5'  ${className}`}
         aria-label={t('openMenu')}
       >
         <Bars3Icon className="h-6 w-6" />
@@ -170,7 +166,7 @@ export default function MobileNavigation({ isScrolled = false, className = '' }:
 
             {/* 菜单底部 */}
             <div className="p-4 border-t border-base-300">
-              <UserActions isScrolled={true} isMobile={true} />
+              <UserActions isMobile={true} />
             </div>
           </div>
         </>

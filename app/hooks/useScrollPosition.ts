@@ -73,7 +73,6 @@ export function useNavbarState(scrollThreshold: number = 100) {
   const { isScrolled, direction } = useScrollPosition({ threshold: scrollThreshold });
   
   return {
-    isScrolled,
     isVisible: direction !== 'down' || !isScrolled,
     shouldShowBackground: isScrolled,
     shouldShowShadow: isScrolled,
