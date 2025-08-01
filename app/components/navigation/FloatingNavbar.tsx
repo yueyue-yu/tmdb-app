@@ -46,11 +46,8 @@ export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) 
             <DesktopNavigation/>
             {/* 右侧：搜索 + 用户操作 */}
             <div className="flex items-center gap-4">
-              {/* 桌面端搜索 */}
-              <NavbarSearch className="hidden md:block" />
-              
               {/* 移动端搜索 */}
-              <NavbarSearch  isMobile className="md:hidden" />
+              <NavbarSearch  className="md:hidden" />
               
               {/* 用户操作 */}
               <UserActions className="hidden sm:flex" />

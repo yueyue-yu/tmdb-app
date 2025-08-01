@@ -2,7 +2,6 @@ import {
   HomeIcon,
   FilmIcon,
   TvIcon,
-  UserGroupIcon,
   MagnifyingGlassIcon,
   HeartIcon,
 } from '@heroicons/react/24/outline';
@@ -33,11 +32,6 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
     key: 'tv',
     path: '/tv/popular',
     icon: TvIcon,
-  },
-  {
-    key: 'people',
-    path: '/people',
-    icon: UserGroupIcon,
   },
   {
     key: 'search',

@@ -5,6 +5,7 @@ import HomeContent from '@/app/components/home/HomeContent';
 import FloatingNavbar from '@/app/components/navigation/FloatingNavbar';
 import { fetchMedia } from '@/app/lib/api/mediaActions';
 import { MediaTypeEnum } from '@/app/type/movie';
+import Footer from "@/app/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: '首页',
@@ -20,8 +21,7 @@ function HomeLoading() {
   return (
     <div className="space-y-0">
       {/* Hero区域 */}
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 animate-pulse" />
-
+      <div className="min-h-screen bg-gradient-to-br from-sky-200 via-slate-50 to-white animate-pulse" />
       {/* 内容区域骨架屏 */}
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
         {[1, 2, 3].map((section) => (
@@ -83,6 +83,9 @@ export default async function Home() {
               />
             </div>
           </section>
+
+          {/* 页脚 */}
+          <Footer />
         </div>
       </Suspense>
     );
