@@ -27,7 +27,7 @@ export default function Hero() {
     return (
         <div className="relative min-h-screen overflow-hidden">
             {/* 冰雪主题渐变背景 */}
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 via-cyan-600 to-sky-800">
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-300 via-cyan-600 to-sky-700">
                 {/* 冰晶效果层 */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-blue-500/20 to-indigo-500/10"></div>
                 {/* 动态光效 */}
@@ -97,9 +97,6 @@ export default function Hero() {
 
                     {/* 滚动提示 */}
                     <div className="flex flex-col items-center gap-4">
-                        <p className="text-cyan-200/70 text-sm md:text-base font-light">
-                            向上滑动探索更多
-                        </p>
                         <button
                             onClick={scrollToContent}
                             className="animate-bounce hover:animate-none transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 rounded-full p-2"

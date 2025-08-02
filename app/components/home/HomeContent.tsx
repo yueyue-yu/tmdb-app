@@ -153,7 +153,7 @@ export default async function HomeContent({
           </Link>
 
           <Link
-            href="/movie/top_rated"
+            href="/movie/top-rated"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">
@@ -164,7 +164,7 @@ export default async function HomeContent({
           </Link>
 
           <Link
-            href="/movie/now_playing"
+            href="/movie/now-playing"
             className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
           >
             <div className="card-body items-center text-center p-6">

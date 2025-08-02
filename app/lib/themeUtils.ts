@@ -12,7 +12,6 @@ export const THEMES: Theme[] = [
     { name: 'valentine', labelKey: 'valentine', emoji: '💖' },
     { name: 'aqua', labelKey: 'aqua', emoji: '🌊' },
     { name: 'luxury', labelKey: 'luxury', emoji: '💎' },
-    { name: 'cmyk', labelKey: 'cmyk', emoji: '🖨️' },
     { name: 'autumn', labelKey: 'autumn', emoji: '🍂' },
     { name: 'business', labelKey: 'business', emoji: '💼' },
     { name: 'night', labelKey: 'night', emoji: '🌃' },

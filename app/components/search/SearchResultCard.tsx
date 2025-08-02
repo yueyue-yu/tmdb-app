@@ -46,7 +46,7 @@ export default function SearchResultCard({ item }: SearchResultCardProps) {
         rating: person.popularity,
         overview: (person as any).known_for?.map((k: any) => k.title || k.name).join(', ') || '',
         posterPath: person.profile_path,
-        detailUrl: `/person/${person.id}`,
+        detailUrl: `/detail/person/${person.id}`,
         mediaType: t('searchTypes.person'),
         mediaIcon: '👤'
       };
