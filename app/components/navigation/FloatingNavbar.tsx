@@ -3,7 +3,6 @@
 import { useNavbarState } from '@/app/lib/hooks/useScrollPosition';
 import NavbarLogo from './NavbarLogo';
 import DesktopNavigation from './DesktopNavigation';
-import NavbarSearch from './NavbarSearch';
 import UserActions from './UserActions';
 import MobileNav from "@/app/components/navigation/MobileNav";
 
@@ -42,13 +41,8 @@ export default function FloatingNavbar({ className = '' }: FloatingNavbarProps) 
             </div>
             {/* 中间：桌面端导航菜单 */}
             <DesktopNavigation/>
-            {/* 右侧：搜索 + 用户操作 */}
             <div className="flex items-center gap-4">
-              {/* 移动端搜索 */}
-              <NavbarSearch  className="md:hidden" />
-              
-              {/* 用户操作 */}
-              <UserActions className="hidden sm:flex" />
+              <UserActions/>
             </div>
           </div>
         </div>
