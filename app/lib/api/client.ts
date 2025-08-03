@@ -3,17 +3,20 @@
  * 参考 app/api/movies/popular/route.ts 的实现
  */
 
-// 移除服务器端语言工具的导入，避免客户端组件使用服务器端代码
 
-const API_KEY = process.env.TMDB_API_KEY || 'c07245f6cabd71848d42faa2949c0f61';
+const API_KEY = process.env.TMDB_API_KEY;
 const API_BASE_URL = process.env.TMDB_API_BASE_URL || 'https://api.themoviedb.org/3';
+
+if (!API_KEY) {
+  throw new Error('TMDB_API_KEY is not defined in environment variables.');
+}
 
 class ApiClient {
   private baseURL: string;
   private apiKey: string;
   private language: string;
 
-  constructor(baseURL: string = API_BASE_URL, apiKey: string = API_KEY, language: string = 'zh-CN') {
+  constructor(baseURL: string = API_BASE_URL, apiKey: string = API_KEY!, language: string = 'zh-CN') {
     this.baseURL = baseURL;
     this.apiKey = apiKey;
     this.language = language;
