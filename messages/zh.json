@@ -140,6 +140,8 @@
     "noPeopleFoundDesc": "尝试使用不同的关键词搜索",
     "noResultsFound": "未找到搜索结果",
     "noResultsFoundDesc": "尝试使用不同的关键词或调整筛选条件",
+    "noResultsHint": "尝试使用不同的关键词或调整筛选条件",
+    "mobileSearchHint": "输入关键词开始搜索",
     "unknown": "未知",
     "noOverview": "暂无简介",
     "filters": {
@@ -155,7 +157,14 @@
       "clearAll": "清除全部",
       "clearFilter": "清除",
       "applyFilters": "应用筛选",
-      "noFilters": "暂无筛选条件"
+      "noFilters": "暂无筛选条件",
+      "filter": "筛选",
+      "filterSearch": "筛选搜索",
+      "searchType": "搜索类型",
+      "yearRange": "年份范围",
+      "ratingRange": "评分范围",
+      "any": "不限",
+      "below": "{value} 以下"
     }
   },
   "Theme": {
@@ -171,7 +180,8 @@
     "previousPage": "上一页",
     "nextPage": "下一页",
     "firstPage": "第1页",
-    "loadingPage": "正在加载第",
+    "loadingPage": "正在加载第 {page} 页...",
+    "currentPage": "第 {page} 页",
     "reachedEnd": "🎬 已经到底了",
     "totalFound": "共找到",
     "loadFailed": "加载失败",

@@ -10,7 +10,7 @@ export default function SearchForm({
   initialQuery = '',
   onSearch
 }: SearchFormProps) {
-  const t = useTranslations('Search');
+  const t = useTranslations();
   const router = useRouter();
   const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -102,46 +102,18 @@ export default function SearchForm({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('searchPlaceholder')}
+            placeholder={t('Search.searchPlaceholder')}
             className="input input-bordered w-full pr-20 h-12 text-base bg-base-100/50 backdrop-blur-sm border-base-300 focus:border-primary focus:bg-base-100 transition-all"
             disabled={isLoading}
             autoComplete="off"
             spellCheck="false"
           />
-
-          {/* 右侧按钮组 */}
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-            {/* 清空按钮 */}
-            {query && (
-              <button
-                type="button"
-                onClick={handleClear}
-                className="btn btn-ghost btn-sm btn-circle"
-                disabled={isLoading}
-              >
-                <XMarkIcon className="h-4 w-4" />
-              </button>
-            )}
-
-            {/* 搜索按钮 */}
-            <button
-              type="submit"
-              disabled={isLoading || !query.trim()}
-              className="btn btn-primary btn-sm px-3 h-8 min-h-8"
-            >
-              {isLoading ? (
-                <span className="loading loading-spinner loading-xs"></span>
-              ) : (
-                <span className="text-xs font-medium">搜索</span>
-              )}
-            </button>
-          </div>
         </div>
 
         {/* 移动端搜索提示 */}
         <div className="text-center sm:hidden">
           <p className="text-xs text-base-content/50">
-            输入关键词开始搜索
+            {t('Search.mobileSearchHint')}
           </p>
         </div>
       </form>

@@ -78,7 +78,7 @@ export default function SearchPageClient({
         {/* 顶部工具栏 - 紧凑设计 */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">
-            搜索结果
+            {t('searchResults')}
           </h2>
 
           {/* 简化筛选器 */}

@@ -6,6 +6,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 // 导入搜索组件
@@ -163,13 +164,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {(t.raw('popularSearchTerms') as string[]).slice(0, 6).map((suggestion) => (
-                    <a
+                    <Link
                       key={suggestion}
                       href={`/search?q=${encodeURIComponent(suggestion)}&type=all`}
                       className="btn btn-outline btn-sm text-xs hover:btn-primary transition-colors"
                     >
                       {suggestion}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import InfiniteScrollContainer from '@/app/components/common/InfiniteScrollContainer';
 import SearchResultCard from './SearchResultCard';
+import SearchResultsSkeleton from './SearchResultsSkeleton';
 import { unifiedSearch } from '@/app/lib/api/searchActions';
 import type { InfiniteSearchResultsProps } from '@/app/type/search';
 import type { Movie, Person } from '@/app/lib/api/types';
@@ -109,6 +110,9 @@ export default function SearchResultsInfinite({
     </div>
   ), [t]);
 
+  // 渲染骨架屏
+  const renderSkeleton = useCallback(() => <SearchResultsSkeleton />, []);
+
   return (
     <div className={className}>
       {/* 搜索结果标题 - 移动端优化 */}
@@ -127,6 +131,7 @@ export default function SearchResultsInfinite({
         renderItem={renderItem}
         renderEmpty={renderEmpty}
         renderError={renderError}
+        renderSkeleton={renderSkeleton}
         config={{
           threshold: 0.1,
           rootMargin: '200px',

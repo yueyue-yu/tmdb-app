@@ -71,7 +71,7 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
         className="btn btn-outline btn-sm gap-2 relative"
       >
         <FunnelIcon className="w-4 h-4" />
-        <span className="hidden sm:inline">筛选</span>
+        <span className="hidden sm:inline">{t('filters.filter')}</span>
         {hasFilters && (
           <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
         )}
@@ -93,7 +93,7 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold flex items-center gap-2">
                   <AdjustmentsHorizontalIcon className="w-5 h-5" />
-                  筛选搜索
+                  {t('filters.filterSearch')}
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -107,7 +107,7 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
               <div className="space-y-6">
                 {/* 搜索类型 */}
                 <div>
-                  <h3 className="font-medium mb-3">搜索类型</h3>
+                  <h3 className="font-medium mb-3">{t('filters.searchType')}</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {searchTypes.map((type) => (
                       <button
@@ -128,10 +128,10 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
 
                 {/* 年份筛选 */}
                 <div>
-                  <h3 className="font-medium mb-3">年份范围</h3>
+                  <h3 className="font-medium mb-3">{t('filters.yearRange')}</h3>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="label label-text text-xs">从</label>
+                      <label className="label label-text text-xs">{t('filters.yearFrom')}</label>
                       <input
                         type="number"
                         placeholder="1990"
@@ -143,7 +143,7 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
                       />
                     </div>
                     <div>
-                      <label className="label label-text text-xs">到</label>
+                      <label className="label label-text text-xs">{t('filters.yearTo')}</label>
                       <input
                         type="number"
                         placeholder="2024"
@@ -159,16 +159,16 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
 
                 {/* 评分筛选 */}
                 <div>
-                  <h3 className="font-medium mb-3">评分范围</h3>
+                  <h3 className="font-medium mb-3">{t('filters.ratingRange')}</h3>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="label label-text text-xs">最低评分</label>
+                      <label className="label label-text text-xs">{t('filters.ratingFrom')}</label>
                       <select
                         value={localFilters.ratingFrom || ''}
                         onChange={(e) => handleFilterChange('ratingFrom', e.target.value ? parseFloat(e.target.value) : undefined)}
                         className="select select-bordered select-sm w-full"
                       >
-                        <option value="">不限</option>
+                        <option value="">{t('filters.any')}</option>
                         <option value="6">6.0+</option>
                         <option value="7">7.0+</option>
                         <option value="8">8.0+</option>
@@ -176,17 +176,17 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
                       </select>
                     </div>
                     <div>
-                      <label className="label label-text text-xs">最高评分</label>
+                      <label className="label label-text text-xs">{t('filters.ratingTo')}</label>
                       <select
                         value={localFilters.ratingTo || ''}
                         onChange={(e) => handleFilterChange('ratingTo', e.target.value ? parseFloat(e.target.value) : undefined)}
                         className="select select-bordered select-sm w-full"
                       >
-                        <option value="">不限</option>
-                        <option value="7">7.0以下</option>
-                        <option value="8">8.0以下</option>
-                        <option value="9">9.0以下</option>
-                        <option value="10">10.0以下</option>
+                        <option value="">{t('filters.any')}</option>
+                        <option value="7">{t('filters.below', { value: 7 })}</option>
+                        <option value="8">{t('filters.below', { value: 8 })}</option>
+                        <option value="9">{t('filters.below', { value: 9 })}</option>
+                        <option value="10">{t('filters.below', { value: 10 })}</option>
                       </select>
                     </div>
                   </div>
@@ -200,13 +200,13 @@ export default function SimpleFilter({ searchParams, onFiltersChange }: SimpleFi
                   className="btn btn-outline btn-sm flex-1"
                   disabled={!hasFilters}
                 >
-                  清除筛选
+                  {t('filters.clearFilter')}
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="btn btn-primary btn-sm flex-1"
                 >
-                  应用筛选
+                  {t('filters.applyFilters')}
                 </button>
               </div>
             </div>

@@ -10,6 +10,7 @@ interface InfiniteScrollContainerProps<T> {
   renderItem: (item: T, index: number) => ReactNode;
   renderEmpty?: () => ReactNode;
   renderError?: (error: string, retry: () => void) => ReactNode;
+  renderSkeleton?: () => ReactNode;
   config?: InfiniteScrollConfig;
   className?: string;
   itemClassName?: string;
@@ -26,6 +27,7 @@ export default function InfiniteScrollContainer<T>({
   renderItem,
   renderEmpty,
   renderError,
+  renderSkeleton,
   config,
   className = '',
   itemClassName = '',
@@ -43,6 +45,9 @@ export default function InfiniteScrollContainer<T>({
 
   // 初始加载状态
   if (loading && items.length === 0) {
+    if (renderSkeleton) {
+      return renderSkeleton();
+    }
     return (
       <div className={`space-y-4 ${className}`}>
         {/* 骨架屏加载状态 */}
