@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import SimpleFilter from './SimpleFilter';
+import SearchFliter from './SearchFliter';
 import type { SearchTypeEnum, FilterParams } from '@/app/type/search';
 
 interface SearchPageClientProps {
@@ -78,7 +78,7 @@ export default function SearchPageClient({
         {/* 顶部工具栏 - 紧凑设计 */}
         <div className="flex items-center justify-between mb-4">
           {/* 简化筛选器 */}
-          <SimpleFilter
+          <SearchFliter
             searchParams={{ query, type, filters }}
             onFiltersChange={handleFiltersChange}
           />
