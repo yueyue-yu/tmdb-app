@@ -77,10 +77,6 @@ export default function SearchPageClient({
       <div className="w-full">
         {/* 顶部工具栏 - 紧凑设计 */}
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">
-            {t('searchResults')}
-          </h2>
-
           {/* 简化筛选器 */}
           <SimpleFilter
             searchParams={{ query, type, filters }}

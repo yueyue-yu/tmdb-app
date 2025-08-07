@@ -95,7 +95,6 @@ export default function SearchForm({
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit} className="space-y-3">
-        {/* 紧凑的搜索框 */}
         <div className="relative">
           <input
             ref={inputRef}
@@ -108,13 +107,6 @@ export default function SearchForm({
             autoComplete="off"
             spellCheck="false"
           />
-        </div>
-
-        {/* 移动端搜索提示 */}
-        <div className="text-center sm:hidden">
-          <p className="text-xs text-base-content/50">
-            {t('Search.mobileSearchHint')}
-          </p>
         </div>
       </form>
     </div>
